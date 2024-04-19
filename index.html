@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Le repasseur</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(60, 34, 34, 0.1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    
+<header data-bs-theme="dark" >
+  
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="Logo" width="60"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#marche">Comment ça marche ?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#choisir">Pourquoi choisir le Répasseur</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tarifs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#abonnements">Abonnements</a></li>
+              <li><a class="dropdown-item" href="#offres">Comparer les offres</a></li>
+              <li><a class="dropdown-item" href="#kit">Kit du repasseur</a></li>
+              <li><a class="dropdown-item" href="#collecte">Collecte sans abonnement</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/faq.html" style="border-radius: 10px; background-color: rgb(87, 87, 87);">FAQ</a>
+          </li>
+        </ul>
+        <ul class="d-flex list-unstyled">
+          <li>
+            <a href="inscription.html" class="btn btn me-3" style="background-color: #CE2029;">Creer un compte</a>
+          </li>
+          <li>
+              <a href="sign-in/index.html" class="btn" style = "background-color: #b9606500;">Se connecter</a>
+          </li>
+      </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <style>
+    .full-height-carousel {
+      height: 90vh;
+    }
+  
+    .full-height-carousel .carousel-inner,
+    .full-height-carousel .carousel-item,
+    .full-height-carousel .carousel-item img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain; /* Change ici */
+    }
+  
+    @media (max-width: 768px) {
+      .full-height-carousel {
+        height: 50vh;
+      }
+  
+      .full-height-carousel .carousel-item img {
+        object-fit: contain;
+      }
+    }
+</style>
+  <div id="myCarousel" class="carousel slide mb-6 full-height-carousel" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+  
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <picture>
+          <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite1-tel.jpg">
+          <source media="(min-width: 769px)" srcset="/assets/imgg/2787fd5a-42c8-49c1-b93d-7910706b3d66.jpg">
+          <img class="bd-placeholder-img" src="/assets/imgg/2787fd5a-42c8-49c1-b93d-7910706b3d66.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
+        </picture>
+        <div class="container">
+          <!-- ... -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <picture>
+          <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite2-tel.jpg">
+          <source media="(min-width: 769px)" srcset="/assets/imgg/SliderSite2v3.jpg">
+          <img class="bd-placeholder-img" src="/assets/imgg/SliderSite2v3.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
+        </picture>
+        <div class="container">
+          <!-- ... -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <picture>
+          <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite3-tel.jpg">
+          <source media="(min-width: 769px)" srcset="/assets/imgg/SliderSite3v3.jpg">
+          <img class="bd-placeholder-img" src="/assets/imgg/SliderSite3v3.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
+        </picture>
+        <div class="container">
+          <!-- ... -->
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Precedent</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Suivant</span>
+    </button>
+    
+    
+  </div>
+  
+  <style>
+    .center-align {
+      text-align: center;
+      margin: auto;
+      width: 50%; /* Ajustez cette valeur en fonction de vos besoins */
+    }
+  </style>
+  
+  
+  <div class="container col-xxl-8 px-4 py-3">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
+      
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Bienvenue chez Le Repasseur.fr</h1>
+        <h1>Vite fait, bien fait, sans vous déplacer !</h2>
+        <p class="lead">Le Repasseur a pour mission de simplifier votre quotidien en vous offrant un service <strong class="text">collecte à domicile</strong> <br>de votre linge à repasser puis <strong class="text"> retour chez vous en 24h. </strong>Pratique, rapide et efficace ! <br> Fini le temps passé à repasser votre linge, nous nous occupons de tout pour vous permettre de profiter pleinement de votre temps libre.</p>
+        
+      </div>
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="/assets/imgg/Image Accueil.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="500" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
+<div class="container-fluid marketing m-0">
+  <!-- Three columns of text below the carousel -->
+  <div class="row featurette" style="background-color: #CE2029;">
+    <div class="col-md- text-center">
+      <h2 class="featurette-heading fw-normal lh-1" style="color: white; font-size:34px; margin-top: 20px;">Téléchargez l'appli et programmez <br> votre première collecte</h2>
+        <img src="/assets/imgg/pngegg.png" alt="Description de l'image 1" width="150">
+        <img src="/assets/imgg/pngegg (1).png" alt="Description de l'image 2" width="150">
+    </div>
+</div>
+</div>
+
+    
+<section id="marche">
+<!-- accordeons sur bootstrap -->
+    <!-- START THE FEATURETTES -->
+    <div class="container">
+    <br>
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading fw-normal lh-1"style = "margin-top:10px; font-size:30px;"><strong>Comment ça marche</strong></h2>
+        
+        <ul style="list-style-type: none;">
+          <li><h3 style="color: #cc151b;">Inscription facile :</h3>
+          <p>Choisissez parmi nos formules <strong> d'abonnement flexibles </strong>et <strong>sans engagement</strong>, adaptées à vos besoins spécifiques.</p></li>
+          <li><h3 style="color: #cc151b;">Collecte à domicile :</h3>
+          <p>Réservez un <strong>créneau horaire sur notre application</strong> pour que notre equipe vienne <strong>récuperer votre linge à votre domicile.</strong></p></li>
+          <li><h3 style="color: #cc151b;">Traitement professionel :</h3>
+          <p>Notre <strong>équipe qualifiée </strong>repasse votre linge dans nos locaux en prennat le plus grand soin, pour un <strong>repassage impeccable.</strong></p></li>
+          <li><h3 style="color: #cc151b;">Retour rapide :</h3><p>Profitez d'un retour rapide de votre linge repassé <strong>24 heures après la collecte ,à votre domicile.</strong></p></li>
+      </ul>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="/assets/imgg/Header-flemme.jpg" alt="flemme?" class="img-fluid">
+      </div>
+</div>
+
+<section id="choisir">
+<br>
+<br>
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1"style = "margin-top:10px; font-size:30px;"><strong>Pourquoi choisir le repasseur.fr ?</strong></h2>
+        <ul style="list-style-type: none;">
+          <li><h3 style="color: #cc151b;">Service sur mesure : </h3>
+          <p  style ="font-size: 20px;">Des abonnements flexibles adaptés à vos budget.</p></li>
+          <li><h3 style="color: #cc151b;">Qualité garantie :</h3>
+          <p style ="font-size: 20px;">Un service professionel et fiable pour résultats impeccables à chaque fois</p></li>
+          <li><h3 style="color: #cc151b;">Gain de temps :</h3>
+          <p style ="font-size: 20px;">Liberez-vous des corveées ménageres pour vous concentrer sur ce qui compte vraiment pour vous.</p></li>
+          <li><h3 style="color: #cc151b;">facilité d'utilisation :</h3><p style ="font-size: 20px";>Notgre application conviviale vous permet de gérer facilement vos réservations et de suivre l'avancement de votre commande </p></li>
+      </ul>
+      </div>
+      <div class="col-md-5">
+        <img src="/assets/imgg/Header-ass.jpg" alt="repasseur"  class="img-fluid"> </div>
+    </div>
+  </section>
+    
+
+   
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+  <div class="container-fluid marketing m-0">
+    <!-- Three columns of text below the carousel -->
+    <div class="row featurette" style="background-color: #10294B;">
+      <div class="col-md- text-center">
+        
+        <a href="inscription.html">
+          <button style="background-color: #CE2029; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 20px; margin: 60px 2px; cursor: pointer; border-radius: 10px;">Créer un compte</button>
+      </a>      </div>
+  </div>
+  </div>
+  <div class="container-fluid marketing m-0">
+    <!-- Three columns of text below the carousel -->
+    <div class="row featurette" style="background-color: #CE2029;">
+      <div class="col-md- text-center">
+        <h2 class="featurette-heading fw-normal lh-1" style="color: white; font-size:34px; margin-top: 20px;">Téléchargez l'appli et programmez <br> votre première collecte</h2>
+          <img src="/assets/imgg/pngegg.png" alt="Description de l'image 1" width="150">
+          <img src="/assets/imgg/pngegg (1).png" alt="Description de l'image 2" width="150">
+      </div>
+  </div>
+  <main>
+  <!-- Nouvelle section -->
+  <div class="container-fluid marketing m-0">
+    <div class="row featurette">
+      <div class="col-md-7 text-start mx-auto"> <!-- Ajoutez les classes ici -->
+        <br>
+        <h2 style="color: #10294B; font-size: 40px;">Tarifs et Abonnements</h2>
+        <br>
+        
+        <h3 style = "color: #CE2029; font-size: 27px; ">Pourquoi un abonnement ? </h3>
+        <br>
+        <p class="col-md-9">Explorez nos differents abonnements mensuels et Choisissez celui qui correspond le mieux à vos besoins. <br> Le Repasseur est déterminé à vous offrir le meilleur rapport qualité-prix pour vos besoins de repassage. C'est pourquoi nous proposons des abonnements mensuels avantageux qui vous permettent de bénéficier de tarifs réduits sur chaque collecte de linge. Nous comprenons que le repassage est une tâche récurrente, et en optant pour un abonnement, vous économisez non seulement de l'argent, mais aussi du temps et de l'énergie. En mutualisant les charges entre nos clients abonnés, nous sommes en mesure de vous offrir des tarifs compétitifs que vous ne trouverez nulle part ailleurs.</p>
+        <br>
+        <p class="col-md-9">Nos abonnements offrent une flexibilité totale, vous permettant de sélectionner le nombre de collectes mensuelles qui vous convient le mieux.</p>
+        <p class="col-md-9">Avec un abonnement, vous avez la tranquillité d'esprit de savoir que votre linge sera pris en charge régulièrement, tout en réalisant des économies substantielles sur chaque prestation. Optez pour un abonnement dès aujourd'hui et découvrez comment Le Repasseur peut simplifier votre vie et alléger votre budget.</p>
+        <p class="col-md-9">Abonnement sans engagement, résiliable depuis votre compte à partir du 2ème mois.</p>
+        <br>
+        <h3 class="col-md-9" style = "color: #CE2029; font-size: 27px; ">Comment choisir mon abonnement ?</h3>
+        <br>
+        <p class="col-md-9">Nous comprenons que le poids du linge peut varier considérablement d'un client à l'autre, c'est pourquoi nous proposons une gamme de formules d'abonnement pour répondre à vos besoins spécifiques. Les abonnements ont été conçu pour que vous puissiez faire repasser des panachés de différents types de vêtements, comme des polos, des chemises, des pantalons et des t-shirts, etc…</p>
+        <br>
+        <p class="col-md-9">Pour tous nos forfaits, vous pouvez décider de récupérer votre linge sur plié ou sur cintre.</p>
+      <section id="abonnements">
+        <h1 style = "color: #CE2029;">Les Abonnements</h1>
+        <div class="row">
+          <div class="col-md-4" id="imageContainer">
+            <!-- L'image sera insérée ici par JavaScript -->
+          </div>
+          <div class="col-md-7">
+            <h2 style="font-family: lobster;color: #CE2029;">Mino</h2>
+            <h2 style="color: #CE2029; ">19€ pour 1kg par mois</h2>
+            <p style="font-size:18px;">"Pour nos étudiants et ceux qui mènent une vie active, notre formule Mino est parfaite !
+              Avec seulement 19€ par mois, vous bénéficiez d'un service de repassage pour jusqu'à 1kg de linge. C'est une solution pratique pour garder vos vêtements en ordre sans vous ruiner.
+              Plus de temps pour étudier ou profiter de votre vie sociale - c'est ça, la vie étudiante !"</p>
+              <p style="font-size:24px;"><strong>1 kg de linge correspond à entre 6 et 10 pièces :
+                Environ 4 polos en coton + 2 chemises légères + 1 pantalon en coton</strong></p>
+              <p>
+                <i>(Bien-sûr, panachez comme vous le souhaitez !)
+                  Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+              </p>
+          </div>
+          <div style="background-color: #10294B; padding: 10px; margin-top: 20px; text-align: center;">
+            <button id="subscriptionButton" style="background-color: #CE2029; border-radius: 10px; padding: 10px 20px; cursor: pointer; color: white;" onclick="location.href='sign-in/index.html'">
+                Choisir mon abonnement
+            </button>
+            <a href="#offres" style="color: white;">Comparez les abonnements</a>
+        </div>
+        </div>
+        <br>
+        <div>
+          <div class="row">
+            <div class="col-md-4" id="imageContainer2">
+              <!-- L'image sera insérée ici par JavaScript -->
+            </div>
+            <div class="col-md-8">
+              <h2 style="font-family: lobster;color: #CE2029;">Solo</h2>
+              <h2 style="color: #CE2029; ">39€ pour 2.5kg par mois - <strong style="color: #10294B;">Kit Repasseur OFFERT</strong></h2>
+              <p style="font-size:18px;">"Pour nos clients célibataires, ceux qui vivent seuls, ou sont seul dans le foyer à avoir besoin de repassage, notre formule Solo est conçue spécialement pour vous !
+                Avec 39€ par mois, vous pouvez faire repasser jusqu'à 2,5kg de linge. Une seule collecte par mois vous permet de gagner du temps et de l'énergie, tout en gardant vos vêtements impeccables. Simplifiez votre vie avec notre formule Solo !»</p>
+                <p style="font-size:24px;"><strong>2,5 kg de linge correspond à entre 15 et 20 pièces :
+                  Environ 5 polos en coton + 10 chemises légères + 2 pantalons en coton</strong></p>
+                <p>
+                  <i>(Bien-sûr, panachez comme vous le souhaitez !)
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                </p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: #10294B; padding: 10px; margin-top: 20px; text-align: center;">
+          <button id="subscriptionButton" style="background-color: #CE2029; border-radius: 10px; padding: 10px 20px; cursor: pointer; color: white;" onclick="location.href='sign-in/index.html'">
+            Choisir mon abonnement
+        </button>
+          <a href="#offres" style="color: white;">Comparez les abonnements</a>
+      </div>
+      <br>
+        <div>
+          <div class="row">
+            <div class="col-md-4" id="imageContainer3">
+              <!-- L'image sera insérée ici par JavaScript -->
+            </div>
+            <div class="col-md-8">
+              <h2 style="font-family: lobster;color: #CE2029;">Duo</h2>
+              <h2 style="color: #CE2029; ">59€ pour 5kg par mois - 1 ou 2 collectes -<strong style="color: #10294B;">Kit Repasseur OFFERT</strong></h2>
+              <p style="font-size:18px;">"Pour les couples dynamiques qui partagent les tâches ménagères, notre formule Duo est la solution idéale ! Pour seulement 59€ par mois, vous bénéficiez de 5Kg de linge repassé par mois, avec la flexibilité de deux collectes. Vous pouvez planifier les collectes selon vos besoins et profiter d'un linge toujours impeccable. Simplifiez votre quotidien avec notre formule Duo !"</p>
+                <p style="font-size:24px;"><strong>5 kg de linge correspond à 25 à 35 pièces :
+                  Environ 10 polos en coton + 20 chemises légères + 4 pantalons en coton</strong></p>
+                <p>
+                  <i>(Bien-sûr, panachez comme vous le souhaitez !)
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                </p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: #10294B; padding: 10px; margin-top: 20px; text-align: center;">
+          <button id="subscriptionButton" style="background-color: #CE2029; border-radius: 10px; padding: 10px 20px; cursor: pointer; color: white;" onclick="location.href='sign-in/index.html'">
+            Choisir mon abonnement
+        </button>
+          <a href="#offres" style="color: white;">Comparez les abonnements</a>
+      </div>
+      <br>
+        <div>
+          <div class="row">
+            <div class="col-md-4" id="imageContainer4">
+              <!-- L'image sera insérée ici par JavaScript -->
+            </div>
+            <div class="col-md-8">
+              <h2 style="font-family: lobster;color: #CE2029;">Super héro</h2>
+              <h2 style="color: #CE2029; ">99€ pour 10kg par mois - 1 à 4 collectes - <strong style="color: #10294B;">Kit Repasseur OFFERT</strong></h2>
+              <p style="font-size:18px;">"Pour les familles nombreuses ou ceux qui ont un volume de linge important, notre formule Super Héro est faite pour vous ! Pour 99€ par mois, vous bénéficiez d'un service complet pour 10kg de linge par mois. Avec la possibilité de 1 à 4 collectes selon vos besoins, vous avez la flexibilité nécessaire pour gérer le linge de toute la famille. Simplifiez votre vie avec notre formule Super Héro !"</p>
+                <p style="font-size:24px;"><strong>10 kg de linge correspond à environ 50 pièces :
+                  Environ 40 polos en coton + 20 chemises légères</strong></p>
+                <p>
+                  <i>(Bien-sûr, panachez comme vous le souhaitez !)
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                </p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: #10294B; padding: 10px; margin-top: 20px; text-align: center;">
+          <button id="subscriptionButton" style="background-color: #CE2029; border-radius: 10px; padding: 10px 20px; cursor: pointer; color: white;" onclick="location.href='sign-in/index.html'">
+            Choisir mon abonnement
+        </button>
+          <a href="#offres" style="color: white;">Comparez les abonnements</a>
+      </div>
+      </section>
+      
+        <style>
+    .centered-table {
+        width: 100%; /* Utilisez 100% de la largeur disponible */
+        font-size: 1.2em; /* Augmente la taille de la police */
+        border-collapse: separate; /* Ajoute de l'espace entre les cellules */
+        border-spacing: 1em; /* Définit l'espace entre les cellules */
+    }
+    .centered-table th, .centered-table td {
+        text-align: center;
+        padding: 10px;
+    }
+    .centered-table tr:nth-child(odd) td {
+        background-color: #f2f2f2; /* Couleur pour les lignes impaires */
+    }
+    .centered-table tr:nth-child(even) td {
+        background-color: #e9e9e9; /* Couleur pour les lignes paires */
+    }
+</style>
+<section id="offres">
+        <br>
+        <br>
+        <h1 style="text-align: center;">Comparer les abonnements</h1>
+        <div class="table-responsive">
+        <table class="centered-table">
+          
+          <thead>
+            <tr>
+                <th style="font-family: lobster; color: #CE2029; font-size: 30px;"></th>
+                <th style="font-family: lobster; color: #CE2029; font-size: 30px;">Mino</th>
+                <th style="font-family: lobster; color: #CE2029; font-size: 30px;">Solo</th>
+                <th style="font-family: lobster; color: #CE2029; font-size: 30px;">Duo</th>
+                <th style="font-family: lobster; color: #CE2029; font-size: 30px; white-space: nowrap; border-right: 2px solid #CE2029;">Super héro</th>
+                <th style="font-family: lobster; color: #10294B; font-size: 30px; white-space: nowrap;">Pack 2.5kg <br><span style="font-size: 10px; color: #CE2029;">Sans abonnement</span></th>
+            </tr>
+        </thead>
+          <tbody>
+            
+            <tr>
+              <td><Strong>Prix</Strong></td>
+              <td>19€ / mois</td>
+              <td>39€ / mois</td>
+              <td>59€ / mois</td>
+              <td>99€ / mois</td>
+              <td><strong style="color: #CE2029">49€</strong></td>
+              <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
+            </tr>
+            <tr>
+              <td><Strong>Nb collecte / mois</Strong></td>
+              <td>1</td>
+              <td>1</td>
+              <td>1 à 2</td>
+              <td>1 à 4</td>
+              <td>1</td>
+              <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
+            </tr>
+            <tr>
+              <td><Strong>Poids / mois </Strong><br>Nb pièces(environ)</td>
+              <td><strong>1kg</strong><br>6 à 10 (environ)</td>
+              <td><strong>2.5kg</strong><br>15 à 20 (environ)</td>
+              <td><strong>5kg</strong> <br>25 à 35 (environ)</td>
+              <td><strong>10kg</strong><br>50(environ)</td>
+              <td><strong>2.5kg</strong><br>15 à 20 (environ)</td>
+              <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
+            </tr>
+            <tr>
+              <td><strong>Sur cintre </strong><br> plié</td>
+              <td>oui <br>oui</td><td>oui <br>oui</td>
+              <td>oui <br>oui</td>
+              <td>oui <br>oui</td>
+              <td>oui <br>oui</td>
+              
+              <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
+            </tr>
+            <tr>
+              <td><strong>Kit de Repassage</strong></td>
+              <td>25€</td>
+              <td>OFFERT</td>
+              <td>OFFERT</td>
+              <td>OFFERT</td>
+              <td>30€</td>
+              <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
+            </tr>
+            <tr>
+              <td><Strong>Recharge </Strong><br>(1 collecte de 2.5kg)</td>
+              <td>29€</td>
+              <td>29€</td>
+              <td>29€</td>
+              <td>29€</td>
+              <td>29€</td>
+              <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
+            </tr>
+            
+            <!-- Ajoutez plus de lignes pour les autres abonnements -->
+          </tbody>
+        </table>    
+      </div> 
+  </div>
+</section>
+  
+  <!-- /Nouvelle section -->
+  
+  </main>
+  
+  </div>
+  <div class="container-fluid marketing m-0">
+    <!-- Three columns of text below the carousel -->
+    <div class="row featurette" style="background-color: #CE2029;">
+      <div class="col-md- text-center">
+        <h2 class="featurette-heading fw-normal lh-1" style="color: white; font-size:34px; margin-top: 20px;">Téléchargez l'appli et programmez <br> votre première collecte</h2>
+          <img src="/assets/imgg/pngegg.png" alt="Description de l'image 1" width="150">
+          <img src="/assets/imgg/pngegg (1).png" alt="Description de l'image 2" width="150">
+      </div>
+  </div>
+  <section id="collecte">
+  <div class="container-fluid marketing m-0">
+    <div class="row featurette">
+      <div class="col-md-8 text-start mx-auto"> <!-- Ajoutez les classes ici -->
+        <div>
+          <br>
+          <h1>collecte sans abonnement </h1>
+          <div class="row">
+            <div class="col-md-4" id="imageContainer5">
+              <!-- L'image sera insérée ici par JavaScript -->
+            </div>
+            <div class="col-md-8">
+              <h2 style="font-family: lobster;color: #CE2029;">Pack 2.5kg</h2>
+              <h2 style="color: #CE2029; ">49€ pour 1 collecte 2.5 kg </h2>
+                <p style="font-size:24px;"><strong>2,5 kg de linge correspond à entre 15 et 20 pièces :
+                  Environ 5 polos en coton + 10 chemises légères + 2 pantalons en coton</strong></p>
+                <p>
+                  <i>(Bien-sûr, panachez comme vous le souhaitez !)
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background-color: #10294B; padding: 10px; margin-top: 20px; text-align: center;">
+      <button id="subscriptionButton" style="background-color: #CE2029; border-radius: 10px; padding: 10px 20px; cursor: pointer; color: white;" onclick="location.href='sign-in/index.html'">
+        Choisir mon abonnement
+      </button>
+      <a href="" style="color: white;">Comparez les abonnements</a>
+  </div>
+  </div>
+</section>
+  <section id="kit">
+  <div class="container-fluid marketing m-0">
+    <div class="row featurette">
+      <div class="col-md-8 text-start mx-auto"> <!-- Ajoutez les classes ici -->
+        <div>
+          <br>
+          <h1>Le Kit du Repasseur : Votre allié pour un repassage sans tracas</h1>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-4" id="imageContainer6">
+              
+            </div>
+            <div class="col-md-8">
+              <h2 style="font-family: lobster;color: #CE2029;">Offert</h2>
+              <h2 style="color: #CE2029; ">Pour les abonnements Solo, Duo et Super héro</h2>
+              <p>Lorsque vous vous abonnez au Repasseur, vous avez la possibilité de commander notre Kit du Repasseur, un ensemble d'outils essentiels conçu pour simplifier votre expérience de repassage à domicile. Voici ce que vous trouverez dans votre kit :</p>
+              <br>
+              <br>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <!-- Texte existant -->
+                  <h3>1. Balance</h3>
+                  <p>Notre balance précise vous permet de peser votre linge avant la collecte, facilitant ainsi la détermination du poids total et la tarification de votre service de repassage.</p>
+                  <h3>2. Sac pour la collecte du linge</h3>
+                  <p>Un sac spacieux et résistant est fourni pour faciliter la collecte de votre linge propre.</p>
+                  <h3>3. Housse pour transport</h3>
+                  <p>Cette housse est destinée à protéger votre linge repassé pendant le retour vers votre domicile.</p>
+                  <h3>4. Cintres</h3>
+                  <p>Nous fournissons des cintres de qualité pour que votre linge repassé soit parfaitement suspendu et prêt à être rangé dès son retour.</p>
+              </div>
+              <div class="col-md-6">
+                  <!-- Nouveau texte -->
+                  <h3>5. Pochettes</h3>
+                  <p>Des pochettes pratiques sont incluses pour le retour de vos vêtements pliés (polos, T.shirts, etc).</p>
+                  <h3>6. Housses plastiques</h3>
+                  <p>Chaque pièce de linge repassée est soigneusement enveloppée dans une housse plastique de protection, garantissant qu'elle reste propre et impeccable jusqu'à son retour chez vous.</p>
+                  <h3>7. Étiquettes</h3>
+                  <p>Des étiquettes personnalisées sont fournies pour que vous puissiez indiquer des instructions spéciales ou des préférences de repassage pour certains articles de votre linge.</p>
+              </div>
+          </div>
+        </section>    
+            
+          </div>
+        </div>
+        <!--
+          <div class="px-4 py-5 my-5 text-center">
+              <img class="d-block mx-auto mb-4" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="" width="100" height="100">
+              <h1 class="display-5 fw-bold text-body-emphasis">Information supplementaire</h1>
+              <div class="col-lg-6 mx-auto">
+                  <p class="lead mb-4">Veuillez noter que le Kit du Repasseur est un service optionnel et payant. Il est disponible au prix de 30€ pour les non-abonnés et de 25€ pour les abonnés mino. Cependant, nous avons le plaisir d'offrir le Kit du Repasseur gratuitement à tous les nouveaux abonnés qui s'inscrivent avant le 15 avril. Le kit vous sera remis lors du passage de notre agent au moment de votre première collecte.</p>
+                  <br>
+                  <p class="lead mb-4">Avec notre Kit du Repasseur, vous disposez de tout ce dont vous avez besoin pour préparer votre linge pour la collecte et garantir des résultats impeccables à chaque fois. Inscrivez-vous dès aujourd'hui pour profiter de ce service pratique et sans tracas avec Le Repasseur.</p>
+              </div>
+          </div>
+          -->
+      </p>
+
+      </div>
+      
+    </div>
+    
+  </div>
+  
+  <!-- FOOTER -->
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+  
+      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" width="100" height="100" alt="Description de l'image">
+      </a>
+  
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
+        <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+        <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
+        
+        
+      </ul>
+    </footer>
+  </div>
+</main>
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script>
+  // Votre configuration Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+  };
+
+// Initialiser Firebase
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore();
+
+// Cible le document "Solo" dans la collection "abonnements"
+db.collection("abonnements").doc("Mino").get().then((doc) => {
+  if (doc.exists) {
+    // Supposons que le champ de l'image s'appelle "image"
+    var imageUrl = doc.data().image;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = "Description de l'image";
+    img.classList.add('img-fluid');
+
+    // Définir la largeur et la hauteur de l'image
+    img.style.width = "400px";  // Remplacez par la largeur souhaitée
+    img.style.height = "470px";  // Remplacez par la hauteur souhaitée
+
+    // Assurez-vous de cibler le bon ID ici
+    document.getElementById('imageContainer').appendChild(img);
+  } else {
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+db.collection("abonnements").doc("Solo").get().then((doc) => {
+  if (doc.exists) {
+    // Supposons que le champ de l'image s'appelle "image"
+    var imageUrl = doc.data().image;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = "Description de l'image";
+    img.classList.add('img-fluid');
+
+    // Définir la largeur et la hauteur de l'image
+    img.style.width = "400px";  // Remplacez par la largeur souhaitée
+    img.style.height = "470px";  // Remplacez par la hauteur souhaitée
+
+    // Assurez-vous de cibler le bon ID ici
+    document.getElementById('imageContainer2').appendChild(img);
+  } else {
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+document.getElementById('subscriptionButton').addEventListener('click', function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du bouton
+
+    if (isUserLoggedIn()) {
+        // Si l'utilisateur est connecté, redirigez-le vers /sign-in/user.html
+        window.location.href = '/sign-in/user.html';
+    } else {
+        // Si l'utilisateur n'est pas connecté, redirigez-le vers /sign-in/index.html
+        window.location.href = '/sign-in/index.html';
+    }
+});
+db.collection("abonnements").doc("Duo").get().then((doc) => {
+  if (doc.exists) {
+    // Supposons que le champ de l'image s'appelle "image"
+    var imageUrl = doc.data().image;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = "Description de l'image";
+    img.classList.add('img-fluid');
+
+    // Définir la largeur et la hauteur de l'image
+    img.style.width = "400px";  // Remplacez par la largeur souhaitée
+    img.style.height = "470px";  // Remplacez par la hauteur souhaitée
+
+    // Assurez-vous de cibler le bon ID ici
+    document.getElementById('imageContainer3').appendChild(img);
+  } else {
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+db.collection("abonnements").doc("Superhero").get().then((doc) => {
+  if (doc.exists) {
+    // Supposons que le champ de l'image s'appelle "image"
+    var imageUrl = doc.data().image;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = "Description de l'image";
+    img.classList.add('img-fluid');
+
+    // Définir la largeur et la hauteur de l'image
+    img.style.width = "400px";  // Remplacez par la largeur souhaitée
+    img.style.height = "470px";  // Remplacez par la hauteur souhaitée
+
+    // Assurez-vous de cibler le bon ID ici
+    document.getElementById('imageContainer4').appendChild(img);
+  } else {
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+db.collection("produits").doc("pack2.5").get().then((doc) => {
+  if (doc.exists) {
+    // Supposons que le champ de l'image s'appelle "image"
+    var imageUrl = doc.data().image;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = "Description de l'image";
+    img.classList.add('img-fluid');
+
+    // Définir la largeur et la hauteur de l'image
+    img.style.width = "400px";  // Remplacez par la largeur souhaitée
+    img.style.height = "470px";  // Remplacez par la hauteur souhaitée
+
+    // Assurez-vous de cibler le bon ID ici
+    document.getElementById('imageContainer5').appendChild(img);
+  } else {
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+db.collection("produits").doc("kit").get().then((doc) => {
+  if (doc.exists) {
+    // Supposons que le champ de l'image s'appelle "image"
+    var imageUrl = doc.data().image;
+
+    var img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = "Description de l'image";
+    img.classList.add('img-fluid');
+
+    // Définir la largeur et la hauteur de l'image
+    img.style.width = "700px";  // Remplacez par la largeur souhaitée
+    img.style.height = "300px";  // Remplacez par la hauteur souhaitée
+
+    // Assurez-vous de cibler le bon ID ici
+    document.getElementById('imageContainer6').appendChild(img);
+  } else {
+    console.log("No such document!");
+  }
+}).catch((error) => {
+  console.log("Error getting document:", error);
+});
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paiement</title>
+</head>
+<body>
+    <button id="payButton">Payer</button>
+
+    <script>
+      document.getElementById("payButton").addEventListener("click", function() {
+        fetch('http://localhost:3000/api/createPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                currency: 'EUR',
+                amount: '10.00',
+                description: 'Test payment',
+                
+            }),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+      });
+      </script>
+</body>
+</html>

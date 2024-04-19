@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Félicitations</title>
+    <!-- Ajoutez ici les liens vers vos fichiers CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .card {
+            width: 30%;
+            margin: 50px auto; /* Réduit la marge à 10px */
+            padding: 50px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .card h1, .card h2 {
+            color: #333;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+        }
+
+        .card a.particulier {
+            color: #10294B; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            font-size: 20px; 
+            font-style: bold; 
+            margin: 10px 2px; 
+            cursor: pointer; 
+            border-radius: 5px;
+        }
+
+        
+
+        /* Styles pour les écrans de taille moyenne (tablette) */
+        @media (max-width: 768px) {
+            .card {
+                width: 90%;
+            }
+        }
+
+        /* Styles pour les petits écrans (mobile) */
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+            }
+        }
+        .btn-red {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff; /* Texte blanc */
+            background-color: #CE2029; /* Fond rouge */
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-red:hover {
+            background-color: #c00; /* Fond plus foncé au survol */
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="card">
+        <h1 style="color:#10294B; font-size: 36px; font-weight: bold">Votre commune <span style="color:#CE2029">ne fait pas encore</span> partie de notre secteur, mais elle le sera très prochainement, et vous serez averti par email.</h1>
+        <p>Vous pouvez essayer de créer un compte sur votre lieu de travail si le code postal est different.</p>
+        <a class ="particulier" href="">Liste des communes couvertes ici.</a>
+        <p>Votre compte à été créé avec succes. <br> Un mail de confirmation vient de vous être envoyée.</p>
+        <!-- Ajoutez ici la liste des communes -->
+        <p>En esperant vous compter très prochainement dans la communauté <span style="color: #CE2029;">Le Repasseur.fr</span></p>
+        
+        <a class="btn-red" href="/sign-in/index.html">Se connecter</a>
+    </div>
+</body>
+</html>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+<script>
+
+
+// Initialiser Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+};
+firebase.initializeApp(firebaseConfig);
+
+// Écouter les changements d'état d'authentification
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        // L'utilisateur est connecté
+        console.log("Utilisateur connecté : ", user);
+    } else {
+        // L'utilisateur est déconnecté
+        console.log("Utilisateur déconnecté");
+    }
+});
+/*
+if (document.referrer.indexOf('inscription.html') === -1) {
+    // Si l'utilisateur ne vient pas de la page inscription.html, le rediriger vers une autre page
+    window.location.href = 'error.html';
+}
+*/
+</script>

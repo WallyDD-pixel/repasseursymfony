@@ -1,0 +1,768 @@
+le menu a changer comment ca marche 
+pourquoi le repasseur
+les tarifs
+drop down sous menu les abonnements
+comaprer les offres
+le kit du repasseur
+
+met le a gauche le bienvenue chez les repasseur a gauchje
+
+l engle
+
+mettre la page utilisateur
+
+ pourt les info les menu derouler 
+ dropdown
+ changer d abonnement 
+quand t es deja aobnnement le choisir l achat unique en avant 
+une partie abonner avec les conteienr inversé
+une partie non abonné ca reste le meme
+
+
+
+inverser text a droite imaeg a agauche accueil 
+
+nouveau logo 2 dans l achive 
+
+dans l archive 
+
+ajouter dans la nav avant le kit du repasseur colelct sans abonnement 
+
+changement de nom ^pour l achat unique il va s appeler collecte sans abonnement 
+
+
+sauter une ligne entre tarif abonnement et tarifs en plus grands
+
+comparer les abonnement 
+
+le tableau les titre sois coller a droite 
+
+remplacer la collecte par la collect sans avbonnement 
+
+alligne en dessous du sac
+ 
+Pour l application--------------------------------- 
+capital de collect et capitale de kilo en fonction de l abonnement 
+
+
+page creer un compte 
+
+page tableau de bord abonné
+
+page tableau de bord non abonnée
+
+deux temoinagnage un en dessous de la page comment ça marche une autre tout a la fin 
+
+laisse libre la ligne des codes postale 
+
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Le repasseur</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/pricing/">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="pricing.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check" viewBox="0 0 16 16">
+    <title>Check</title>
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+</svg>
+
+<div class="container py-3">
+  <header data-bs-theme="dark" >
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 80px;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="Logo" width="99" >
+      </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="/carousel/index.html">Comment ça marche ?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pourquoi choisir le Répasseur</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tarifs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/">Abonnements</a></li>
+                    <li><a class="dropdown-item" href="#">comparer les offres</a></li>
+                    <li><a class="dropdown-item" href="#">Kit du repasseur</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " aria-disabled="true" href="/carousel/contact.html">Contact</a>
+            </li>
+          </ul>
+          
+          <ul class="d-flex list-unstyled">
+            <li>
+                <a href="/sign-in/user.html" class="btn btn me-3" style="background-color: #CE2029;">Mon compte</a>
+            </li>
+            <li>
+                <a href="#" class="btn btn me-3" style="background-color: #CE2029;" onclick="logout();">Se déconnecter</a>
+            </li>
+        </ul>
+          
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <br>
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-start" style="margin-top: 50px;">
+    <div class="container py-3" style="">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 style="font-size: 19px"class="text-start">Bonjour <span id="user-name"></span> <span id="user-surname"></span></h2>
+          <h2 style="font-size: 19px">Abonnement actuel: <span id="current-subscription"></span></h2>
+          <h2 style="font-size: 19px">Mon N° Client : <span id="user-id"></span></h2>
+        </div>
+        <div class="col-md-2 d-flex justify-content-end align-items-center flex-column">
+          <img src="your-image-source.jpg" alt="Description de l'image">
+          <h2 style="font-size: 19px">Mes collectes : <span id="collect-count"></span></h2>
+      </div>
+      <div class="col-md-2 d-flex justify-content-end align-items-center flex-column">
+        <img src="your-image-source.jpg" alt="Description de l'image">
+        <h2 style="font-size: 19px">Mon repassage : <span id="collect-count"></span></h2>
+    </div>
+      </div>
+    </div>
+</div>
+  
+  
+  <div style="height:10px; background-color:#10294B; width:100%; margin: 0; padding: 0;"></div>
+    <h1 class="display-4 fw-normal text-body-emphasis text-start">Nous proposont également </h1>
+    <p class="fs-5 text-body-secondary text-start"></p>
+</div>
+
+
+<div class="container-fluid">
+<main2>
+  
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal"></h4>
+        </div>
+        <div class="card-body">
+          
+          <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <button type="button" class="w-100 btn btn-lg btn-outline-primary"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal"></h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            
+          </ul>
+          <button type="button" class="w-100 btn btn-lg btn-primary"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm border-primary">
+        <div class="card-header py-3 text-bg-primary border-primary">
+          <h4 class="my-0 fw-normal"></h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li class="description"></li>
+            <li class="avantage"></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <button type="button" class="w-100 btn btn-lg btn-primary"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main2>
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+  <h1 class="display-4 fw-normal text-body-emphasis">Changer votre abonnement</h1>
+  <p class="fs-5 text-body-secondary"></p>
+</div>
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal"></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary"></button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal"></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-primary"></button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card-header py-3 text-bg-primary border-primary">
+            <h4 class="my-0 fw-normal"></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li class="description"></li>
+              <li class="avantage"></li>
+              <li></li>
+              <li></li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-primary"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+ </main>
+</div>
+ <div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" width="100" height="100" alt="Description de l'image">
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
+      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
+      
+      
+    </ul>
+  </footer>
+</div>
+</div>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+  // Votre configuration Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+  };
+  // Initialiser Firebase
+  firebase.initializeApp(firebaseConfig);
+// Récupérer la référence de la collection 'abonnements'
+// Récupérer la référence de la collection 'abonnements'
+var abonnementsRef = firebase.firestore().collection('abonnements');
+
+// Récupérer tous les documents de la collection 'abonnements'
+abonnementsRef.get().then((querySnapshot) => {
+  // Supprimer le contenu existant de la balise <main>
+  var main = document.querySelector('main');
+  main.innerHTML = '';
+
+  // Créer une nouvelle rangée pour les abonnements
+  var row = document.createElement('div');
+  row.className = 'row row-cols-1 row-cols-md-4 mb-3 text-center';
+  main.appendChild(row);
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() contient les données de l'abonnement
+    var abonnement = doc.data();
+
+    // Créer un nouvel élément de la grille pour l'abonnement
+    var col = document.createElement('div');
+    col.className = 'col';
+
+    // Créer une nouvelle carte pour l'abonnement
+    var card = document.createElement('div');
+    card.className = 'card mb-4 rounded-3 shadow-sm';
+
+    // Ajouter le titre de l'abonnement à la carte
+    var cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header py-3';
+    var title = document.createElement('h4');
+    title.className = 'my-0 fw-normal';
+    title.textContent = abonnement.nom; // Utiliser le titre de l'abonnement
+    cardHeader.appendChild(title);
+    card.appendChild(cardHeader);
+
+    // Ajouter le prix de l'abonnement à la carte
+    var cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+    var price = document.createElement('h1');
+    price.className = 'card-title pricing-card-title';
+    price.textContent = abonnement.prix ? abonnement.prix + '€ / mois' : 'Non défini';
+    cardBody.appendChild(price);
+
+// Créer un bouton pour afficher/masquer la description
+var descriptionButton = document.createElement('button');
+descriptionButton.className = 'btn btn-primary';
+descriptionButton.type = 'button';
+descriptionButton.dataset.bsToggle = 'collapse';
+descriptionButton.dataset.bsTarget = '#descriptionCollapse';
+descriptionButton.innerHTML = 'Description <i class="fas fa-chevron-down"></i>';
+
+// Ajouter la description de l'abonnement à la carte
+var descriptionList = document.createElement('ul');
+descriptionList.className = 'list-unstyled mt-3 mb-4 collapse';
+descriptionList.id = 'descriptionCollapse';
+
+var descriptionItem = document.createElement('li');
+descriptionItem.className = 'description';
+descriptionItem.textContent = abonnement.description; // Utiliser la description de l'abonnement
+descriptionList.appendChild(descriptionItem);
+
+cardBody.appendChild(descriptionButton);
+cardBody.appendChild(descriptionList);
+
+// Créer un bouton pour afficher/masquer les avantages
+var avantageButton = document.createElement('button');
+avantageButton.className = 'btn btn-primary';
+avantageButton.type = 'button';
+avantageButton.dataset.bsToggle = 'collapse';
+avantageButton.dataset.bsTarget = '#avantageCollapse';
+avantageButton.innerHTML = 'Avantages <i class="fas fa-chevron-down"></i>';
+
+// Ajouter les avantages de l'abonnement à la carte
+var avantageList = document.createElement('ul');
+avantageList.className = 'list-unstyled mt-3 mb-4 collapse';
+avantageList.id = 'avantageCollapse';
+
+var avantageItem = document.createElement('li');
+avantageItem.className = 'avantage';
+avantageItem.textContent = abonnement.avantage; // Utiliser les avantages de l'abonnement
+avantageList.appendChild(avantageItem);
+
+cardBody.appendChild(avantageButton);
+cardBody.appendChild(avantageList);
+
+var image = document.createElement('img');
+image.src = abonnement.image; // Utiliser l'URL de l'image de l'abonnement
+image.className = 'card-img-top'; // Ajouter une classe pour le style
+card.appendChild(image);
+card.appendChild(cardBody);
+// Créer un nouveau bouton pour ouvrir la modal
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-primary';
+    
+    
+     // Vérifier le rôle de l'utilisateur et changer le texte du bouton en conséquence
+     firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          var userId = user.uid; // Récupérer l'ID de l'utilisateur
+          var docRef = firebase.firestore().collection('users').doc(userId);
+          docRef.get().then((doc) => {
+              if (doc.exists) {
+                  var role = doc.data().role;
+                  if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Superhero') {
+                      button.textContent = 'Upgrade';
+                  } else {
+                      button.textContent = 'S\'abonne';
+                  }
+                  // Afficher l'ID de l'utilisateur dans l'élément HTML
+                document.getElementById('user-id').textContent = userId;
+              }
+          }).catch((error) => {
+              console.log("Erreur lors de la récupération du document :", error);
+          });
+      } else {
+          button.textContent = 'S\'abonne';
+      }
+  });
+    button.addEventListener('click', function() {
+    // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
+    window.location.href = '../recap.html?id=' + doc.id;
+});
+    // Ajouter le bouton à la carte
+    cardBody.appendChild(button);
+
+    // Ajouter la carte à l'élément de la grille
+    col.appendChild(card);
+
+    // Ajouter l'élément de la grille à la rangée
+    row.appendChild(col);
+      });
+});
+var abonnementsRef = firebase.firestore().collection('produits');
+
+// Récupérer tous les documents de la collection 'abonnements'
+abonnementsRef.get().then((querySnapshot) => {
+  // Supprimer le contenu existant de la balise <main>
+  var main = document.querySelector('main2');
+  main.innerHTML = '';
+
+  // Créer une nouvelle rangée pour les abonnements
+  var row = document.createElement('div');
+  row.className = 'row row-cols-1 row-cols-md-4 mb-3 text-center';
+  main.appendChild(row);
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() contient les données de l'abonnement
+    var abonnement = doc.data();
+
+    // Créer un nouvel élément de la grille pour l'abonnement
+    var col = document.createElement('div');
+    col.className = 'col';
+
+    // Créer une nouvelle carte pour l'abonnement
+    var card = document.createElement('div');
+    card.className = 'card mb-4 rounded-3 shadow-sm';
+
+    // Ajouter le titre de l'abonnement à la carte
+    var cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header py-3';
+    var title = document.createElement('h4');
+    title.className = 'my-0 fw-normal';
+    title.textContent = abonnement.nom; // Utiliser le titre de l'abonnement
+    cardHeader.appendChild(title);
+    card.appendChild(cardHeader);
+
+    // Ajouter le prix de l'abonnement à la carte
+    var cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+    var price = document.createElement('h1');
+    price.className = 'card-title pricing-card-title';
+    price.textContent = abonnement.prix ? abonnement.prix + '€ / mois' : 'Non défini';
+    cardBody.appendChild(price);
+
+    // Ajouter la description de l'abonnement à la carte
+    var descriptionList = document.createElement('ul');
+    descriptionList.className = 'list-unstyled mt-3 mb-4';
+
+    var descriptionItem = document.createElement('li');
+    descriptionItem.className = 'description';
+    descriptionItem.textContent = abonnement.description; // Utiliser la description de l'abonnement
+    descriptionList.appendChild(descriptionItem);
+
+    // Ajouter les avantages de l'abonnement à la carte
+    var avantageItem = document.createElement('li');
+    avantageItem.className = 'avantage';
+    avantageItem.textContent = abonnement.avantage; // Utiliser les avantages de l'abonnement
+    descriptionList.appendChild(avantageItem);
+
+    cardBody.appendChild(descriptionList);
+    var image = document.createElement('img');
+    image.src = abonnement.image; // Utiliser l'URL de l'image de l'abonnement
+    image.className = 'card-img-top'; // Ajouter une classe pour le style
+    card.appendChild(image);
+    card.appendChild(cardBody);
+// Créer un nouveau bouton pour ouvrir la modal
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-primary';
+    button.textContent = 'S\'abonne';
+    
+    button.addEventListener('click', function() {
+    // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
+    window.location.href = '../recap.html?id=' + doc.id;
+});
+    // Ajouter le bouton à la carte
+    cardBody.appendChild(button);
+
+    // Ajouter la carte à l'élément de la grille
+    col.appendChild(card);
+
+    // Ajouter l'élément de la grille à la rangée
+    row.appendChild(col);
+      });
+});
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Récupérer tous les documents de la collection 'demande_de_reservation'
+    db.collection("demande_de_reservation").get().then((querySnapshot) => {
+        // Parcourir chaque document
+        querySnapshot.forEach((doc) => {
+            // doc.data() est l'objet qui contient les données de la réservation
+            var reservationData = doc.data();
+
+            // Créer une nouvelle ligne pour chaque réservation
+            var reservationRow = document.createElement('tr');
+
+            // Ajouter des cellules à la ligne pour chaque champ de la réservation
+            var addressCell = document.createElement('td');
+            addressCell.textContent = reservationData.adresse;
+            reservationRow.appendChild(addressCell);
+
+            var postalCodeCell = document.createElement('td');
+            postalCodeCell.textContent = reservationData.codePostal;
+            reservationRow.appendChild(postalCodeCell);
+
+            // Ajouter la ligne à la table
+            document.getElementById('reservationsTable').appendChild(reservationRow);
+        });
+    });
+});
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // L'utilisateur est connecté
+      firebase.firestore().collection('users').doc(user.uid).get()
+        .then((doc) => {
+          if (doc.exists) {
+            // Vérifiez le rôle de l'utilisateur
+            if (doc.data().role !== 'mino') {
+              // L'utilisateur n'est pas un administrateur
+              window.location.href = '/sign-in/index.html'; // Redirige vers la page de connexion
+            }
+          } else {
+            console.log('Aucun document correspondant !');
+          }
+        })
+        .catch((error) => {
+          console.log('Erreur lors de la récupération du document:', error);
+        });
+    } else {
+      // L'utilisateur n'est pas connecté
+      window.location.href = '/sign-in/index.html'; // Redirige vers la page de connexion
+    }
+  });
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // L'utilisateur est connecté, obtenir les informations de l'utilisateur de Firestore
+        var docRef = firebase.firestore().collection('users').doc(user.uid);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                // Mettre à jour le nom de l'utilisateur dans le HTML
+                document.getElementById('user-surname').textContent = doc.data().nom;
+                document.getElementById('user-name').textContent = doc.data().prenom;
+                // Mettre à jour le solde de tokens de l'utilisateur dans le HTML
+                document.getElementById('token-balance').textContent = doc.data().tokens;
+                // Mettre à jour le rôle de l'utilisateur dans le HTML
+                document.getElementById('current-subscription').textContent = doc.data().role;
+                // Mettre à jour l'ID de l'utilisateur dans le HTML
+                document.getElementById('user-id').textContent = doc.data().id;
+                document.getElementById('collect-count').textContent = doc.data().Collectes;
+            } else {
+                // Le document n'existe pas
+                console.log("Aucun document correspondant !");
+            }
+        }).catch((error) => {
+            console.log("Erreur lors de la récupération du document :", error);
+        });
+    } else {
+        // Aucun utilisateur n'est connecté
+        document.getElementById('user-name').textContent = 'Invité';
+        document.getElementById('user-surname').textContent = '';
+        document.getElementById('token-balance').textContent = '0';
+        document.getElementById('current-subscription').textContent = 'Invité';
+        document.getElementById('user-id').textContent = 'Invité';
+        document.getElementById('collect-count').textContent = '0';
+    }
+});
+  // Récupérer une référence à la base de données Firestore
+var db = firebase.firestore();
+
+
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      // Déconnexion réussie
+      console.log('Déconnexion réussie');
+      window.location.href = '/sign-in/index.html'; // Redirige vers la page de connexion
+    }).catch((error) => {
+      // Une erreur s'est produite
+      console.log('Erreur de déconnexion :', error);
+    });
+  }
+</script>
+    </body>
+</html>
+
