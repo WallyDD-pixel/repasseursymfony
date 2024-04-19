@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page de paiement</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="my-4">Informations de paiement</h2>
+      <form id="paymentForm">
+        <div class="form-group">
+          <label for="cardNumber">Numéro de carte</label>
+          <input type="text" class="form-control" id="cardNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="cardExpiry">Date d'expiration</label>
+          <input type="text" class="form-control" id="cardExpiry" required>
+        </div>
+        <div class="form-group">
+          <label for="cardCVV">CVV</label>
+          <input type="text" class="form-control" id="cardCVV" required>
+        </div>
+        <div class="form-group">
+          <label for="cardHolder">Nom du titulaire de la carte</label>
+          <input type="text" class="form-control" id="cardHolder" required>
+        </div>
+        <button type="submit" id="confirm" class="btn btn-primary">Payer</button>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("confirm").addEventListener("click", function() {
+    // Récupérer les informations de la commande à partir des paramètres d'URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var amount = urlParams.get('amount');
+    var description = urlParams.get('description');
+
+    // Récupérer les informations de la carte de crédit
+    var cardNumber = document.getElementById("cardNumber").value;
+    var cardExpiry = document.getElementById("cardExpiry").value;
+    var cardCVV = document.getElementById("cardCVV").value;
+    var cardHolder = document.getElementById("cardHolder").value;
+
+    fetch('http://localhost:3000/api/createPayment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            currency: 'EUR',
+            amount: amount,
+            description: description,
+            cardNumber: cardNumber,
+            cardExpiry: cardExpiry,
+            cardCVV: cardCVV,
+            cardHolder: cardHolder,
+            subscription: {
+                frequency: 'monthly',
+                duration: 3
+            }
+        }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+    </script>
+    
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+      
+          var cardNumber = document.getElementById('cardNumber').value;
+          var cardExpiry = document.getElementById('cardExpiry').value;
+          var cardCVV = document.getElementById('cardCVV').value;
+          var cardHolder = document.getElementById('cardHolder').value;
+      
+          // Valider les entrées
+          if (!validateCardNumber(cardNumber)) {
+            alert('Numéro de carte invalide');
+            return;
+          }
+          if (!validateCardExpiry(cardExpiry)) {
+            alert('Date d\'expiration invalide');
+            return;
+          }
+          if (!validateCardCVV(cardCVV)) {
+            alert('CVV invalide');
+            return;
+          }
+          if (!validateCardHolder(cardHolder)) {
+            alert('Nom du titulaire de la carte invalide');
+            return;
+          }
+      
+          // Récupérer les informations de la commande à partir des paramètres d'URL
+          var urlParams = new URLSearchParams(window.location.search);
+          // ...
+        });
+      
+        function validateCardNumber(number) {
+          // Ajoutez votre logique de validation ici
+          return true;
+        }
+      
+        function validateCardExpiry(date) {
+          // Ajoutez votre logique de validation ici
+          return true;
+        }
+      
+        function validateCardCVV(cvv) {
+          // Ajoutez votre logique de validation ici
+          return true;
+        }
+      
+        function validateCardHolder(name) {
+          // Ajoutez votre logique de validation ici
+          return true;
+        }
+      </script>
+  </body>
+</html>

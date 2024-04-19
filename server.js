@@ -30,6 +30,18 @@ app.post('/api/createPayment', async (req, res) => {
           })
     }
 });
+async function createSubscription(body) {
+    return await mollieClient.customers_subscriptions.create({
+        customerId: body.customerId,
+        amount: {
+            currency: body.currency,
+            value: body.amount,
+        },
+        times: body.times,
+        interval: body.interval,
+        description: body.description,
+    });
+}
 
 app.use(express.static('.'));
 app.listen(3000, () => console.log('Server listening on port 3000'));

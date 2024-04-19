@@ -147,41 +147,31 @@
         }
       });
       document.getElementById('confirm').addEventListener('click', function(e) {
-      var acceptConditions = document.getElementById('acceptConditions').checked;
-      var acceptCondi = document.getElementById('acceptCondi').checked;
-      var errorMessage = document.getElementById('errorMessage');
+          var acceptConditions = document.getElementById('acceptConditions').checked;
+          var acceptCondi = document.getElementById('acceptCondi').checked;
+          var errorMessage = document.getElementById('errorMessage');
 
-      if (!acceptConditions || !acceptCondi) {
-        // Si l'une des cases à cocher n'est pas cochée, affichez un message d'erreur
-        errorMessage.style.display = "block";
-        e.preventDefault(); // Empêche le bouton de soumettre le formulaire
-      } else {
-        // Si les deux cases à cocher sont cochées, cachez le message d'erreur
-        errorMessage.style.display = "none";
-      }
-    });
-    document.getElementById("confirm").addEventListener("click", function() {
-    // Récupérer les informations de la commande
-    var amount = document.getElementById("price").innerText;
-    var description = document.getElementById("description").innerText;
+          if (!acceptConditions || !acceptCondi) {
+              // Si l'une des cases à cocher n'est pas cochée, affichez un message d'erreur
+              errorMessage.style.display = "block";
+              e.preventDefault(); // Empêche le bouton de soumettre le formulaire
+          } else {
+              // Si les deux cases à cocher sont cochées, cachez le message d'erreur
+              errorMessage.style.display = "none";
 
-    fetch('http://localhost:3000/api/createPayment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            currency: 'EUR',
-            amount: amount,
-            description: description,
-        }),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-});
+              // Récupérer les informations de la commande
+              var amount = document.getElementById("price").innerText;
+              var description = document.getElementById("description").innerText;
+
+              // Récupérer l'e-mail de l'utilisateur connecté
+              var user = firebase.auth().currentUser;
+              var email = user ? user.email : '';
+
+              // Rediriger vers la page de paiement avec les informations nécessaires
+              window.location.href = "payment.html?amount=" + encodeURIComponent(amount) + "&description=" + encodeURIComponent(description) + "&email=" + encodeURIComponent(email);
+          }
+      });
+    
     });
     
     </script>
