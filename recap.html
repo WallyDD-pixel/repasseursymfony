@@ -69,8 +69,60 @@
         </div>
       </div>
     </div>
-    
+    <div style="
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 259px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 10px 5px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  font-family: SQ Market, SQ Market, Helvetica, Arial, sans-serif;
+  ">
+  <div style="padding: 20px;">
+    <a target="_blank" href="https://checkout.square.site/merchant/MLG7WSK15KTVW/checkout/IFOGLX4W3IJ2ARCWXD27VUZF?src=embed" style="
+    display: inline-block;
+    font-size: 18px;
+    line-height: 48px;
+    height: 48px;
+    color: #ffffff;
+    min-width: 212px;
+    background-color: #006aff;
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    border-radius: 6px;
+  ">Acheter </a>
+  </div>
+</div>
+    <script>
+      // Récupérez l'abonnement à partir de l'URL
+      urlParams = new URLSearchParams(window.location.search);
+      const abonnement = urlParams.get('id');
 
+      // Définissez les URL de paiement pour chaque abonnement
+      const paiementUrls = {
+        'Solo': 'https://checkout.square.site/merchant/MLG7WSK15KTVW/checkout/IFOGLX4W3IJ2ARCWXD27VUZF?src=embed',
+        'Duo': 'https://square.link/u/hSbG3cZj?src=embed',
+        'Mino': 'https://checkout.square.site/merchant/MLG7WSK15KTVW/checkout/IRRD3NNE43KGQUMYKHYGDXJO?src=embed',
+        'SUperhero': 'https://checkout.square.site/merchant/MLG7WSK15KTVW/checkout/P7QM4C73DTCNZVU7YLTJNG2I?src=embed'
+        // Ajoutez d'autres abonnements ici...
+      };
+      
+      // Ajoutez un gestionnaire d'événements click au bouton
+      document.getElementById('confirm').addEventListener('click', function() {
+        // Vérifiez que l'abonnement est une clé valide dans paiementUrls
+        if (paiementUrls.hasOwnProperty(abonnement)) {
+          // Modifiez l'URL de la page en fonction de l'abonnement
+          window.location.href = paiementUrls[abonnement];
+        } else {
+          // Gérez le cas où l'abonnement n'est pas une clé valide
+          console.error('Abonnement non valide :', abonnement);
+        }
+      });
+    </script>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -146,31 +198,7 @@
           promoCodeStatus.style.color = "red";
         }
       });
-      document.getElementById('confirm').addEventListener('click', function(e) {
-          var acceptConditions = document.getElementById('acceptConditions').checked;
-          var acceptCondi = document.getElementById('acceptCondi').checked;
-          var errorMessage = document.getElementById('errorMessage');
-
-          if (!acceptConditions || !acceptCondi) {
-              // Si l'une des cases à cocher n'est pas cochée, affichez un message d'erreur
-              errorMessage.style.display = "block";
-              e.preventDefault(); // Empêche le bouton de soumettre le formulaire
-          } else {
-              // Si les deux cases à cocher sont cochées, cachez le message d'erreur
-              errorMessage.style.display = "none";
-
-              // Récupérer les informations de la commande
-              var amount = document.getElementById("price").innerText;
-              var description = document.getElementById("description").innerText;
-
-              // Récupérer l'e-mail de l'utilisateur connecté
-              var user = firebase.auth().currentUser;
-              var email = user ? user.email : '';
-
-              // Rediriger vers la page de paiement avec les informations nécessaires
-              window.location.href = "payment.html?amount=" + encodeURIComponent(amount) + "&description=" + encodeURIComponent(description) + "&email=" + encodeURIComponent(email);
-          }
-      });
+      
     
     });
     

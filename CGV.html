@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Le repasseur</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(60, 34, 34, 0.1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+      </symbol>
+    </svg>
+
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+              id="bd-theme"
+              type="button"
+              aria-expanded="false"
+              data-bs-toggle="dropdown"
+              aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+            Light
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+            Dark
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+            Auto
+            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    
+    <header data-bs-theme="dark" >
+  
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 80px;">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="Logo" width="60"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Le repasseur
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/index.html">Pourquoi choisir le Répasseur</a>
+                    </li>
+                  </ul>
+                </li>
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tarifs
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/index.html">Abonnements</a></li>
+                    <li><a class="dropdown-item" href="/index.html">Comparer les offres</a></li>
+                    <li><a class="dropdown-item" href="/index.html">Kit du repasseur</a></li>
+                    <li><a class="dropdown-item" href="/index.html">Collecte sans abonnement</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/faq.html" style="border-radius: 10px; background-color: rgb(87, 87, 87);">FAQ</a>
+                </li>
+              </ul>
+              
+              <ul class="d-flex list-unstyled">
+                <li>
+                  <a href="inscription.html" class="btn btn me-3" style="background-color: #CE2029;">Creer un compte</a>
+                </li>
+                <li>
+                    <a href="sign-in/index.html" class="btn" style = "background-color: #b9606500;">Se connecter</a>
+                </li>
+            </ul>
+              
+            </div>
+          </div>
+        </nav>
+      </header> 
+  <style>
+    .mt-custom {
+        margin-top: 6rem !important; /* Ajustez cette valeur selon vos besoins */
+    }
+</style>
+
+<div class="container mt-custom">
+        <!-- Logo -->
+        <div class="row mt-4">
+            <div class="col text-center">
+                <img src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" alt="Logo" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- Titre -->
+        
+
+        <!-- Conditions de vente -->
+        <div class="row mt-4">
+            <div class="col">
+                <h2>Conditions Générales de Vente (CGV) – Service de Collecte et Repassage à Domicile</h2>
+                <ol>
+                    <li>
+                        <h3>Préambule</h3>
+                        <p>
+                            Les présentes Conditions Générales de Vente définissent les droits et obligations
+                            contractuelles entre Le Repasseur, ci-après dénommé "le Prestataire", et toute
+                            personne physique ou morale, ci-après dénommée "le Client", utilisant les services
+                            de collecte et repassage de linge à domicile proposés par le Prestataire.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Objet du Contrat</h3>
+                        <p>
+                            Le Prestataire propose un service de collecte et repassage de linge à domicile via
+                            une application mobile. Le Client peut souscrire à un abonnement mensuel sans
+                            engagement, lui offrant un nombre défini de collectes de linge en fonction du niveau
+                            de son abonnement.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Abonnement</h3>
+                        <p>
+                            Article 3. Abonnement
+                        </p>
+                        <ol>
+                            <li>
+                                <h4>Choix de l'Abonnement</h4>
+                                <p>
+                                    Le Client peut choisir parmi une gamme d'abonnements mensuels proposés par le
+                                    Prestataire, détaillés sur l'application. Chaque abonnement offre des avantages
+                                    spécifiques, tels que le nombre de collectes mensuelles, la durée de la prestation de
+                                    repassage, et d'autres services complémentaires. Le Client peut changer
+                                    d'abonnement à tout moment via l'application, sous réserve des dispositions de cet
+                                    article.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Modification de l'Abonnement</h4>
+                                <p>
+                                    Le Client peut demander une modification de son abonnement en notifiant le
+                                    Prestataire via l'application. Les modifications prendront effet au début du prochain
+                                    cycle de facturation mensuel. Le Prestataire se réserve le droit de refuser une
+                                    modification en cas de non-paiement des montants dus ou pour des raisons
+                                    opérationnelles justifiées.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Résiliation de l'Abonnement</h4>
+                                <p>
+                                    Le Client peut résilier son abonnement à tout moment sans frais en notifiant le
+                                    Prestataire via l'application. La résiliation prendra effet à la fin du cycle de facturation
+                                    suivant. En cas de résiliation en cours de cycle, le Prestataire n'accordera pas de
+                                    remboursement partiel pour la période restante.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Suspension Temporaire de l'Abonnement</h4>
+                                <p>
+                                    Le Client peut demander la suspension temporaire de son abonnement pour une
+                                    durée déterminée. Le Prestataire se réserve le droit d'accepter ou de refuser une
+                                    telle demande en fonction des circonstances et des dispositions opérationnelles. La
+                                    suspension prendra effet à la date spécifiée par le Client et ne sera pas facturée
+                                    pendant cette période.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Facturation Automatique</h4>
+                                <p>
+                                    Les abonnements sont facturés automatiquement chaque mois sur la base du tarif
+                                    applicable à l'abonnement choisi. Le Client autorise expressément le Prestataire à
+                                    effectuer ces prélèvements récurrents sur le compte bancaire fourni lors de
+                                    l'inscription.
+                                </p>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <h3>Collecte de Linge</h3>
+                        <p>
+                            Le Client, une fois abonné, peut planifier une collecte de linge via l&#39;application en
+                            sélectionnant un créneau horaire. Un agent du Prestataire se présentera au domicile du
+                            Client pour récupérer le linge propre à repasser. Le Prestataire s&#39;engage à respecter le
+                            créneau horaire choisi par le Client. En cas d&#39;indisponibilité de l&#39;agent collecteur, le Prestataire
+                            contactera le Client pour fixer un nouveau rendez-vous, sans que cela n’implique de pénalités.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Prestation de Repassage</h3>
+                        <p>
+                            Le Prestataire garantit un service de repassage de qualité conforme aux normes
+                            professionnelles. Le linge sera restitué dans un délai de 24 à 48 heures après la collecte, sauf
+                            indication contraire sur l&#39;application due à des circonstances exceptionnelles.
+                            Les tarifs mensuels des abonnements sont clairement indiqués sur l&#39;application. Le paiement
+                            s&#39;effectue automatiquement chaque mois par prélèvement sur le compte du Client. Tout
+                            changement de tarif sera notifié au Client au moins 30 jours à l&#39;avance.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Tarifs et Paiement</h3>
+                        
+                        <ol>
+                            <li>
+                                <h4>Tarifs</h4>
+                                <p>
+                                    Les tarifs des abonnements mensuels et des services additionnels sont clairement indiqués sur
+                                    l&#39;application et peuvent être consultés à tout moment par le Client. Conformément à l&#39;article 1127-
+                                    
+                                    1 du Code civil, le Prestataire se réserve le droit de modifier les tarifs avec un préavis de 30
+                                    jours, notifié au Client par l&#39;intermédiaire de l&#39;application.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Paiement</h4>
+                                <p>
+                                    Le paiement des abonnements mensuels s&#39;effectue automatiquement par prélèvement sur le
+                                    compte bancaire du Client. En acceptant ces Conditions Générales de Vente, le Client autorise
+                                    expressément le Prestataire à effectuer ces prélèvements récurrents conformément à l&#39;article
+                                    1343-2 du Code civil.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Pénalités de Retard</h4>
+                                <p>
+                                    En cas de défaut de paiement dans les délais impartis, conformément aux dispositions de l&#39;article
+                                    1147 du Code civil, le Client s&#39;engage à payer des pénalités de retard. Ces pénalités seront
+                                    calculées sur la base du taux d&#39;intérêt légal en vigueur au moment du retard, et ce, sans qu&#39;une
+                                    mise en demeure préalable ne soit nécessaire, comme prévu par l&#39;article 1231-6 du Code civil.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Rejet de Prélèvement</h4>
+                                <p>
+                                    En cas de rejet de prélèvement, le Prestataire se réserve le droit de suspendre immédiatement le
+                                    service jusqu&#39;à régularisation de la situation par le Client. Des frais de gestion de rejet de
+                                    prélèvement, conformément à l&#39;article L. 133-18 du Code monétaire et financier, pourront
+                                    également être appliqués et seront ajoutés au montant dû par le Client.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Frais de Recouvrement</h4>
+                                <p>
+                                    Si le retard de paiement persiste après une mise en demeure adressée au Client, le Prestataire
+                                    se réserve le droit de faire appel à un service de recouvrement, conformément à l&#39;article L. 111-8
+                                    du Code des procédures civiles d&#39;exécution. Les frais de recouvrement ainsi engagés seront à la
+                                    charge du Client en sus des pénalités de retard.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Suspension du Service</h4>
+                                <p>
+                                    En cas de retard de paiement excédant 5 jours, le Prestataire se réserve le droit de suspendre
+                                    temporairement le service jusqu&#39;à régularisation complète de la situation par le Client, en accord
+                                    avec l&#39;article 1219 du Code civil.
+                                </p>
+                            </li>
+                            <li>
+                                <h4>Facturation Supplémentaire</h4>
+                                <p>
+                                    Toute intervention ou prestation supplémentaire non couverte par l&#39;abonnement fera l&#39;objet d&#39;une
+                                    facturation supplémentaire, conformément aux tarifs en vigueur au moment de la prestation,
+                                    conformément à l&#39;article 1166 du Code civil.
+                                </p>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <h3>Responsabilités</h3>
+                        <p>
+                            Le Prestataire s&#39;engage à fournir ses services avec diligence. Le Client est
+                            responsable de la véracité des informations fournies lors de son inscription.
+                            Le Prestataire s&#39;engage à traiter le linge du Client avec soin et professionnalisme. Toute
+                            détérioration ou perte du linge pendant la prestation sera compensée conformément aux
+                            dispositions légales.
+                            <br>
+                            <br>
+                            le terme &quot;dispositions légales&quot; fait référence aux lois et régulations en vigueur dans le pays ou
+                            la juridiction pertinente.
+                            <br><br>
+                            En d&#39;autres termes, cela signifie que le Prestataire s&#39;engage à indemniser le Client pour toute
+                            détérioration ou perte du linge conformément aux règles énoncées dans les lois et règlements
+                            applicables en matière de responsabilité civile. Ces règles peuvent varier en fonction de la
+                            législation en vigueur.
+                            <br><br>
+                            En France, la responsabilité civile contractuelle est régie par le Code civil. En ce qui concerne les
+                            services de collecte et repassage de linge à domicile, la responsabilité du prestataire peut être
+                            engagée en cas de détérioration ou de perte du linge du client pendant la prestation.
+                            <br><br>
+                            Le Code civil français, notamment les articles 1147 à 1155, établit les principes généraux de la
+                            responsabilité contractuelle. Selon ces articles, le prestataire de services est tenu de réparer le
+                            préjudice causé au client en cas de manquement à ses obligations contractuelles, sauf s&#39;il peut
+                            prouver qu&#39;il a été empêché par un cas de force majeure.
+                        </p>
+                        <p>
+                            1. Fournir un linge approprié : Le client est responsable de fournir un linge en
+                            bon état, propre et prêt à être repassé. Les articles délicats ou nécessitant un
+                            traitement spécial doivent être signalés au préalable. <br><br>
+                            2. Exactitude des informations : Le client doit fournir des informations précises
+                            lors de l&#39;inscription et lors de la planification des collectes, notamment en ce
+                            qui concerne l&#39;adresse, les consignes spéciales, et tout autre détail pertinent.
+                            <br><br>
+                            3. Sécurité des biens : Le client est responsable de la sécurité de son domicile
+                            lors de la collecte et de la livraison du linge. Il doit s&#39;assurer que l&#39;agent du
+                            prestataire peut accéder au lieu convenu sans risque.
+                            <br><br>
+                            4. Communication des problèmes : En cas de détérioration ou de perte du
+                            linge, le client doit informer le prestataire au moment de la livraison. Il
+                            appartient au client de vérifier au moment du retour et en présence de l’agent
+                            qu’aucune pièce ne manque et qu’il est restitué dans l’état dans lequel il a été
+                            confié. Un défaut de notification en temps opportun peut affecter la possibilité
+                            d&#39;une compensation. En cas de détérioration du linge confié, il appartient au
+                            client de prouver que le linge à été confié en bon état. Lors de la réception du
+                            linge dans les locaux de repassage, un contrôle est effectué, tout linge jugé en
+                            mauvais état ou détérioré ne sera pas repassé, sauf décharge par le client sur
+                            l’étiquette de collecte.
+                            <br><br>
+                            5. Paiement en temps opportun : Le client est responsable du paiement en
+                            temps opportun des frais d&#39;abonnement et de tout service supplémentaire
+                            convenu, selon les modalités définies dans les CGV.
+                            <br><br>
+                            6. Respect des créneaux horaires : Le client doit être présent ou assurer
+                            qu&#39;une personne de confiance est présente au moment convenu pour la
+                            collecte et la livraison du linge. Des frais supplémentaires peuvent être
+                            imposés en cas d&#39;absence non signalée.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Confidentialité</h3>
+                        <p>
+                            Le Prestataire s&#39;engage à traiter les informations personnelles du Client
+                            conformément aux dispositions légales en matière de protection des données.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Modification des Conditions Générales</h3>
+                        <p>
+                            Le Prestataire se réserve le droit de modifier les présentes CGV. Les nouvelles conditions
+                            seront communiquées au Client et seront applicables après un délai de préavis de 30 jours.
+                            Les nouvelles conditions seront communiquées au Client par le biais de l&#39;application et seront
+                            effectives 30 jours après notification.
+                    </li>
+                    <li>
+                        <h3>Litiges et Droit Applicable</h3>
+                        <p>
+                            En cochant la case d’acceptation des CGV lors de l’achat de son abonnement, le
+                            client reconnais l’acceptation pleine et entière des présentes conditions.
+                            En cas de litige, les parties s&#39;efforceront de trouver une solution amiable. À défaut, le
+                            tribunal de Grasse sera saisi. Le droit français est applicable.
+                        </p>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
+      
+          <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" width="100" height="120" alt="Description de l'image">
+          </a>
+      
+          <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
+              <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
+              <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
+              <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
+              <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Mentions légales</a></li>
+              <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
+              <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
+              <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+              <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
+            
+          </ul>
+        </footer>
+      </div>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+</body>
+</html>

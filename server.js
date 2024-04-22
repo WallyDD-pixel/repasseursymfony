@@ -1,47 +1,37 @@
 const express = require('express');
 const cors = require('cors');
-const { createMollieClient } = require('@mollie/api-client');
-const mollieClient = createMollieClient({ apiKey: 'test_Npy6vh55ETwVeynQ6kTtvt2whUWFey' });
-
 const app = express();
-app.use(cors()); // Utilisez le middleware cors ici
-app.use(express.json());
 
-app.post('/api/createPayment', async (req, res) => {
-    try {
-        const payment = await mollieClient.payments.create({
-            amount: {
-                currency: req.body.currency,
-                value: req.body.amount,
-            },
-            description: req.body.description,
-            redirectUrl: 'https://webshop.example.org/order/12345/',
-            webhookUrl: 'https://webshop.example.org/payments/webhook/',
-            method: 'creditcard',
-            customerId: req.body.customerId,
-        });
+app.get('/create-checkout/:itemId', (req, res) => {
+  const squareConnect = require('square-connect');
+  const defaultClient = squareConnect.ApiClient.instance;
 
-        res.json({ paymentUrl: payment.getPaymentUrl() });
-    } catch (error) {
-        console.error('Something went wrong:', error);
-        app.use(function (err, req, res, next) {
-            console.error(err.stack)
-            res.status(500).send('Erreur lors de la création du paiement')
-          })
-    }
-});
-async function createSubscription(body) {
-    return await mollieClient.customers_subscriptions.create({
-        customerId: body.customerId,
-        amount: {
-            currency: body.currency,
-            value: body.amount,
-        },
-        times: body.times,
-        interval: body.interval,
-        description: body.description,
+  // Configurez OAuth2 Access Token pour l'authentification
+  const oauth2 = defaultClient.authentications['oauth2'];
+  oauth2.accessToken = 'EAAAl7tcgKqwP3lUH0hCg1c0utawSbUsRQnE2JBVamyxb8MWWfqqQ9nBwy7V9wpZ';
+
+  const apiInstance = new squareConnect.CheckoutApi();
+
+  const locationId = 'LWZ1NPVNSDA2M';
+  const body = new squareConnect.CreateCheckoutRequest();
+
+  body.idempotency_key = new Date().getTime().toString();
+  body.order = {
+    line_items: [
+      {
+        quantity: '1',
+        catalog_object_id: req.params.itemId // Utilisez l'ID de l'article passé en tant que paramètre de requête
+      }
+    ]
+  };
+
+  apiInstance.createCheckout(locationId, body)
+    .then((data) => {
+      res.json({ checkoutUrl: data.checkout.checkout_page_url });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send('Erreur lors de la création du checkout');
     });
-}
-
-app.use(express.static('.'));
+});
 app.listen(3000, () => console.log('Server listening on port 3000'));

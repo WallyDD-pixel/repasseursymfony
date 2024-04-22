@@ -454,17 +454,22 @@
  
  <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" width="100" height="100" alt="Description de l'image">
+      <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" width="100" height="120" alt="Description de l'image">
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
-      
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
+      <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
+      <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Mentions légales</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
       
     </ul>
   </footer>
@@ -814,29 +819,31 @@ button.addEventListener('click', function() {
     
      // Vérifier le rôle de l'utilisateur et changer le texte du bouton en conséquence
      firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        var userId = user.uid; // Récupérer l'ID de l'utilisateur
-        var docRef = firebase.firestore().collection('users').doc(userId);
-        docRef.get().then((doc) => {
-          if (doc.exists) {
-            var role = doc.data().role;
-            if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Superhero') {
-              button.textContent = 'Changer abonnement';
-              // Afficher l'ID de l'utilisateur dans l'élément HTML
-              document.getElementById('user-id').textContent = userId;
-              // Masquer l'abonnement actif
-              document.getElementById(role).style.display = 'none';
-            } else {
-              // Si l'utilisateur n'a pas le bon rôle, redirigez-le vers la page d'erreur
-              window.location.href = '../error/index.html';
-            }
-          }
-        }).catch((error) => {
-          console.log("Erreur lors de la récupération du document :", error);
-        });
-      } else {
-        button.textContent = 'S\'abonne';
-      }
+        if (user) {
+            var userId = user.uid; // Récupérer l'ID de l'utilisateur
+            var docRef = firebase.firestore().collection('users').doc(userId);
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    var role = doc.data().role;
+                    if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Superhero') {
+                        button.textContent = 'Changer abonnement';
+                        // Afficher l'ID de l'utilisateur dans l'élément HTML
+                        document.getElementById('user-id').textContent = userId;
+                        // Masquer l'abonnement actif
+                        if (abonnement.nom === role) {
+                            col.style.display = 'none'; // Masquer l'abonnement actuel
+                        }
+                    } else {
+                        // Si l'utilisateur n'a pas le bon rôle, redirigez-le vers la page d'erreur
+                        window.location.href = 'error.html';
+                    }
+                }
+            }).catch((error) => {
+                console.log("Erreur lors de la récupération du document :", error);
+            });
+        } else {
+            button.textContent = 'S\'abonne';
+        }
     });
     button.addEventListener('click', function() {
     // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL

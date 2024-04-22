@@ -27,46 +27,85 @@
         <button type="submit" id="confirm" class="btn btn-primary">Payer</button>
       </form>
     </div>
-
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
     <script>
-      document.getElementById("confirm").addEventListener("click", function() {
-    // Récupérer les informations de la commande à partir des paramètres d'URL
-    var urlParams = new URLSearchParams(window.location.search);
-    var amount = urlParams.get('amount');
-    var description = urlParams.get('description');
-
-    // Récupérer les informations de la carte de crédit
-    var cardNumber = document.getElementById("cardNumber").value;
-    var cardExpiry = document.getElementById("cardExpiry").value;
-    var cardCVV = document.getElementById("cardCVV").value;
-    var cardHolder = document.getElementById("cardHolder").value;
-
-    fetch('http://localhost:3000/api/createPayment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            currency: 'EUR',
-            amount: amount,
-            description: description,
-            cardNumber: cardNumber,
-            cardExpiry: cardExpiry,
-            cardCVV: cardCVV,
-            cardHolder: cardHolder,
-            subscription: {
-                frequency: 'monthly',
-                duration: 3
-            }
-        }),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-});
-    </script>
+      var firebaseConfig = {
+          apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+          authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+          projectId: "repasseurflutter-7fc37",
+          storageBucket: "repasseurflutter-7fc37.appspot.com",
+          messagingSenderId: "348979158571",
+          appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+          measurementId: "G-CWPDXBH4LT"
+      };
+      firebase.initializeApp(firebaseConfig);
+  
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+              document.getElementById("confirm").addEventListener("click", function() {
+                  // Récupérer les informations de la commande à partir des paramètres d'URL
+                  var urlParams = new URLSearchParams(window.location.search);
+                  var amount = urlParams.get('amount');
+                  var description = urlParams.get('description');
+                  var title = urlParams.get('title');
+                  console.log(amount, description, title);
+                  console.log(amount, description, title);
+  
+                  // Récupérer les informations de la carte de crédit
+                  var cardNumber = document.getElementById("cardNumber").value;
+                  var cardExpiry = document.getElementById("cardExpiry").value;
+                  var cardCVV = document.getElementById("cardCVV").value;
+                  var cardHolder = document.getElementById("cardHolder").value;
+  
+                  // Accéder à la collection 'users' dans Firestore
+                  var usersRef = firebase.firestore().collection('users');
+  
+                  // Mettre à jour le rôle de l'utilisateur
+                  usersRef.doc(user.uid).update({
+                      role: title
+                  }).then(function() {
+                      // Créer le paiement
+                      fetch('http://localhost:3000/api/createPayment', {
+                          method: 'POST',
+                          headers: {
+                              'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                              currency: 'EUR',
+                              amount: amount,
+                              description: description,
+                              abonnement: title,
+                              cardNumber: cardNumber,
+                              cardExpiry: cardExpiry,
+                              cardCVV: cardCVV,
+                              cardHolder: cardHolder,
+                              subscription: {
+                                  frequency: 'monthly',
+                                  duration: 3
+                              }
+                          }),
+                      })
+                      .then(response => response.json())
+                      .then(data => {
+                          console.log(data);
+                          // Rediriger vers la page de confirmation de paiement
+                          window.location.href = "confirmation.html";
+                      })
+                      .catch((error) => {
+                          console.error('Error:', error);
+                      });
+                  }).catch(function(error) {
+                      console.error("Erreur lors de la mise à jour du rôle de l'utilisateur :", error);
+                  });
+              });
+          } else {
+              console.log("Aucun utilisateur n'est connecté");
+          }
+      });
+  </script>
     
     <script>
         document.getElementById('paymentForm').addEventListener('submit', function(e) {

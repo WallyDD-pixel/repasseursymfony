@@ -228,8 +228,9 @@
                 console.log('L\'utilisateur a le rôle : aucun');
                 window.location.href = 'invite.html'; // Redirige vers la page invité
               } else {
-                // L'utilisateur a un rôle inconnu
-                console.log('Rôle inconnu :', role);
+                  // L'utilisateur a un rôle inconnu
+                  console.log('Rôle inconnu :', role);
+                  document.getElementById('message').textContent = 'Rôle inconnu : ' + role;
               }
             } else {
               console.log('Aucun document correspondant !');
@@ -252,7 +253,7 @@
                 errorMessage = 'Le mot de passe est incorrect.';
                 break;
               default:
-                errorMessage = 'Erreur de connexion. Veuillez réessayer.';
+                errorMessage = 'Mot de passe incorrect / compte supprimé. Veuillez réessayer.';
             }
 
             // Afficher l'erreur sur la page

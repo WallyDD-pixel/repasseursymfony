@@ -171,12 +171,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Le repasseur
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/index.html">Pourquoi choisir le Répasseur</a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/index.html">Pourquoi choisir le Répasseur</a>
-          </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Tarifs
@@ -196,7 +204,7 @@
           </li>
         </ul>
         <div class="d-flex">
-          <a href="/sign-in/user.html" class="btn btn me-3" style="background-color: #CE2029;">Mon compte</a>
+          <a href="/sign-in/invite.html" class="btn btn me-3" style="background-color: #CE2029;">Mon compte</a>
           <a href="#" class="btn btn me-3" style="background-color: #CE2029;" onclick="logout();">Se déconnecter</a>
         </div>
       </div>
@@ -213,7 +221,7 @@
     <div class="container py-3" style="">
       <div class="row">
         <div class="col-md-6">
-          <h2 style="font-size: 19px"class="text-start">Bonjour <span id="user-name" style="color: #10294B"></span> <span id="user-surname"></span></h2>
+          <h2 style="font-size: 19px"class="text-start">Bonjour <span id="user-name" style="color: #CE2029;font-family: lobster;"></span> <span id="user-surname" style="color: #CE2029;font-family: lobster;"></span></h2>
           <h2 style="font-size: 19px">Abonnement actuel: <span id="current-subscription" style="font-family: lobster; color: #CE2029; font-size: 27px;"></span></h2>
           <h2 style="font-size: 19px">Mon N° Client : <span id="user-id"></span></h2>
         </div>
@@ -409,16 +417,22 @@
  
  <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
 
     <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" width="100" height="100" alt="Description de l'image">
+      <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" width="100" height="120" alt="Description de l'image">
     </a>
 
     <ul class="nav col-md-4 justify-content-end">
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
+        <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
+        <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Mentions légales</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
       
       
     </ul>
@@ -533,6 +547,94 @@
     }
   });
 </script>
+<button id="btnMino" style="display: none;">S'abonner Mino</button>
+<div style="
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 259px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 10px 5px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  font-family: SQ Market, SQ Market, Helvetica, Arial, sans-serif;
+  ">
+  <div style="padding: 20px;">
+    <a id="btnMino" target="_blank" href="https://square.link/u/vHp6WBcO?src=embed" style="
+    display: inline-block;
+    font-size: 18px;
+    line-height: 48px;
+    height: 48px;
+    color: #ffffff;
+    min-width: 212px;
+    background-color: #006aff;
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    border-radius: 6px;
+  ">Acheter </a>
+  </div>
+</div>
+<button id="btnDuo" style="display: none;">S'abonner Duo</button>
+<div style="
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 259px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 10px 5px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  font-family: SQ Market, SQ Market, Helvetica, Arial, sans-serif;
+  ">
+  <div style="padding: 20px;">
+    <a target="_blank" href="https://square.link/u/LZ7Zb838?src=embed" style="
+    display: inline-block;
+    font-size: 18px;
+    line-height: 48px;
+    height: 48px;
+    color: #ffffff;
+    min-width: 212px;
+    background-color: #006aff;
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    border-radius: 6px;
+  ">Acheter </a>
+  </div>
+</div>
+<button id="btnSolo" style="display: none;">S'abonner Solo</button>
+<div style="
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 259px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: -2px 10px 5px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  font-family: SQ Market, SQ Market, Helvetica, Arial, sans-serif;
+  ">
+  <div style="padding: 20px;">
+    <a target="_blank" href="https://square.link/u/vHp6WBcO?src=embed" style="
+    display: inline-block;
+    font-size: 18px;
+    line-height: 48px;
+    height: 48px;
+    color: #ffffff;
+    min-width: 212px;
+    background-color: #006aff;
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
+    border-radius: 6px;
+  ">Acheter </a>
+  </div>
+</div>
+<button id="btnSuperhero" style="display: none;">S'abonner Superhero</button>
 <script>
   // Votre configuration Firebase
   var firebaseConfig = {

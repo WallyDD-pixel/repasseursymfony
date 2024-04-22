@@ -166,12 +166,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#marche">Comment ça marche ?</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Le repasseur
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#marche">Comment ça marche ?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#choisir">Pourquoi choisir le Répasseur</a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#choisir">Pourquoi choisir le Répasseur</a>
-          </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Tarifs
@@ -227,56 +235,54 @@
       }
     }
 </style>
-  <div id="myCarousel" class="carousel slide mb-6 full-height-carousel" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-  
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <picture>
-          <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite1-tel.jpg">
-          <source media="(min-width: 769px)" srcset="/assets/imgg/2787fd5a-42c8-49c1-b93d-7910706b3d66.jpg">
-          <img class="bd-placeholder-img" src="/assets/imgg/2787fd5a-42c8-49c1-b93d-7910706b3d66.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
-        </picture>
-        <div class="container">
-          <!-- ... -->
-        </div>
-      </div>
-      <div class="carousel-item">
-        <picture>
-          <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite2-tel.jpg">
-          <source media="(min-width: 769px)" srcset="/assets/imgg/SliderSite2v3.jpg">
-          <img class="bd-placeholder-img" src="/assets/imgg/SliderSite2v3.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
-        </picture>
-        <div class="container">
-          <!-- ... -->
-        </div>
-      </div>
-      <div class="carousel-item">
-        <picture>
-          <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite3-tel.jpg">
-          <source media="(min-width: 769px)" srcset="/assets/imgg/SliderSite3v3.jpg">
-          <img class="bd-placeholder-img" src="/assets/imgg/SliderSite3v3.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
-        </picture>
-        <div class="container">
-          <!-- ... -->
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Precedent</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Suivant</span>
-    </button>
-    
-    
+<div id="myCarousel" class="carousel slide mb-6 full-height-carousel" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="3000">
+      <picture>
+        <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite1-tel.jpg">
+        <source media="(min-width: 769px)" srcset="/assets/imgg/2787fd5a-42c8-49c1-b93d-7910706b3d66.jpg">
+        <img class="bd-placeholder-img" src="/assets/imgg/2787fd5a-42c8-49c1-b93d-7910706b3d66.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
+      </picture>
+      <div class="container">
+        <!-- ... -->
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <picture>
+        <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite2-tel.jpg">
+        <source media="(min-width: 769px)" srcset="/assets/imgg/SliderSite2v3.jpg">
+        <img class="bd-placeholder-img" src="/assets/imgg/SliderSite2v3.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
+      </picture>
+      <div class="container">
+        <!-- ... -->
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="3000">
+      <picture>
+        <source media="(max-width: 768px)" srcset="/assets/imgg/SliderSite3-tel.jpg">
+        <source media="(min-width: 769px)" srcset="/assets/imgg/SliderSite3v3.jpg">
+        <img class="bd-placeholder-img" src="/assets/imgg/SliderSite3v3.jpg" width="100%" height="100%" aria-hidden="true" focusable="false">
+      </picture>
+      <div class="container">
+        <!-- ... -->
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Precedent</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Suivant</span>
+  </button>
+</div>
   
   <style>
     .center-align {
@@ -440,14 +446,14 @@
             </div>
             <div class="col-md-8">
               <h2 style="font-family: lobster;color: #CE2029;">Solo</h2>
-              <h2 style="color: #CE2029; ">39€ pour 2.5kg par mois - <strong style="color: #10294B;">Kit Repasseur OFFERT</strong></h2>
+              <h2 style="color: #CE2029; ">39€ pour 2.5kg par mois - 1 à 2 collectes<strong style="color: #10294B;"><br> Kit Repasseur OFFERT</strong></h2>
               <p style="font-size:18px;">"Pour nos clients célibataires, ceux qui vivent seuls, ou sont seul dans le foyer à avoir besoin de repassage, notre formule Solo est conçue spécialement pour vous !
                 Avec 39€ par mois, vous pouvez faire repasser jusqu'à 2,5kg de linge. Une seule collecte par mois vous permet de gagner du temps et de l'énergie, tout en gardant vos vêtements impeccables. Simplifiez votre vie avec notre formule Solo !»</p>
                 <p style="font-size:24px;"><strong>2,5 kg de linge correspond à entre 15 et 20 pièces :
                   Environ 5 polos en coton + 10 chemises légères + 2 pantalons en coton</strong></p>
                 <p>
                   <i>(Bien-sûr, panachez comme vous le souhaitez !)
-                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider !</i>
                 </p>
             </div>
           </div>
@@ -466,13 +472,13 @@
             </div>
             <div class="col-md-8">
               <h2 style="font-family: lobster;color: #CE2029;">Duo</h2>
-              <h2 style="color: #CE2029; ">59€ pour 5kg par mois - 1 ou 2 collectes -<strong style="color: #10294B;">Kit Repasseur OFFERT</strong></h2>
+              <h2 style="color: #CE2029; ">59€ pour 5kg par mois - 1 ou 2 collectes -<strong style="color: #10294B;"><br>Kit Repasseur OFFERT</strong></h2>
               <p style="font-size:18px;">"Pour les couples dynamiques qui partagent les tâches ménagères, notre formule Duo est la solution idéale ! Pour seulement 59€ par mois, vous bénéficiez de 5Kg de linge repassé par mois, avec la flexibilité de deux collectes. Vous pouvez planifier les collectes selon vos besoins et profiter d'un linge toujours impeccable. Simplifiez votre quotidien avec notre formule Duo !"</p>
                 <p style="font-size:24px;"><strong>5 kg de linge correspond à 25 à 35 pièces :
                   Environ 10 polos en coton + 20 chemises légères + 4 pantalons en coton</strong></p>
                 <p>
                   <i>(Bien-sûr, panachez comme vous le souhaitez !)
-                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider !</i>
                 </p>
             </div>
           </div>
@@ -491,13 +497,13 @@
             </div>
             <div class="col-md-8">
               <h2 style="font-family: lobster;color: #CE2029;">Super héro</h2>
-              <h2 style="color: #CE2029; ">99€ pour 10kg par mois - 1 à 4 collectes - <strong style="color: #10294B;">Kit Repasseur OFFERT</strong></h2>
+              <h2 style="color: #CE2029; ">99€ pour 10kg par mois - 1 à 4 collectes - <strong style="color: #10294B;"><br>Kit Repasseur OFFERT</strong></h2>
               <p style="font-size:18px;">"Pour les familles nombreuses ou ceux qui ont un volume de linge important, notre formule Super Héro est faite pour vous ! Pour 99€ par mois, vous bénéficiez d'un service complet pour 10kg de linge par mois. Avec la possibilité de 1 à 4 collectes selon vos besoins, vous avez la flexibilité nécessaire pour gérer le linge de toute la famille. Simplifiez votre vie avec notre formule Super Héro !"</p>
                 <p style="font-size:24px;"><strong>10 kg de linge correspond à environ 50 pièces :
                   Environ 40 polos en coton + 20 chemises légères</strong></p>
                 <p>
                   <i>(Bien-sûr, panachez comme vous le souhaitez !)
-                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! (Les quantités de pièces sont données à titre indicatif et peuvent varier).</i>
+                    Ces exemples ne sont que des estimations et peuvent varier en fonction du type de vêtements, de leur taille et de leur densité. Lorsque vous choisissez votre formule d'abonnement, tenez compte de votre propre volume de linge et de vos besoins spécifiques pour trouver la formule qui vous convient le mieux. Si vous avez des questions, n'hésitez pas à nous contacter, nous sommes là pour vous aider ! </i>
                 </p>
             </div>
           </div>
@@ -598,7 +604,7 @@
               <td>29€</td>
               <td>29€</td>
               <td>29€</td>
-              <td>29€</td>
+              
               <!-- Ajoutez les valeurs pour Nb Collect et Poids ici -->
             </tr>
             
@@ -724,26 +730,130 @@
   <!-- FOOTER -->
   <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
   
       <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" width="100" height="100" alt="Description de l'image">
+        <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" width="100" height="120" alt="Description de l'image">
       </a>
   
       <ul class="nav col-md-4 justify-content-end">
-        <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
-        <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
-        <li class="nav-item"><a href="/" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
+        <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
+        <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
+        <li class="nav-item"><a href="/CGV.html" class="nav-link px-2 text-body-secondary">Mentions légales</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
         
         
       </ul>
     </footer>
   </div>
 </main>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Veuillez nous excuser</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <p>L'application n'est pas encore disponible. Veuillez renseigner votre e-mail et nous vous enverrons un mail quand l'application sera disponible.</p>
+        <form>
+          <div class="mb-3">
+            <label for="email" class="form-label">Adresse e-mail</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+          </div>
+          <button type="submit" class="btn btn-primary">Recontactez-moi</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+    myModal.show();
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+  var lastPopup = getCookie('lastPopup');
+  var now = new Date().getTime();
+
+  // Si le popup n'a jamais été affiché ou si cela fait plus de 10 minutes depuis la dernière fois
+  if (!lastPopup || now - lastPopup > 10 * 60 * 1000) {
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+    myModal.show();
+
+    // Enregistrer la date actuelle dans les cookies
+    setCookie('lastPopup', now.toString(), 1);
+  }
+});
+
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+function getCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+</script>
+
+<script>
+  // Votre configuration Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+    // ...
+  };
+  // Initialisation de Firebase
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
+
+  document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var email = document.getElementById('email').value;
+
+    db.collection("Emails").add({
+        email: email
+    })
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+
+    // Fermer le modal après la soumission du formulaire
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+    myModal.hide();
+  });
+</script>
 <script>
   // Votre configuration Firebase
   var firebaseConfig = {
