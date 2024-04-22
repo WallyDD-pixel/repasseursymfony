@@ -6,25 +6,8 @@
   </head>
   <body>
     <div class="container">
-      <h2 class="my-4">Informations de paiement</h2>
-      <form id="paymentForm">
-        <div class="form-group">
-          <label for="cardNumber">Numéro de carte</label>
-          <input type="text" class="form-control" id="cardNumber" required>
-        </div>
-        <div class="form-group">
-          <label for="cardExpiry">Date d'expiration</label>
-          <input type="text" class="form-control" id="cardExpiry" required>
-        </div>
-        <div class="form-group">
-          <label for="cardCVV">CVV</label>
-          <input type="text" class="form-control" id="cardCVV" required>
-        </div>
-        <div class="form-group">
-          <label for="cardHolder">Nom du titulaire de la carte</label>
-          <input type="text" class="form-control" id="cardHolder" required>
-        </div>
-        <button type="submit" id="confirm" class="btn btn-primary">Payer</button>
+      <h1 class="text-center my-2">Paiement</h1>
+        <button type="submit" id="payButton" class="btn btn-primary">Payer</button>
       </form>
     </div>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
@@ -51,8 +34,6 @@
                   var amount = urlParams.get('amount');
                   var description = urlParams.get('description');
                   var title = urlParams.get('title');
-                  console.log(amount, description, title);
-                  console.log(amount, description, title);
   
                   // Récupérer les informations de la carte de crédit
                   var cardNumber = document.getElementById("cardNumber").value;
@@ -106,58 +87,43 @@
           }
       });
   </script>
-    
-    <script>
-        document.getElementById('paymentForm').addEventListener('submit', function(e) {
-          e.preventDefault();
-      
-          var cardNumber = document.getElementById('cardNumber').value;
-          var cardExpiry = document.getElementById('cardExpiry').value;
-          var cardCVV = document.getElementById('cardCVV').value;
-          var cardHolder = document.getElementById('cardHolder').value;
-      
-          // Valider les entrées
-          if (!validateCardNumber(cardNumber)) {
-            alert('Numéro de carte invalide');
-            return;
+      <script>
+        document.getElementById('payButton').addEventListener('click', async () => {
+          try {
+            // Récupérer l'id de l'abonnement à partir des paramètres de l'URL
+            // Récupérer les paramètres de l'URL
+            var urlParams = new URLSearchParams(window.location.search);
+
+            // Récupérer 'amount' et 'title' à partir des paramètres de l'URL
+            var amount = urlParams.get('amount');
+            var title = urlParams.get('title');
+
+            console.log(amount); // Affiche la valeur de 'amount'
+            console.log(title); // Affiche la valeur de 'title'
+
+            // Vérifier si 'amount' et 'title' sont présents
+            if (!amount || !title) {
+              console.log('Montant ou titre manquant dans l\'URL');
+              return;
+            }
+
+            // Créer l'URL pour la requête fetch
+            const serverUrl = 'http://localhost:3000/create-payment-link';
+            const params = new URLSearchParams({
+              amount: amount,
+              title: title,
+              // Ajoutez ici d'autres informations d'abonnement si nécessaire
+            });
+
+            const response = await fetch(`${serverUrl}?${params}`);
+            const paymentLinkUrl = await response.text();
+
+            // Redirige l'utilisateur vers le lien de paiement
+            window.location.href = paymentLinkUrl;
+          } catch(error) {
+            console.log(error);
           }
-          if (!validateCardExpiry(cardExpiry)) {
-            alert('Date d\'expiration invalide');
-            return;
-          }
-          if (!validateCardCVV(cardCVV)) {
-            alert('CVV invalide');
-            return;
-          }
-          if (!validateCardHolder(cardHolder)) {
-            alert('Nom du titulaire de la carte invalide');
-            return;
-          }
-      
-          // Récupérer les informations de la commande à partir des paramètres d'URL
-          var urlParams = new URLSearchParams(window.location.search);
-          // ...
         });
-      
-        function validateCardNumber(number) {
-          // Ajoutez votre logique de validation ici
-          return true;
-        }
-      
-        function validateCardExpiry(date) {
-          // Ajoutez votre logique de validation ici
-          return true;
-        }
-      
-        function validateCardCVV(cvv) {
-          // Ajoutez votre logique de validation ici
-          return true;
-        }
-      
-        function validateCardHolder(name) {
-          // Ajoutez votre logique de validation ici
-          return true;
-        }
       </script>
   </body>
 </html>
