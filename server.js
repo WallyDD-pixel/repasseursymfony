@@ -1,8 +1,10 @@
+require('dotenv').config(); // Charger les variables d'environnement
+
 const express = require('express');
-const stripe = require('stripe')('sk_test_51Piw2CBCi4CMCVLuZjHCGLJOAJafVmEtoRasslmvUP3IGNxvxN8EONG6rGtwXDzd2WVxpNVNUyQvUJzZYLW0XNro001JknRoGK'); // Remplacez par votre clé secrète Stripe
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY); // Utiliser la clé secrète Stripe depuis les variables d'environnement
 const cors = require('cors'); // Importer le middleware CORS
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // Utiliser le port fourni par Render ou 3000 en local
 
 // Utiliser le middleware CORS
 app.use(cors());
@@ -17,6 +19,7 @@ app.post('/create-checkout-session', async (req, res) => {
   successUrl.searchParams.append('description', description);
   successUrl.searchParams.append('email', email);
   successUrl.searchParams.append('title', title);
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
@@ -43,46 +46,8 @@ app.post('/create-checkout-session', async (req, res) => {
 
   res.json({ id: session.id });
 });
+
 app.post('/create-checkout-session-produits', async (req, res) => {
   const { amount, description, email, title, type } = req.body;
   const successUrl = new URL('http://le-repasseur.fr:3000/success.html');
-  successUrl.searchParams.append('amount', amount);
-  successUrl.searchParams.append('description', description);
-  successUrl.searchParams.append('email', email);
-  successUrl.searchParams.append('title', title);
-
-  let sessionConfig = {
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'eur',
-          product_data: {
-            name: title,
-            description: description,
-          },
-          unit_amount: parseInt(amount) * 100, // Montant en centimes
-        },
-        quantity: 1,
-      },
-    ],
-    customer_email: email,
-    success_url: successUrl.toString(), // Utiliser l'URL de redirection avec les paramètres
-    cancel_url: 'http://le-repasseur.fr:3000/cancel.html',
-  };
-
-  if (type === 'subscription') {
-    sessionConfig.mode = 'subscription';
-    sessionConfig.line_items[0].price_data.recurring = {
-      interval: 'month', // Intervalle de récurrence (mois)
-    };
-  } else {
-    sessionConfig.mode = 'payment'; // Mode de paiement unique
-  }
-
-  const session = await stripe.checkout.sessions.create(sessionConfig);
-
-  res.json({ id: session.id });
-});
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  successUrl.search
