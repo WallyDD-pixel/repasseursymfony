@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Félicitations</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .modal-header {
+      background-color: #28a745;
+      color: white;
+    }
+    .modal-footer {
+      justify-content: center;
+    }
+    .modal-body {
+      font-size: 1.2em;
+    }
+    .highlight {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Modal -->
+  <div class="modal fade show" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Félicitations</h5>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- Le contenu sera mis à jour par JavaScript -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="dashboardButton">Accéder au tableau de bord</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <!-- Firebase Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+  <script>
+    // Votre configuration Firebase
+    var firebaseConfig = {
+      apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+      authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+      projectId: "repasseurflutter-7fc37",
+      storageBucket: "repasseurflutter-7fc37.appspot.com",
+      messagingSenderId: "348979158571",
+      appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+      measurementId: "G-CWPDXBH4LT"
+    };
+    // Initialiser Firebase
+    firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+  
+    // Fonction pour obtenir les paramètres de l'URL
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        amount: params.get('amount'),
+        description: params.get('description'),
+        email: params.get('email'),
+        title: params.get('title')
+      };
+    }
+  
+    // Mettre à jour le contenu du modal avec les informations de l'URL
+    const params = getUrlParams();
+    const modalBody = document.getElementById('modalBody');
+    
+    // Fonction pour afficher les informations de l'utilisateur et gérer les transactions
+  function displayUserInfo(email, amount, userId) {
+    db.collection("users").where("email", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach((doc) => {
+            const userData = doc.data();
+            console.log("ID du document :", userId);
+            console.log("Nom :", userData.nom);
+            console.log("Prénom :", userData.prenom);
+            console.log("Email :", userData.email);
+            console.log("Numéro de client :", userData.numeroClient);
+            console.log("Rôle :", userData.role);
+            console.log("Collectes :", userData.collectes);
+            console.log("Réservations :", userData.reservations);
+            console.log("Montant :", amount);
+
+            // Vérifier si une transaction existe déjà pour cet utilisateur et ce titre
+            db.collection("transactions").where("userId", "==", userId).where("title", "==", params.title)
+              .get()
+              .then((transactionSnapshot) => {
+                if (!transactionSnapshot.empty) {
+                  // Mettre à jour la transaction existante
+                  transactionSnapshot.forEach((transactionDoc) => {
+                    db.collection("transactions").doc(transactionDoc.id).update({
+                      montant: amount,
+                      transactionDate: new Date()
+                    })
+                    .then(() => {
+                      console.log("Transaction mise à jour avec succès.");
+                    })
+                    .catch((error) => {
+                      console.error("Erreur lors de la mise à jour de la transaction :", error);
+                    });
+                  });
+                } else {
+                  // Vérifier si le titre correspond à un produit
+                  db.collection("produits").where("nom", "==", params.title)
+                    .get()
+                    .then((produitSnapshot) => {
+                      if (!produitSnapshot.empty) {
+                        // Créer un document dans la collection transactions avec le type produit
+                        db.collection("transactions").add({
+                          userId: userId,
+                          nom: userData.nom,
+                          prenom: userData.prenom,
+                          email: userData.email,
+                          numeroClient: userData.numeroClient,
+                          role: userData.role,
+                          collectes: userData.collectes,
+                          reservations: userData.reservations,
+                          montant: amount,
+                          transactionDate: new Date(),
+                          type: "Produit",
+                          title: params.title
+                        })
+                        .then(() => {
+                          console.log("Transaction de produit enregistrée avec succès.");
+                        })
+                        .catch((error) => {
+                          console.error("Erreur lors de l'enregistrement de la transaction de produit :", error);
+                        });
+                      } else {
+                        // Si le titre ne correspond pas à un produit, vérifier s'il correspond à un abonnement
+                        db.collection("abonnements").where("nom", "==", params.title)
+                          .get()
+                          .then((abonnementSnapshot) => {
+                            if (!abonnementSnapshot.empty) {
+                              abonnementSnapshot.forEach((abonnementDoc) => {
+                                console.log("Abonnement trouvé :", abonnementDoc.data());
+
+                                // Mettre à jour les champs 'collectes' et 'reservations' de l'utilisateur
+                                const kg = abonnementDoc.data().kg;
+                                const collectes = abonnementDoc.data().collectes;
+                                db.collection("users").where("email", "==", params.email)
+                                  .get()
+                                  .then((querySnapshot) => {
+                                    if (!querySnapshot.empty) {
+                                      querySnapshot.forEach((doc) => {
+                                        console.log("Utilisateur trouvé :", doc.data());
+                                        console.log("ID du document :", doc.id);
+
+                                        // Mettre à jour le champ 'role' avec la valeur de 'title'
+                                        db.collection("users").doc(doc.id).update({
+                                          role: params.title,
+                                          collectes: kg,
+                                          reservations: collectes
+                                        })
+                                        .then(() => {
+                                          console.log("Le rôle et les champs 'collectes' et 'reservations' ont été mis à jour avec succès.");
+                                        })
+                                        .catch((error) => {
+                                          console.error("Erreur lors de la mise à jour des champs :", error);
+                                        });
+                                      });
+                                    } else {
+                                      console.log("Aucun utilisateur trouvé avec cet email.");
+                                    }
+                                  })
+                                  .catch((error) => {
+                                    console.error("Erreur lors de la vérification de l'utilisateur :", error);
+                                  });
+                              });
+
+                              // Créer un document dans la collection transactions avec le type abonnement
+                              db.collection("transactions").add({
+                                userId: userId,
+                                nom: userData.nom,
+                                prenom: userData.prenom,
+                                email: userData.email,
+                                numeroClient: userData.numeroClient,
+                                role: userData.role,
+                                collectes: userData.collectes,
+                                reservations: userData.reservations,
+                                montant: amount,
+                                transactionDate: new Date(),
+                                type: "Abonnement",
+                                title: params.title
+                              })
+                              .then(() => {
+                                console.log("Transaction d'abonnement enregistrée avec succès.");
+                              })
+                              .catch((error) => {
+                                console.error("Erreur lors de l'enregistrement de la transaction d'abonnement :", error);
+                              });
+                            } else {
+                              console.log("Aucun abonnement trouvé avec ce nom.");
+                            }
+                          })
+                          .catch((error) => {
+                            console.error("Erreur lors de la recherche de l'abonnement :", error);
+                          });
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("Erreur lors de la vérification du produit :", error);
+                    });
+                }
+              })
+              .catch((error) => {
+                console.error("Erreur lors de la vérification de la transaction :", error);
+              });
+          });
+        } else {
+          console.log("Aucun utilisateur trouvé avec cet email.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des informations de l'utilisateur :", error);
+      });
+  }
+
+    // Appeler la fonction pour afficher les informations de l'utilisateur
+    displayUserInfo(params.email, params.amount);
+    
+    // Vérifier si le titre correspond à un produit
+    db.collection("produits").where("nom", "==", params.title)
+      .get()
+      .then((produitSnapshot) => {
+        if (!produitSnapshot.empty) {
+          // Si le titre correspond à un produit
+          modalBody.innerHTML = `
+            <p>Félicitations !</p>
+            <p>Votre paiement de <span class="highlight">${params.amount}€</span> a été validé avec succès pour le produit <span class="highlight">${params.title}</span>.</p>
+            <p>Nous vous remercions pour votre confiance et espérons que vous apprécierez les avantages de votre nouveau produit.</p>
+            <p>Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter à <a href="mailto:contact@le-repasseur.fr">contact@le-repasseur.fr</a>.</p>
+          `;
+        } else {
+          // Si le titre ne correspond pas à un produit, vérifier s'il correspond à un abonnement
+          db.collection("abonnements").where("nom", "==", params.title)
+            .get()
+            .then((abonnementSnapshot) => {
+              if (!abonnementSnapshot.empty) {
+                abonnementSnapshot.forEach((abonnementDoc) => {
+                  console.log("Abonnement trouvé :", abonnementDoc.data());
+  
+                  // Mettre à jour les champs 'collectes' et 'reservations' de l'utilisateur
+                  const kg = abonnementDoc.data().kg;
+                  const collectes = abonnementDoc.data().collectes;
+                  db.collection("users").where("email", "==", params.email)
+                    .get()
+                    .then((querySnapshot) => {
+                      if (!querySnapshot.empty) {
+                        querySnapshot.forEach((doc) => {
+                          console.log("Utilisateur trouvé :", doc.data());
+                          console.log("ID du document :", doc.id);
+  
+                          // Mettre à jour le champ 'role' avec la valeur de 'title'
+                          db.collection("users").doc(doc.id).update({
+                            role: params.title,
+                            collectes: kg,
+                            reservations: collectes
+                          })
+                          .then(() => {
+                            console.log("Le rôle et les champs 'collectes' et 'reservations' ont été mis à jour avec succès.");
+                          })
+                          .catch((error) => {
+                            console.error("Erreur lors de la mise à jour des champs :", error);
+                          });
+                        });
+                      } else {
+                        console.log("Aucun utilisateur trouvé avec cet email.");
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("Erreur lors de la vérification de l'utilisateur :", error);
+                    });
+                });
+                modalBody.innerHTML = `
+                  <p>Félicitations !</p>
+                  <p>Votre paiement de <span class="highlight">${params.amount}€</span> a été validé avec succès pour l'abonnement <span class="highlight">${params.title}</span>.</p>
+                  <p>Nous vous remercions pour votre confiance et espérons que vous apprécierez les avantages de votre nouvel abonnement.</p>
+                  <p>Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter à <a href="mailto:contact@le-repasseur.fr">contact@le-repasseur.fr</a>.</p>
+                `;
+              } else {
+                console.log("Aucun abonnement trouvé avec ce nom.");
+              }
+            })
+            .catch((error) => {
+              console.error("Erreur lors de la recherche de l'abonnement :", error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la vérification du produit :", error);
+      });
+      
+    // Rediriger vers le tableau de bord lorsque le bouton est cliqué
+    document.getElementById('dashboardButton').addEventListener('click', function() {
+      window.location.href = 'https://le-repasseur.fr/sign-in/user.html';
+    });
+</script>
+</body>
+</html>

@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
+    <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
+    <meta charset="UTF-8">
     <title>Le repasseur</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
@@ -104,114 +106,68 @@
     <link href="carousel.css" rel="stylesheet">
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
-
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
+    
 
     
-<header data-bs-theme="dark" >
+    <header data-bs-theme="dark" >
   
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 80px;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/"><img src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="Logo" width="60"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Le repasseur
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/index.html">Pourquoi choisir le Répasseur</a>
-              </li>
-            </ul>
-          </li>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><img src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="Logo" width="60"></a>
           
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tarifs
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/index.html">Abonnements</a></li>
-              <li><a class="dropdown-item" href="/index.html">Comparer les offres</a></li>
-              <li><a class="dropdown-item" href="/index.html">Kit du repasseur</a></li>
-              <li><a class="dropdown-item" href="/index.html">Collecte sans abonnement</a></li>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Le repasseur
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Pourquoi choisir le Repasseur</a>
+                  </li>
+                </ul>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tarifs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/index.html">Abonnements</a></li>
+                  <li><a class="dropdown-item" href="/index.html">Collecte sans abonnement</a></li>
+                  <li><a class="dropdown-item" href="/index.html">Comparer les offres</a></li>
+                  <li><a class="dropdown-item" href="/index.html">Kit du repasseur</a></li>
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/index.html">Télécharger l'application</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact.html">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/faq.html" style="border-radius: 10px; background-color: rgb(87, 87, 87);">FAQ</a>
+              </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contact.html">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/faq.html" style="border-radius: 10px; background-color: rgb(87, 87, 87);">FAQ</a>
-          </li>
-        </ul>
-        
-        <ul class="d-flex list-unstyled">
-          <li>
-            <a href="inscription.html" class="btn btn me-3" style="background-color: #CE2029;">Creer un compte</a>
-          </li>
-          <li>
-              <a href="sign-in/index.html" class="btn" style = "background-color: #b9606500;">Se connecter</a>
-          </li>
-      </ul>
-        
-      </div>
-    </div>
-  </nav>
-</header> 
+            <ul class="d-flex list-unstyled">
+              <li>
+                <a href="inscription.html" class="btn btn me-3" style="background-color: #CE2029;">Créer un compte</a>
+              </li>
+              <li>
+                  <a href="sign-in/index.html" class="btn" style = "background-color: #b9606500;">Se connecter</a>
+              </li>
+          </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 <style>
     .form-group {
         margin-bottom: 20px; /* Ajustez cette valeur selon vos besoins */
@@ -247,9 +203,13 @@
                             
                         </div>
                         <div class="form-group">
-                            <label for="motDePasse">Mot de passe</label>
-                            <input type="password" class="form-control" id="motDePasse" required>
-                        </div>
+                          <label for="motDePasse">Mot de passe</label>
+                          <input type="password" class="form-control" id="motDePasse" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="confirmationMotDePasse">Confirmez le mot de passe</label>
+                          <input type="password" class="form-control" id="confirmationMotDePasse" required>
+                      </div>
                         <div class="form-group">
                             <label for="telephone">Téléphone</label>
                             <input type="tel" class="form-control" id="telephone" pattern="[0-9]{10}" required>
@@ -283,36 +243,9 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="codePostal">Code Postal</label>
-                                    <select class="form-control" id="codePostal" required>
-                                        <option value="" disabled selected>Sélectionnez un code postal</option>
-                                        <option value="06200">06200</option>
-                                        <option value="06000">06000</option>
-                                        <option value="06300">06300</option>
-                                        <option value="06100">06100</option>
-                                        <option value="06160">06160</option>
-                                        <option value="06600">06600</option>
-                                        <option value="06150">06150</option>
-                                        <option value="06400">06400</option>
-                                        <option value="06520">06520</option>
-                                        <option value="06130">06130</option>
-                                        <option value="06800">06800</option>
-                                        <option value="06110">06110</option>
-                                        <option value="06700">06700</option>
-                                        <option value="06220">06220</option>
-                                        <option value="06210">06210</option>
-                                        <option value="06250">06250</option>
-                                        <option value="06270">06270</option>
-                                        <option value="06560">06560</option>
-                                        <option value="06370">06370</option>
-                                        <option value="06410">06410</option>
-                                        <option value="06580">06580</option>
-                                        <option value="06550">06550</option>
-                                        <option value="06590">06590</option>
-                                        <option value="06200">Autre</option>
-                                        <!-- Les autres options... -->
-                                    </select>
-                                    <p>Si votre code postal ne figure pas dans la liste, veuillez le saisir ci-dessous :</p>
-                                    <input type="text" class="form-control" id="codePostalInput" pattern="\d{5}">
+                                    <input type="text" class="form-control" id="codePostal" pattern="\d{5}">
+                                    <p style="display: none;">Si votre code postal ne figure pas dans la liste, veuillez le saisir ci-dessous :</p>
+                                    <input type="text" class="form-control" id="codePostalInput" pattern="\d{5}" style="display: none;">
                                 </div>
                             </div>
                             <div class="col">
@@ -324,9 +257,18 @@
                         </div>
                     </div>
                 </div>
+                
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                <label class="form-check-label" for="termsCheck">
+                    En créant un compte, vous acceptez les <a href="CGU.html" target="_blank">conditions générales d'utilisation</a>
+                </label>
+                <span id="termsError" style="color: red;"></span>
+            </div>
+              
                 <div class="text-center">
                     <p>Déjà inscrit ? <a href="/sign-in/index.html">Connectez-vous ici</a></p>
-                    <p><a href="faq.html">Liste des communes couvertes ici</a></p>
+                    <p><a href="commune.html" target="_blank">Liste des communes couvertes ici</a></p>
                 
                     <button type="submit" style="background-color: #CE2029; color: white; padding: 9px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 20px; margin: 20px 2px; cursor: pointer; border-radius: 10px;">Créer un compte</button>
                     <button type="button" class="btn btn-secondary" onclick="window.history.back();">Retour</button>
@@ -346,20 +288,39 @@
 
     <ul class="nav col-md-4 justify-content-end">
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
-        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
-        <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
-        <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
-        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Mentions légales</a></li>
-        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
-        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
-        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
-        <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
+      <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
+      <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
+      <li class="nav-item"><a href="/CGU.html" class="nav-link px-2 text-body-secondary">Conditions d'utilisateur</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
+      <li class="nav-item"><a href="/CGV.html" class="nav-link px-2 text-body-secondary">Conditions générales de vente</a></li>
+      <li class="nav-item"><a href="/preparation.html" class="nav-link px-2 text-body-secondary">Bien préparer sa collecte</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
+      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
       
       
     </ul>
   </footer>
 </div>
-
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var formulaire = document.getElementById("formInscription"); // Assurez-vous que votre formulaire a un id="formInscription"
+        formulaire.addEventListener("submit", function(e) {
+            var motDePasse = document.getElementById("motDePasse").value;
+            var confirmationMotDePasse = document.getElementById("confirmationMotDePasse").value;
+            var messageErreur = document.getElementById("erreurMotDePasse"); // Assurez-vous d'avoir un élément pour afficher le message d'erreur
+    
+            // Vérifie si les mots de passe correspondent
+            if (motDePasse !== confirmationMotDePasse) {
+                e.preventDefault(); // Empêche la soumission du formulaire
+                messageErreur.textContent = "Les mots de passe ne correspondent pas."; // Affiche le message d'erreur
+            } else {
+                messageErreur.textContent = ""; // Efface le message d'erreur si les mots de passe correspondent
+            }
+        });
+    });
+    </script>
     <!-- Inclure le SDK Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
@@ -382,10 +343,11 @@
 
         // Référence à la collection "users" dans Firestore
         var usersCollection = firebase.firestore().collection("users");
-
+        document.addEventListener("DOMContentLoaded", function() {
         // Soumettre le formulaire
         document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Empêcher le rechargement de la page
+            
 
             // Récupérer les valeurs des champs
             var nom = document.getElementById("nom").value;
@@ -420,27 +382,37 @@
                     codePostalInput: codePostalInput,
                     telephone: telephone,
                     role: "aucun",
-                    tokens: 0,
+                    
                     collectes: 0, // Ajout du champ collectes initialisé à 0
                     repassage: 0  // Ajout du champ repassage initialisé à 0
                 })
                 .then(function() {
                     console.log("Utilisateur enregistré avec l'ID : ", userCredential.user.uid);
                     // Réinitialiser le formulaire
+                    // Liste des codes postaux autorisés
+                    var codesPostauxAutorises = ["06200", "06000", "06300", "06100", "06160", "06600", "06150", "06400", "06520", "06130", "06800", "06110", "06700", "06220", "06210", "06250", "06270", "06560", "06370", "06410", "06580", "06550", "06590"];
+
                     document.getElementById("inscriptionForm").reset();
                     // Rediriger vers la page userco.html
-                    if (codePostalInput) {
-                        window.location.href = "felicitation2.html";
-                    } else {
+                    if (codesPostauxAutorises.includes(codePostal)) {
                         window.location.href = "felicitation.html";
+                    } else {
+                        window.location.href = "felicitation2.html";
                     }
                 })
                 .catch(function(error) {
                     console.error("Erreur lors de l'enregistrement de l'utilisateur : ", error);
                 });
             })
-            .catch(function(error) {
-                console.error("Erreur lors de la création de l'utilisateur : ", error);
+            .catch((error) => {
+                var emailError = document.getElementById('emailError');
+                if (error.code === 'auth/email-already-in-use') {
+                    // L'adresse e-mail est déjà utilisée
+                    emailError.textContent = 'L\'adresse e-mail est déjà utilisée par un autre compte.';
+                } else {
+                    // Une autre erreur s'est produite
+                    emailError.textContent = error.message;
+                }
             })
             .catch((error) => {
                 var emailError = document.getElementById('emailError');
@@ -452,7 +424,39 @@
                     emailError.textContent = error.message;
                 }
             });
+            
         });
+        document.getElementById("email").addEventListener("input", function() {
+            var email = this.value;
+
+            firebase.auth().fetchSignInMethodsForEmail(email)
+                .then((signInMethods) => {
+                    if (signInMethods.length > 0) {
+                        // L'email est déjà utilisé
+                        document.getElementById("emailError").textContent = "L'email est déjà enregistré";
+                    } else {
+                        // L'email n'est pas utilisé
+                        document.getElementById("emailError").textContent = "";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erreur lors de la vérification de l'email : ", error);
+                });
+        });
+        document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
+          var termsCheck = document.getElementById("termsCheck");
+          var termsError = document.getElementById("termsError");
+
+          if (!termsCheck.checked) {
+              // La case n'est pas cochée
+              termsError.textContent = "Vous devez accepter les conditions générales de vente avant de pouvoir vous inscrire.";
+              event.preventDefault(); // Empêche la soumission du formulaire
+          } else {
+              // La case est cochée
+              termsError.textContent = "";
+          }
+      });
+      });
         
     </script>
 </body>

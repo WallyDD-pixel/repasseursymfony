@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier les Disponibilités</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        #availabilityForm {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="availabilityForm" class="container">
+    <h2>Modifier les heures de disponibilité</h2>
+    <form id="updateAvailabilityForm">
+        <!-- Lundi -->
+        <div class="mb-3">
+            <label for="mondayStartTime" class="form-label">Lundi - Heure de début</label>
+            <input type="time" class="form-control" id="mondayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="mondayEndTime" class="form-label">Lundi - Heure de fin</label>
+            <input type="time" class="form-control" id="mondayEndTime" required>
+        </div>
+
+        <!-- Mardi -->
+        <div class="mb-3">
+            <label for="tuesdayStartTime" class="form-label">Mardi - Heure de début</label>
+            <input type="time" class="form-control" id="tuesdayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="tuesdayEndTime" class="form-label">Mardi - Heure de fin</label>
+            <input type="time" class="form-control" id="tuesdayEndTime" required>
+        </div>
+
+        <!-- Mercredi -->
+        <div class="mb-3">
+            <label for="wednesdayStartTime" class="form-label">Mercredi - Heure de début</label>
+            <input type="time" class="form-control" id="wednesdayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="wednesdayEndTime" class="form-label">Mercredi - Heure de fin</label>
+            <input type="time" class="form-control" id="wednesdayEndTime" required>
+        </div>
+        <!-- Jeudi -->
+        <div class="mb-3">
+            <label for="thursdayStartTime" class="form-label">Jeudi - Heure de début</label>
+            <input type="time" class="form-control" id="thursdayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="thursdayEndTime" class="form-label">Jeudi - Heure de fin</label>
+            <input type="time" class="form-control" id="thursdayEndTime" required>
+        </div>
+
+        <!-- Vendredi -->
+        <div class="mb-3">
+            <label for="fridayStartTime" class="form-label">Vendredi - Heure de début</label>
+            <input type="time" class="form-control" id="fridayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="fridayEndTime" class="form-label">Vendredi - Heure de fin</label>
+            <input type="time" class="form-control" id="fridayEndTime" required>
+        </div>
+
+        <!-- Samedi -->
+        <div class="mb-3">
+            <label for="saturdayStartTime" class="form-label">Samedi - Heure de début</label>
+            <input type="time" class="form-control" id="saturdayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="saturdayEndTime" class="form-label">Samedi - Heure de fin</label>
+            <input type="time" class="form-control" id="saturdayEndTime" required>
+        </div>
+
+        <!-- Dimanche -->
+        <div class="mb-3">
+            <label for="sundayStartTime" class="form-label">Dimanche - Heure de début</label>
+            <input type="time" class="form-control" id="sundayStartTime" required>
+        </div>
+        <div class="mb-3">
+            <label for="sundayEndTime" class="form-label">Dimanche - Heure de fin</label>
+            <input type="time" class="form-control" id="sundayEndTime" required>
+        </div>
+        <!-- Continuez pour Mercredi, Jeudi, Vendredi, Samedi, Dimanche -->
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+<!-- Ajoutez les modules supplémentaires que vous utilisez -->
+<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-firestore.js"></script>
+
+<script>
+  // Votre configuration Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+    // ...
+  };
+  // Initialiser Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const db = firebase.firestore();
+    const displayIntervals = (day, dayData) => {
+    // Vérifier si dayData existe et a une propriété intervals
+    let intervals = dayData && dayData.intervals ? dayData.intervals : [];
+    let intervalsHtml = intervals.join(', ');
+    document.getElementById(`${day}Intervals`).textContent = intervalsHtml;
+    // Ajout pour afficher les informations dans la console
+    console.log(`${day.charAt(0).toUpperCase() + day.slice(1)} Intervals: ${intervalsHtml}`);
+};
+    // Récupérer le document spécifique par son ID
+    // Exemple d'utilisation de la fonction ajustée
+    db.collection("reservation").doc("availability").get()
+        .then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+
+                // Afficher les intervalles pour chaque jour, en passant l'objet jour complet
+                displayIntervals('monday', data.Lundi);
+                displayIntervals('tuesday', data.Mardi);
+                displayIntervals('wednesday', data.Mercredi);
+                displayIntervals('thursday', data.Jeudi);
+                displayIntervals('friday', data.Vendredi);
+                // Continuez pour les autres jours si nécessaire
+            } else {
+                console.log("Le document n'existe pas !");
+            }
+        })
+        .catch((error) => {
+            console.log("Erreur lors de la récupération du document: ", error);
+        });
+    });
+</script>
+</body>
+</html>

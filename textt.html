@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulaire de paiement</title>
+  <meta charset="utf-8">
+  <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+</head>
+<body>
+  <div id="form-container"></div>
+  <button id="submit-button">Payer</button>
+
+  <script>
+    (async function() {
+      const payments = Square.payments('EAAAl7tcgKqwP3lUH0hCg1c0utawSbUsRQnE2JBVamyxb8MWWfqqQ9nBwy7V9wpZ', 'LWZ1NPVNSDA2M');
+      const card = await payments.card();
+      await card.attach('#form-container');
+
+      document.querySelector('#submit-button').addEventListener('click', async () => {
+        const result = await card.tokenize();
+        if (result.status === 'OK') {
+          // Utilisez result.token pour créer un paiement
+          console.log(result.token);
+        } else {
+          console.error(result.errors);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

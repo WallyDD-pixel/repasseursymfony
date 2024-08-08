@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <title>Détails de l'abonnement</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h1 class="text-center my-2" id="title"></h1>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Vous avez sélectionné l'abonnement <span id="title"></span></h5>
+                <div class="card mb-3">
+                  <div class="card-header">Prix de l'abonnement</div>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title"><span id="price"></span> € / mois</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-3">
+                  <div class="card-header">Description</div>
+                  <div class="card-body">
+                    <p class="card-text" id="description"></p>
+                  </div>
+                </div>
+                <div class="card mb-3">
+                  <div class="card-header">Avantages</div>
+                  <div class="card-body">
+                    <p class="card-text" id="avantage"></p>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="promoCode" class="col-md-4 col-form-label">Code promo</label>
+                  <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" id="promoCode">
+                    <small class="form-text" id="promoCodeStatus"></small>
+                  </div>
+                </div>
+                <button class="btn btn-primary" id="applyPromoCode">Appliquer le code promo</button>
+                
+                <div class="form-check mt-3 text-start">
+                  <input class="form-check-input" type="checkbox" id="acceptConditions">
+                  <label class="form-check-label p5" for="acceptConditions">
+                    J’ai pris connaissance que mes données
+                    personnelles ne seront jamais transimises
+                    à des tiers, mes coordonnées seront
+                    utilisées uniquement par Le Repasseur
+                    dans le cadre de la relation commerciale.
+                  </label>
+                </div>
+                <div class="form-check mt-3 text-start">
+                  <input class="form-check-input" type="checkbox" id="acceptCondi">
+                  <label class="form-check-label p5" for="acceptCondi">
+                    En validant mon achat je confirme
+                    avoir pris connaissance des présentes
+                    Conditions générales.
+                  </label>
+                </div>
+            </div>
+          </div>
+          <p id="errorMessage" style="color: red; display: none;">Vous devez accepter les conditions générales pour continuer.</p>
+          <script src="https://js.stripe.com/v3/"></script>
+          <button id="confirm" class="btn btn-primary">Accepter et payer</button>
+        </div>
+      </div>
+    </div>
+    
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+      // Votre configuration Firebase
+      var firebaseConfig = {
+        apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+        authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+        projectId: "repasseurflutter-7fc37",
+        storageBucket: "repasseurflutter-7fc37.appspot.com",
+        messagingSenderId: "348979158571",
+        appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+        measurementId: "G-CWPDXBH4LT"
+      };
+      // Initialiser Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var id = urlParams.get('id'); // ID de l'abonnement
+      var productId = urlParams.get('productId'); // Supposition sur la manière de récupérer l'ID du produit
+
+      // Récupérer les paramètres supplémentaires de l'URL
+      var description = urlParams.get('description');
+      var avantage = urlParams.get('avantage');
+      var prix = urlParams.get('prix');
+      var kg = urlParams.get('kg');
+      var collectes = urlParams.get('collectes');
+      
+      // Afficher les informations supplémentaires
+      document.getElementById('price').textContent = prix || "Prix non spécifié";
+      document.getElementById('description').textContent = description || "Description non spécifiée";
+      document.getElementById('avantage').textContent = avantage || "Avantage non spécifié";
+      
+      
+      // Récupérer une référence à la base de données et aux collections
+      var db = firebase.firestore();
+      var abonnements = db.collection('abonnements');
+      var produits = db.collection('produits'); // Assurez-vous que cette collection existe
+
+      // Récupérer les détails de l'abonnement
+      abonnements.doc(id).get().then(function(doc) {
+        if (doc.exists) {
+          var subscriptionDetails = doc.data();
+
+          // Afficher les détails de l'abonnement
+          document.getElementById('title').textContent = subscriptionDetails.nom;
+          document.getElementById('price').textContent = subscriptionDetails.prix;
+          document.getElementById('description').textContent = subscriptionDetails.description;
+          document.getElementById('avantage').textContent = subscriptionDetails.avantage;
+          
+          
+        } else {
+          console.log('Aucun document correspondant pour l\'abonnement!');
+        }
+      }).catch(function(error) {
+        console.log('Erreur lors de la récupération du document d\'abonnement:', error);
+      });
+      var urlParams = new URLSearchParams(window.location.search);
+      var productId = urlParams.get('id');
+      if (productId) {
+            // Supposons que 'produits' est une référence à votre collection Firestore
+            produits.doc(productId).get().then(function(doc) {
+                if (doc.exists) {
+                    var productDetails = doc.data();
+
+                    // Afficher les détails du produit
+                    document.getElementById('title').textContent = productDetails.nom; // Assurez-vous d'avoir un élément avec id="Title"
+                    document.getElementById('Price').textContent = productDetails.prix; // id="Price"
+                    document.getElementById('Description').textContent = productDetails.description; // id="Description"
+                    document.getElementById('Avantage').textContent = productDetails.avantage; // id="Avantage"
+                    document.getElementById('Image').src = productDetails.image; // id="Image" pour l'image
+
+                } else {
+                    console.log('Aucun produit correspondant !');
+                }
+            }).catch(function(error) {
+                console.log('Erreur lors de la récupération du document produit:', error);
+            });
+        } else {
+            console.log('productId est vide ou non défini');
+        }
+      
+      document.getElementById('applyPromoCode').addEventListener('click', function() {
+        var promoCode = document.getElementById('promoCode').value;
+        var promoCodeStatus = document.getElementById('promoCodeStatus');
+        var priceElement = document.getElementById('price');
+        var originalPrice = parseFloat(priceElement.textContent);
+
+        // Accédez à la collection 'users' dans Firestore
+        var usersRef = firebase.firestore().collection('users');
+
+        // Recherchez un utilisateur avec le code promo entré par l'utilisateur
+        usersRef.where('code', '==', promoCode).get().then(function(querySnapshot) {
+            if (!querySnapshot.empty) {
+                // Si un utilisateur avec le code promo est trouvé, appliquez une réduction de 10% au prix de l'abonnement
+                var discountedPrice = originalPrice * 0.9;
+                priceElement.textContent = discountedPrice.toFixed(2);
+
+                // Définissez l'objet 'user' avant d'essayer d'accéder à ses propriétés
+                var user = querySnapshot.docs[0].data();
+
+                promoCodeStatus.textContent = "Vous avez appliqué le code promo de "+ user.prenom + " " + user.nom;
+                promoCodeStatus.style.color = "green";
+            } else {
+                // Si aucun utilisateur avec le code promo n'est trouvé, affichez un message d'erreur
+                promoCodeStatus.textContent = "Code promo invalide ou expiré.";
+                promoCodeStatus.style.color = "red";
+            }
+        });
+    });
+
+    document.getElementById('confirm').addEventListener('click', function(e) {
+    console.log("Bouton cliqué");
+    var acceptConditions = document.getElementById('acceptConditions').checked;
+    console.log("Conditions acceptées:", acceptConditions);
+    var acceptCondi = document.getElementById('acceptCondi').checked;
+    console.log("Politique de confidentialité acceptée:", acceptCondi);
+    var errorMessage = document.getElementById('errorMessage');
+
+    if (!acceptConditions && !acceptCondi) {
+        console.log("Erreur: Conditions et politique non acceptées");
+        errorMessage.innerText = "Veuillez accepter les conditions et la politique de confidentialité.";
+        errorMessage.style.display = "block";
+        e.preventDefault();
+    } else {
+            console.log("Toutes les conditions sont remplies");
+            errorMessage.style.display = "none";
+
+            // Récupérer les informations de la commande
+            var amount = document.getElementById("price").innerText;
+            var description = document.getElementById("description").innerText;
+            
+            
+            
+
+            // Récupérer l'e-mail de l'utilisateur connecté
+            var user = firebase.auth().currentUser;
+            var email = user ? user.email : '';
+            var title = document.getElementById("title").innerText;
+
+            // Rediriger vers la page de paiement avec les informations nécessaires
+            window.location.href = "paymentProduit.html?amount=" + encodeURIComponent(amount) 
+            + "&description=" + encodeURIComponent(description) 
+            + "&email=" + encodeURIComponent(email)
+            + "&title=" + encodeURIComponent(title);
+        }
+});
+    
+    </script>
+  </body>
+</html>

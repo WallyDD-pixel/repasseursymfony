@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+  <!-- Ajout de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Reservation</h1>
+    <div id="reservation" class="card">
+      <div class="card-body">
+        <!-- Les données de réservation seront insérées ici -->
+      </div>
+    </div>
+    <button id="validateButton">Valider</button>
+  </div>
+<style>
+    .selectable-time {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.selectable-time.selected {
+  background-color: #000;
+  color: #fff;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+  <script>
+    // Configuration de Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+        authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+        projectId: "repasseurflutter-7fc37",
+        storageBucket: "repasseurflutter-7fc37.appspot.com",
+        messagingSenderId: "348979158571",
+        appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+        measurementId: "G-CWPDXBH4LT"
+    };
+
+    // Initialisation de Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Récupération de la collection "reservation"
+    var db = firebase.firestore();
+    var reservationRef = db.collection("reservation");
+    
+  var daysOrder = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+  reservationRef.doc("availability").get().then((doc) => {
+  if (doc.exists) {
+    var data = doc.data().availability;
+    var reservationDiv = document.getElementById("reservation");
+    reservationDiv.innerHTML = ''; // Nettoyage du div de réservation
+
+    var sortedDays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    var reservationButton = document.createElement('button');
+    
+    
+    
+    reservationDiv.appendChild(reservationButton);
+    var kiloInput = document.createElement('input');
+    kiloInput.type = 'number';
+    kiloInput.placeholder = 'Combien de kilos ?';
+    kiloInput.className = 'form-control mt-3';
+    reservationDiv.appendChild(kiloInput);
+
+    // Création d'un paragraphe pour afficher le nombre de kilos autorisés
+    var kiloInfo = document.createElement('p');
+    kiloInfo.className = 'mt-3';
+    reservationDiv.appendChild(kiloInfo);
+
+    // Obtention de l'utilisateur connecté
+    var user = firebase.auth().currentUser;
+    var kilosToDeduct = Number(kiloInput.value);
+    var kg;
+    
+    if (user) {
+    var userRef = firebase.firestore().collection('users').doc(user.uid);
+
+    userRef.get().then((doc) => {
+        if (doc.exists) {
+        var kg = doc.data().kg;
+        
+
+        kiloInput.addEventListener('input', function() {
+            var kilosToDeduct = Number(this.value);
+            var remainingKilos = kg - kilosToDeduct;
+
+            if (remainingKilos < 0) {
+                // L'utilisateur a entré une valeur supérieure au nombre de kilos disponibles
+                kiloInfo.textContent = 'Erreur, vous avez dépassé le nombre de kilos autorisé.';
+                kiloInfo.style.color = 'red'; // Change la couleur du texte en rouge
+            } else {
+                kiloInfo.textContent = 'Vous aurez ' + remainingKilos + ' kilos après la réservation.';
+                kiloInfo.style.color = 'black';
+                validateButton.style.display = 'block'; // Affiche le bouton si le nombre de kilos entré est correct
+            }
+            });
+
+            validateButton.addEventListener('click', function() {
+            var kilosToDeduct = Number(kiloInput.value);
+            var remainingKilos = kg - kilosToDeduct;
+
+            if (remainingKilos >= 0) {
+                userRef.update({
+                kg: remainingKilos
+                }).then(() => {
+                kiloInfo.textContent = 'Vous avez droit à ' + remainingKilos + ' kilos.';
+
+                // Création d'un objet pour stocker les informations de réservation
+                var reservation = {
+                userId: doc.id, // Ajout de l'ID de l'utilisateur
+                kilos: kilosToDeduct,
+                today: new Date().toLocaleDateString(), // Ajout de la date d'aujourd'hui
+                adresse: doc.data().adresse, // Ajout de l'adresse de l'utilisateur
+                codePostal: doc.data().codePostal, // Ajout du code postal de l'utilisateur
+                nom: doc.data().nom, // Ajout du nom de l'utilisateur
+                prenom: doc.data().prenom, // Ajout du prénom de l'utilisateur
+                email: doc.data().email, // Ajout de l'email de l'utilisateur
+                selectedDate: localStorage.getItem('selectedDate'), selectedDay: localStorage.getItem('selectedDay'), selectedTime: localStorage.getItem('selectedTime')
+                };
+
+                // Stockage de l'objet de réservation dans le localStorage
+                localStorage.setItem('reservation', JSON.stringify(reservation));
+                // Création d'une chaîne de requête à partir de l'objet de réservation
+                var queryString = new URLSearchParams(reservation).toString();
+                
+                // Affichage des données stockées pour le débogage
+                console.log('Data stored in localStorage:', localStorage.getItem('reservation'));
+                // Redirection de l'utilisateur vers la nouvelle page avec les paramètres de réservation dans l'URL
+                window.location.href = 'retour.html?' + queryString;
+                }).catch((error) => {
+                console.log('Error updating user:', error);
+                });
+            } else {
+                console.log('Not enough kilos!');
+            }
+            });
+        } else {
+        console.log('No such user!');
+        }
+    }).catch((error) => {
+        console.log('Error getting user:', error);
+    });
+    } else {
+    console.log('No user is signed in.');
+    }
+    // Mise à jour du texte du paragraphe lorsque l'entrée change
+    kiloInput.addEventListener('input', function() {
+    var kilosToDeduct = Number(this.value);
+    var remainingKilos = kg - kilosToDeduct;
+    kiloInfo.textContent = 'Vous aurez ' + remainingKilos + ' kilos après la réservation.';
+    });
+    sortedDays.forEach(function(day) {
+        var daysWithDates = sortedDays.map(function(day) {
+        var today = moment();
+        var targetDayOfWeek = daysOrder.indexOf(day);
+        var todayDayOfWeek = today.day();
+
+        // Calculer la différence entre le jour cible et aujourd'hui
+        var difference = targetDayOfWeek - todayDayOfWeek;
+
+        // Si le jour cible est avant aujourd'hui, ajoutez 7 pour obtenir le jour de la semaine suivante
+        if (difference < 0) {
+            difference += 7;
+        }
+
+        var dateOfWeek = today.add(difference, 'days');
+
+        return {
+            day: day,
+            date: dateOfWeek,
+            data: data[day]
+        };
+        });
+
+        // Trier les jours par date
+        daysWithDates.sort(function(a, b) {
+        return a.date - b.date;
+        });
+
+        // Utiliser les jours triés dans la boucle forEach
+        for (var i = 0; i < daysWithDates.length; i++) {
+    var dayWithDate = daysWithDates[i];
+    var day = dayWithDate.day;
+    var dateOfWeek = dayWithDate.date.format('DD-MM-YYYY');
+    var dayData = dayWithDate.data;
+
+    if (dayData) {
+        var dayDiv = document.createElement('div');
+        dayDiv.className = 'my-2 border p-3';
+
+        var dayTitle = document.createElement('h5');
+        dayTitle.textContent = day + ' ' + dateOfWeek; // Affichage du jour de la semaine et de la date
+        dayDiv.appendChild(dayTitle);
+        
+        var timeList = document.createElement('ul');
+        for (var j = 0; j < dayData.length; j++) {
+            var time = dayData[j];
+            var timeItem = document.createElement('li');
+            timeItem.textContent = time;
+            timeItem.className = 'selectable-time';
+            timeItem.addEventListener('click', function() {
+                // Supprime la classe 'selected' de tous les éléments de temps
+                var timeItems = document.getElementsByClassName('selectable-time');
+                for (var k = 0; k < timeItems.length; k++) {
+                    timeItems[k].classList.remove('selected');
+                }
+
+                // Ajoute la classe 'selected' à l'élément de temps cliqué
+                this.classList.add('selected');
+
+                // Création d'un nouvel élément pour afficher le jour, la date et l'heure sélectionnés
+                var selectedInfo = document.createElement('p');
+                selectedInfo.textContent = 'Jour sélectionné : ' + day + ', Date : ' + dateOfWeek + ', Heure sélectionnée : ' + time;
+                reservationButton.style.display = 'block';
+                reservationDiv.appendChild(selectedInfo);
+
+                // Stocke le jour, la date et l'heure sélectionnés dans localStorage
+                localStorage.setItem('selectedDay', day);
+                localStorage.setItem('selectedDate', dateOfWeek);
+                localStorage.setItem('selectedTime', time);
+            });
+            timeList.appendChild(timeItem);
+        }
+        
+        dayDiv.appendChild(timeList);
+
+        reservationDiv.appendChild(dayDiv);
+    }
+}
+    }); 
+    } else {    
+    console.log('No such document!');
+    }
+    }).catch((error) => {
+    console.log('Error getting document:', error);
+    });
+
+  </script>
+</body>
+</html>

@@ -3,15 +3,19 @@
   <head><script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
+    <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
+    
     <meta name="generator" content="Hugo 0.122.0">
     <title>Le repasseur</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/pricing/">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
 
     
 
@@ -104,56 +108,7 @@
     <link href="pricing.css" rel="stylesheet">
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
-
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
+    
 
     
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -163,7 +118,8 @@
   </symbol>
 </svg>
 <header data-bs-theme="dark" >
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><img src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="Logo" width="60"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -171,22 +127,34 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Le repasseur
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/index.html">Comment ça marche ?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/index.html">Pourquoi choisir le Repasseur</a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/index.html">Pourquoi choisir le Répasseur</a>
-          </li>
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Tarifs
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="/index.html">Abonnements</a></li>
+              <li><a class="dropdown-item" href="/index.html">Collecte sans abonnement</a></li>
               <li><a class="dropdown-item" href="/index.html">Comparer les offres</a></li>
               <li><a class="dropdown-item" href="/index.html">Kit du repasseur</a></li>
-              <li><a class="dropdown-item" href="/index.html">Collecte sans abonnement</a></li>
+              
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Télécharger l'application</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contact.html">Contact</a>
@@ -203,6 +171,9 @@
     </div>
   </nav>
 </header>
+<a href="#" style="position:fixed;bottom:60px;right:20px;">
+  <i class="fas fa-arrow-up fa-3x"></i>
+</a>
 <div class="container py-3">
   
 
@@ -213,29 +184,56 @@
     <div class="container py-3" style="">
       <div class="row">
         <div class="col-md-6">
-          <h2 style="font-size: 19px"class="text-start">Bonjour <span id="user-name" style="color: #10294B"></span> <span id="user-surname"></span></h2>
+          <h2 style="font-size: 19px"class="text-start">Bonjour <span id="user-name" style="color: #CE2029;font-family: lobster;"></span> <span id="user-surname" style="color: #CE2029;font-family: lobster;"></span></h2>
           <h2 style="font-size: 19px">Abonnement actuel: <span id="current-subscription" style="font-family: lobster; color: #CE2029; font-size: 27px;"></span></h2>
-          <h2 style="font-size: 19px">Mon N° Client : <span id="user-id"></span></h2>
+          <h2 style="display: none">Mon N° Client : <span id="user-id"></span></h2>
+          <h2 style="font-size: 19px">Mon N° Client : <span id="client-id"></span></h2>
         </div>
         <div class="col-md-3 d-flex justify-content-end align-items-center flex-column">
           <img src="/assets/imgg/CamionCOllecte.png" alt="CamionCOllecte" width="80" height="80">
-          <h2 style="font-size: 19px">Mes collectes : <span id="new-collect-count" style="color: #CE2029; font-weight:bold"></span> crédits(s)</h2>
+          <h2 style="font-size: 19px">Mes collectes : <span id="repassage-count" style="color: #CE2029; font-weight:bold"></span> crédits(s)</h2>
       </div>
       <div class="col-md-2 d-flex justify-content-end align-items-center flex-column">
         <img src="/assets/imgg/FerRepasser.png" alt="FerRepasser" width="80" height="80">
-        <h2 style="font-size: 19px">Mon repassage : <span id="repassage-count" style="color: #CE2029; font-weight: bold;"></span> kg</h2>
+        <h2 style="font-size: 19px">Mon repassage : <span id="new-collect-count" style="color: #CE2029; font-weight: bold;"></span> kg</h2>
     </div>
       </div>
     </div>
-    <div style="height: 5px; background-color:#10294B; width:100%; margin: 0; padding: 0;"></div>
-</div>
+    <a href="/reservation.html" style="display: none; width: 200px; height: 50px; margin: 0 auto; border-radius: 10px; background-color: #CE2029; color: white; text-align: center; line-height: 50px; text-decoration: none;">Réserver Repassage</a>    <br>
+    <div style="height: 5px; background-color:#10294B; width:100%; margin: 0; padding: 0;"></div></div>
+    <!-- Conteneur pour les boutons -->
+    <!-- Conteneur pour les liens centrés -->
+    <div class="links-container" style="text-align: center; font-size: 24px; margin-top: 20px;">
+      <a href="/recharges.html" class="hover-link" style="color: #10294B; font-weight: bold; text-decoration: none;">Recharges</a>
+      <span style="color: #000;">|</span>
+      <a href="#reservationsTable" class="hover-link" style="color: #10294B; text-decoration: none;">Mes Commandes</a>
+      <span style="color: #000;">|</span>
+      <a href="#section-abonnement" class="hover-link" style="color: #10294B; text-decoration: none;">Changer d'Abonnement</a>
+    </div>
 <style>
   .card-container {
     display: flex;
     justify-content: space-between;
   }
+  .hover-link {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hover-link:hover {
+  transform: scale(1.1);
+  color: #CE2029;
+}
 </style>
-<h1 style="color: #10294B;">Besoin d'une recharge ? / Besoin d'un Kit de repassage ?</h1>
+<br>
+<h2>Saisissez votre code partenaire</h2>
+<br>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Code Partenaire" aria-label="Code promo" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Valider</button>
+</div>
+<div id="promo-message"></div>
+<h1 style="color: #10294B;">Besoin d'une recharge ?</h1>
+<br>
 <main2>
   <div class="row row-cols-1 row-cols-md-2 mb-3 text-center card-container">
     <div class="card-block">
@@ -287,7 +285,7 @@
 </main2>
 <div style="height: 5px; background-color:#10294B; width:100%; margin: 0; padding: 0;"></div>
 <BR></BR>
-<h1>Vos commandes </h1>
+<h1>Mes commandes </h1>
 <div class="table-responsive">
   <table id="reservationsTable" class="table table-striped table-hover">
     <thead>
@@ -303,14 +301,158 @@
       <!-- Les réservations seront ajoutées ici -->
     </tbody>
   </table>
-  
+<h1>Mes transactions</h1>
+<div class="table-responsive">
+  <table id="transactionsTable" class="table table-striped table-hover">
+      <thead>
+          <tr>
+              <th>Date de Transaction</th>
+              <th>Type</th>
+              <th>Titre</th>
+              <th>Montant</th>
+              <th>Kg</th>
+              <th>Collectes</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Les lignes de transactions seront insérées ici -->
+      </tbody>
+  </table>
 </div>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script> <!-- Ajout du SDK Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<script>
+  // Configuration Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+  };
+
+  // Initialiser Firebase
+  firebase.initializeApp(firebaseConfig);
+  console.log("Firebase initialisé avec succès");
+
+  // Référence à la base de données Firestore
+  var db = firebase.firestore();
+
+  // Fonction pour afficher les transactions dans la table
+  function displayTransactions(userId) {
+    console.log("Affichage des transactions pour l'utilisateur :", userId);
+    db.collection("transactions").where("userId", "==", userId).get().then((querySnapshot) => {
+      if (querySnapshot.empty) {
+        console.log("Aucune transaction trouvée pour cet utilisateur.");
+      } else {
+        querySnapshot.forEach((doc) => {
+          const transaction = doc.data();
+          console.log("Transaction trouvée :", transaction);
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${transaction.transactionDate.toDate().toLocaleString()}</td>
+            <td>${transaction.type}</td>
+            <td>${transaction.title}</td>
+            <td>${transaction.montant}.00€</td>
+            <td>${transaction.collectes} Kg</td>
+            <td>${transaction.reservations}</td>
+          `;
+          document.querySelector('#transactionsTable tbody').appendChild(row);
+        });
+      }
+    }).catch((error) => {
+      console.error("Erreur lors de la récupération des transactions :", error);
+    });
+  }
+
+  // Obtenir l'utilisateur connecté et afficher les transactions
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log("Utilisateur connecté :", user.uid);
+      displayTransactions(user.uid);
+    } else {
+      console.log("Utilisateur non connecté");
+    }
+  });
+</script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script> <!-- Ajout du SDK Firebase Auth -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<script>
+  // Assurez-vous que Firebase est correctement initialisé avant ce script
+  var firebaseConfig = {
+    apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+    authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+    projectId: "repasseurflutter-7fc37",
+    storageBucket: "repasseurflutter-7fc37.appspot.com",
+    messagingSenderId: "348979158571",
+    appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+    measurementId: "G-CWPDXBH4LT"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+    
+console.log("Firebase initialisé avec succès");
+// Référence à la base de données Firestore
+var db = firebase.firestore();
+
+// Vérifiez si un utilisateur est connecté et obtenez son ID
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // Utilisateur est connecté, récupérez l'ID de l'utilisateur
+    var userId = user.uid;
+
+    // Référence à la collection "demande de reservation" filtrée par userID
+    var reservationsRef = db.collection("demande de reservation").where("userid", "==", userId);
+
+    // Sélectionnez le corps du tableau où insérer les données
+    var tbody = document.querySelector("#reservationsTable tbody");
+
+    // Récupérez les données de la collection filtrée
+    reservationsRef.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // Pour chaque document dans la collection, créez une nouvelle ligne dans le tableau
+        var row = tbody.insertRow(-1); // Insère une ligne à la fin du tableau
+
+        // Créez et insérez les cellules pour chaque champ
+        var cellDateCollecte = row.insertCell(0);
+        var cellDateRetour = row.insertCell(1);
+        var cellPoids = row.insertCell(2);
+        var cellNumCommande = row.insertCell(3);
+        var cellEtat = row.insertCell(4);
+
+        // Définissez le texte de chaque cellule avec les données du document
+        cellDateCollecte.textContent = doc.data()["dateHeureReservation"];
+        cellDateRetour.textContent = doc.data()["dateHeureRetour"];
+        cellPoids.textContent = doc.data().kg;
+        cellNumCommande.textContent = doc.data().numeroCommande;
+        cellEtat.textContent = doc.data().etat;
+      });
+    }).catch((error) => {
+      console.log("Erreur lors de la récupération des documents: ", error);
+    });
+  } else {
+    // Utilisateur non connecté ou déconnexion
+    console.log("Utilisateur non connecté");
+  }
+});
+</script>
+
+</div>
+
 <div style="height: 5px; background-color:#10294B; width:100%; margin: 0; padding: 0;"></div>
-<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-  <h1 class="display-4 fw-normal text-body-emphasis" style="color: #10294B;">Changer votre abonnement</h1>
-  <p class="fs-5 text-body-secondary"></p>
-</div>
+<section id="section-abonnement">
+  <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis" style="color: #10294B;">Changer d'abonnement</h1>
+    <p class="fs-5 text-body-secondary"></p>
+  </div>
+</section>
+
   <main>
+    <div id="changer">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
@@ -364,6 +506,7 @@
         </div>
       </div>
     </div>
+  </div>
  </main>
  <div style="height: 5px; background-color:#10294B; width:100%; margin: 0; padding: 0;"></div>
  <style>
@@ -371,11 +514,12 @@
     font-size: 16px; /* Réduire la taille de la police */
 }
  </style>
+ <br>
  <div class="card-body">
   <!-- Lien qui ouvre le modal -->
-<h1 class="small-text"> 
-  <a href="#myModal" data-toggle="modal">Modifier mon compte</a>
-</h1>
+  <h1 class="small-text"> 
+    <a href="#myModal" data-toggle="modal" style="font-weight: bold; color: #10294B; text-decoration: none;">Modifier mon compte</a>
+  </h1>
 
 <!-- Modal -->
 <!-- Modal -->
@@ -402,20 +546,18 @@
       </style>
       <div class="modal-body">
         <form id="userForm">
-            <label for="adresse">Adresse :</label>
-            <input class="styled-input" type="text" id="adresse" name="adresse" placeholder="Adresse">
-            <label for="adresse">Code Postal :</label>
-            <input class="styled-input" type="text" id="codePostal" name="codePostal" placeholder="Code Postal">
-            <label for="adresse">Email :</label>
-            <input class="styled-input" type="email" id="email" name="email" placeholder="Email">
-            <label for="adresse">Nom :</label>
-            <input class="styled-input" type="text" id="nom" name="nom" placeholder="Nom">
-            <label for="adresse">Prenom :</label>
-            <input class="styled-input" type="text" id="prenom" name="prenom" placeholder="Prénom">
-            <label for="adresse">Rôle :</label>
-            <input class="styled-input" type="text" id="role" name="role" placeholder="Rôle" readonly>
-            <label for="adresse">Téléphone :</label>
-            <input class="styled-input" type="tel" id="telephone" name="telephone" placeholder="Téléphone">
+          <label for="nom">Nom :</label>
+          <input class="styled-input" type="text" id="nom" name="nom" placeholder="Nom">
+          <label for="prenom">Prenom :</label>
+          <input class="styled-input" type="text" id="prenom" name="prenom" placeholder="Prénom">
+          <label for="email">Email :</label>
+          <input class="styled-input" type="email" id="email" name="email" placeholder="Email">
+          <label for="adresse">Adresse :</label>
+          <input class="styled-input" type="text" id="adresse" name="adresse" placeholder="Adresse">
+          <label for="codePostal">Code Postal :</label>
+          <input class="styled-input" type="text" id="codePostal" name="codePostal" placeholder="Code Postal">
+          <label for="telephone">Téléphone :</label>
+          <input class="styled-input" type="tel" id="telephone2" name="telephone" placeholder="Téléphone">
         </form>
     </div>
       <div class="modal-footer">
@@ -444,34 +586,154 @@
     </div>
   </div>
 </div>
-  <h1 class="small-text"><a href="#" id="deleteButton" data-target="#deleteAccountModal">Supprimer mon compte</a></h1>
+<h1 class="small-text">
+  <a href="#" id="deleteButton" data-toggle="modal" data-target="#deleteAccountModal" style="font-weight: bold; color: #10294B; text-decoration: none;">Supprimer mon compte</a>
+</h1>
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAccountModalLabel">Suppression de compte</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1>text explication 
+
+        </h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
  
 
- <h1 class="small-text" id="disableButton"><a href="">Désactiver temporairement mon compte</a></h1>
+
  
- <h1 class="small-text"><a href="">Résilier mon abonnement</a></h1>
+<h1 class="small-text">
+  <a href="#" data-toggle="modal" data-target="#resiliationModal" id="resilier" style="font-weight: bold; color: #10294B; text-decoration: none;">Résilier mon abonnement</a>
+</h1>
+
+<h1 class="small-text">
+  <a href="#" data-toggle="modal"  id="resilier2" style="font-weight: bold; color: #53c730; text-decoration: none;">Démande de resiliation en cours...</a>
+</h1>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // L'utilisateur est connecté, obtenir l'userID
+      var userId = user.uid;
+      
+      // Interroger la collection "resiliation" pour cet userID
+      firebase.firestore().collection('resiliation').where("userId", "==", userId)
+        .get()
+        .then((querySnapshot) => {
+          if (!querySnapshot.empty) {
+            // Un document correspondant est trouvé, afficher le texte pour 'resilier2'
+            document.getElementById('resilier2').style.display = 'block';
+            // Cacher 'resilier' si 'resilier2' est affiché
+            document.getElementById('resilier').style.display = 'none';
+          } else {
+            // Aucun document correspondant trouvé, cacher le texte pour 'resilier2'
+            document.getElementById('resilier2').style.display = 'none';
+            // Assurez-vous que 'resilier' est visible si 'resilier2' est caché
+            document.getElementById('resilier').style.display = 'block';
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la recherche de la demande de résiliation:", error);
+        });
+    } else {
+      // L'utilisateur n'est pas connecté, cacher les textes
+      document.getElementById('resilier').style.display = 'none';
+      document.getElementById('resilier2').style.display = 'none';
+    }
+  });
+});
+</script>
+<!-- Modal -->
+<div class="modal fade" id="resiliationModal" tabindex="-1" role="dialog" aria-labelledby="resiliationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="resiliationModalLabel">Démande de resiliation</h5>
+              
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email2" placeholder="Entrez votre email">
+                  </div>
+                  <div class="form-group">
+                      <label for="nom">Nom</label>
+                      <input type="text" class="form-control" id="nom2" placeholder="Entrez votre nom">
+                  </div>
+                  <div class="form-group">
+                      <label for="prenom">Prénom</label>
+                      <input type="text" class="form-control" id="prenom2" placeholder="Entrez votre prénom">
+                  </div>
+                  <div class="form-group">
+                      <label for="annulation">Raison de l'annulation</label>
+                      <select class="form-control" id="annulation">
+                          <option>Choisissez une raison</option>
+                          <option>Raison 1</option>
+                          <option>Raison 2</option>
+                          <option>Raison 3</option>
+                          <!-- Ajoutez autant de raisons que nécessaire -->
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="3" placeholder="Entrez votre message"></textarea>
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary">Confirmer la résiliation</button>
+          </div>
+      </div>
+  </div>
+</div>
+ </div>
+ <div id="bottom"></div>
+ <a href="#bottom" style="position:fixed;bottom:20px;right:20px;">
+  <i class="fas fa-arrow-down fa-3x"></i>
+</a>
  </div>
  
+ <!-- FOOTER -->
  <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
+  <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
 
-    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+  <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
       <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" width="100" height="120" alt="Description de l'image">
-    </a>
+  </a>
 
-    <ul class="nav col-md-4 justify-content-end">
+  <ul class="nav col-md-4 justify-content-end">
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Comment ça marche</a></li>
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Abonnements</a></li>
       <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary">FAQ</a></li>
       <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
-      <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Mentions légales</a></li>
+      <li class="nav-item"><a href="/CGU.html" class="nav-link px-2 text-body-secondary">Conditions d'utilisateur</a></li>
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Kit du repasseur</a></li>
+      <li class="nav-item"><a href="/CGV.html" class="nav-link px-2 text-body-secondary">Conditions de vente</a></li>
+      <li class="nav-item"><a href="/preparation.html" class="nav-link px-2 text-body-secondary">Bien préparer sa collecte</a></li>
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Collecte sans abonnement</a></li>
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Pourquoi le repasseur</a></li>
       <li class="nav-item"><a href="/index.html" class="nav-link px-2 text-body-secondary">Les tarifs</a></li>
       
-    </ul>
+      
+  </ul>
   </footer>
 </div>
 </div>
@@ -516,6 +778,9 @@
   user-select: none;
   -webkit-user-select: none;
 }
+.petit-texte {
+  font-size: 0.6em; /* Réduit la taille du texte */
+}
 </style>
 
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
@@ -525,62 +790,50 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script>
-  document.getElementById('deleteButton').addEventListener('click', function() {
-    var confirmation = confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.');
-    if (confirmation) {
-      // L'utilisateur a confirmé la suppression du compte
-      var user = firebase.auth().currentUser;
-
-      // Supprimer l'utilisateur de Firestore
-      firebase.firestore().collection('users').doc(user.uid).delete()
-        .then(() => {
-          console.log('Document utilisateur supprimé avec succès de Firestore');
-          // Supprimer l'utilisateur de l'authentification Firebase
-          user.delete()
-            .then(() => {
-              console.log('Utilisateur supprimé avec succès de Firebase Auth');
-              // Rediriger l'utilisateur vers la page de connexion après la suppression du compte
-              window.location.href = 'index.html';
-            })
-            .catch((error) => {
-              console.log('Erreur lors de la suppression de l\'utilisateur de Firebase Auth:', error);
-            });
-        })
-        .catch((error) => {
-          console.log('Erreur lors de la suppression du document utilisateur de Firestore:', error);
-        });
-    }
-  });
+  document.addEventListener('DOMContentLoaded', function() {
+    // Utiliser un sélecteur plus spécifique pour cibler uniquement le bouton dans #resiliationModal
+    document.querySelector('#resiliationModal .modal-footer .btn-primary').addEventListener('click', function() {
+      // Récupérer les valeurs du formulaire
+      var email = document.getElementById('email2').value;
+      var nom = document.getElementById('nom2').value;
+      var prenom = document.getElementById('prenom2').value;
+      var raisonAnnulation = document.getElementById('annulation').value;
+      var message = document.getElementById('message').value;
   
-</script>
-<script>
-  document.getElementById('disableButton').addEventListener('click', function() {
-    var confirmation = confirm('Êtes-vous sûr de vouloir désactiver temporairement votre compte ? Vous pouvez le réactiver à tout moment.');
-    if (confirmation) {
-      // L'utilisateur a confirmé la désactivation du compte
+      // Vérifier si l'utilisateur est connecté
       var user = firebase.auth().currentUser;
-
       if (user) {
-        console.log('Utilisateur actuel:', user.uid);
-
-        // Mettre à jour le statut de l'utilisateur dans Firestore
-        firebase.firestore().collection('users').doc(user.uid).set({
-          statut: 'inactif'
-        }, { merge: true })
-        .then(() => {
-          console.log('Statut de l\'utilisateur mis à jour avec succès dans Firestore');
-          // Rediriger l'utilisateur vers la page de connexion après la désactivation du compte
-          window.location.href = 'index.html';
-        })
-        .catch((error) => {
-          console.log('Erreur lors de la mise à jour du statut de l\'utilisateur dans Firestore:', error);
-        });
+        // Créer un objet avec les données du formulaire
+        var formData = {
+          email: email,
+          nom: nom,
+          prenom: prenom,
+          raisonAnnulation: raisonAnnulation,
+          message: message,
+          userId: user.uid, // Optionnel, pour lier la demande à l'utilisateur
+          date: new Date() // Optionnel, pour enregistrer la date de la demande
+        };
+  
+        // Envoyer les données à Firestore
+        firebase.firestore().collection('resiliation').add(formData)
+          .then(() => {
+            console.log('Demande de résiliation envoyée avec succès');
+            // Fermer le modal et/ou afficher un message de succès
+            $('#resiliationModal').modal('hide');
+            alert('Votre demande de résiliation a été envoyée avec succès.');
+          })
+          .catch((error) => {
+            console.error('Erreur lors de l\'envoi de la demande de résiliation:', error);
+            alert('Une erreur est survenue. Veuillez réessayer.');
+          });
       } else {
         console.log('Aucun utilisateur connecté');
+        alert('Vous devez être connecté pour effectuer cette action.');
       }
-    }
+    });
   });
-</script>
+  </script>
+
 <script>
   // Votre configuration Firebase
   var firebaseConfig = {
@@ -594,6 +847,94 @@
   };
   // Initialiser Firebase
   firebase.initializeApp(firebaseConfig);
+  document.addEventListener('DOMContentLoaded', function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      
+      // L'utilisateur est connecté, vous pouvez utiliser l'ID de l'utilisateur ici
+      document.getElementById('saveButton').addEventListener('click', function() {
+        // Liste des codes postaux valides
+        var validPostalCodes = [
+          "06200", "06000", "06300", "06100", // Nice
+          "06160", "06600", // Antibes
+          "06150", "06400", // Cannes
+          "06520", "06130", // Grasse
+          "06800", // Cagnes-sur-Mer
+          "06110", // Le Cannet
+          "06700", // Saint-Laurent-du-Var
+          "06220", // Vallauris
+          "06210", // Mandelieu-la-Napoule
+          "06250", // Mougins
+          "06270", // Villeneuve-Loubet
+          "06560", // Valbonne
+          "06370", // Mouans-Sartoux
+          "06410", // Biot
+          "06580", // Pégomas
+          "06550", // La Roquette-sur-Siagne
+          "06590"  // Et autres codes...
+        ];
+
+        // Récupérez les valeurs des champs de formulaire et préparez l'objet avec les champs à mettre à jour
+        var fieldsToUpdate = {
+          adresse: document.getElementById('adresse').value,
+          codePostal: document.getElementById('codePostal').value,
+          email: document.getElementById('email').value,
+          nom: document.getElementById('nom').value,
+          prenom: document.getElementById('prenom').value,
+          telephone: document.getElementById('telephone2').value
+        };
+
+        // Vérifiez si le code postal est valide
+        if (!validPostalCodes.includes(fieldsToUpdate.codePostal)) {
+          showModal("Le code postal n'est pas valide. Veuillez entrer un code postal valide.");
+          return; // Arrêtez l'exécution si le code postal n'est pas valide
+        }
+
+        // Utilisez l'ID de l'utilisateur connecté
+        var userId = user.uid;
+
+        // Vérifiez si des changements ont été effectués
+        db.collection("users").doc(userId).get().then(doc => {
+          var data = doc.data();
+          var hasChanges = false;
+          for (let key in fieldsToUpdate) {
+            if (fieldsToUpdate[key] !== data[key]) {
+              hasChanges = true;
+              break;
+            }
+          }
+
+          if (hasChanges) {
+            // Mise à jour des données dans Firebase
+            db.collection("users").doc(userId).update(fieldsToUpdate)
+              .then(function() {
+                console.log("Document mis à jour avec succès !");
+                // Affichez ici votre modal de succès
+                showModal("Changement effectué avec succès !");
+              })
+              .catch(function(error) {
+                console.error("Erreur lors de la mise à jour du document : ", error);
+                // Affichez ici votre modal d'erreur
+                showModal("Erreur lors de la mise à jour.");
+              });
+          } else {
+            // Affichez ici votre modal indiquant qu'aucun changement n'a été effectué
+            showModal("Aucun changement effectué.");
+          }
+        });
+      });
+
+function showModal(message) {
+  // Implémentez la logique d'affichage de votre modal ici
+  // Par exemple, en utilisant alert pour simplifier
+  alert(message);
+}
+    } else {
+      // Pas d'utilisateur connecté
+      console.log("Aucun utilisateur connecté.");
+    }
+  });
+});
   // Récupérer la référence de la collection 'demande de reservation'
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -601,39 +942,6 @@
   var user = firebase.auth().currentUser;
   // Récupérer toutes les réservations
   reservationsRef.where('userId', '==', user.uid).get().then((querySnapshot) => {
-
-  querySnapshot.forEach((doc) => {
-    // doc.data() contient les données de la réservation
-    var reservation = doc.data();
-
-    // Créer une nouvelle ligne pour la table
-    var row = document.createElement('tr');
-
-    // Créer une nouvelle cellule pour chaque champ de la réservation
-    var cell1 = document.createElement('td');
-    cell1.textContent = reservation['date et heure de reservation']; // Remplacez 'date et heure de reservation' par le nom de votre champ
-    row.appendChild(cell1);
-
-    var cell2 = document.createElement('td');
-    cell1.textContent = reservation['date et heure de retour']; // Remplacez 'date et heure de reservation' par le nom de votre champ
-    row.appendChild(cell2);
-
-    var cell3 = document.createElement('td');
-    cell3.textContent = reservation.selectedKilo; // Remplacez 'poids' par le nom de votre champ
-    row.appendChild(cell3);
-
-    var cell4 = document.createElement('td');
-    cell4.textContent = reservation.userId; // Remplacez 'numCommande' par le nom de votre champ
-    row.appendChild(cell4);
-
-    var cell5 = document.createElement('td');
-    cell5.textContent = reservation.etat; // Remplacez 'etat' par le nom de votre champ
-    row.appendChild(cell5);
-
-    // Ajouter la ligne à la table
-    var table = document.querySelector('#reservationsTable tbody');
-    table.appendChild(row);
-  });
   // Obtenir l'utilisateur actuellement connecté
   var user = firebase.auth().currentUser;
 
@@ -641,18 +949,20 @@
   var userRef = firebase.firestore().collection('users').doc(user.uid);
 
 
-
-// Obtenir les informations de l'utilisateur
-userRef.get().then(function(doc) {
+  userRef.get().then(function(doc) {
   if (doc.exists) {
     var data = doc.data();
     document.getElementById('adresse').value = data.adresse;
+    
     document.getElementById('codePostal').value = data.codePostal;
     document.getElementById('email').value = data.email;
+    document.getElementById('email2').value = data.email;
     document.getElementById('nom').value = data.nom;
+    document.getElementById('nom2').value = data.nom;
     document.getElementById('prenom').value = data.prenom;
-    document.getElementById('role').value = data.role;
-    document.getElementById('telephone').value = data.telephone;
+    document.getElementById('prenom2').value = data.prenom;
+    document.getElementById('telephone2').value = data.telephone; // Modification ici
+    console.log('Telephone:', data.telephone); // Modification ici
     console.log("Document data:", data);
   } else {
     console.log("No such document!");
@@ -662,39 +972,7 @@ userRef.get().then(function(doc) {
 });
 
 
-// Mettre à jour le contenu du paragraphe avec la chaîne de caractères aléatoires
-paragraph.textContent = randomString;
-document.getElementById('saveButton').addEventListener('click', function() {
-  var adresse = document.getElementById('adresse').value;
-  var codePostal = document.getElementById('codePostal').value;
-  var email = document.getElementById('email').value;
-  var nom = document.getElementById('nom').value;
-  var prenom = document.getElementById('prenom').value;
-  var role = document.getElementById('role').value;
-  var telephone = document.getElementById('telephone').value;
 
-  // Mettre à jour le profil de l'utilisateur
-  userRef.update({
-    adresse: adresse,
-    codePostal: codePostal,
-    email: email,
-    nom: nom,
-    prenom: prenom,
-    role: role,
-    telephone: telephone
-  }).then(function() {
-    // La mise à jour a réussi, afficher le modal de succès
-    $('#updateSuccessModal').modal('show'); // Affiche le modal
-
-    // Fait disparaître le modal après 1 seconde (1000 millisecondes)
-    setTimeout(function() {
-      $('#updateSuccessModal').modal('hide');
-    }, 1000);
-  }).catch(function(error) {
-    // Une erreur s'est produite, gérer l'erreur
-    console.error("Error updating document: ", error);
-  });
-});
 });
 } else {
     // Aucun utilisateur n'est connecté
@@ -715,16 +993,28 @@ abonnementsRef.get().then((querySnapshot) => {
 
   // Créer une nouvelle rangée pour les abonnements
   var row = document.createElement('div');
-  row.className = 'row row-cols-1 row-cols-md-4 mb-3 text-center';
+  row.className = 'row row-cols-3 row-cols-md-5 mb-5 text-center';
   main.appendChild(row);
 
-  querySnapshot.forEach((doc) => {
-    // doc.data() contient les données de l'abonnement
-    var abonnement = doc.data();
+  var abonnements = [];
 
-    // Créer un nouvel élément de la grille pour l'abonnement
+  querySnapshot.forEach((doc) => {
+    var abonnement = doc.data();
+    abonnement.id = doc.id; // Ajouter l'ID du document aux données de l'abonnement
+    abonnements.push(abonnement);
+  });
+
+  // Trier les abonnements par prix
+  abonnements.sort((a, b) => (a.prix || 0) - (b.prix || 0));
+
+  abonnements.forEach((abonnement) => {
+    // Exclure les abonnements "Partenaire" et "Aucun"
+    if (abonnement.nom === "Partenaire" || abonnement.nom === "aucun") {
+        return; // Passe à l'itération suivante de la boucle
+    }
+
     var col = document.createElement('div');
-    col.className = 'col';
+    col.className = 'col-12 col-sm-6 col-md-4 col-lg-3';
 
     // Créer une nouvelle carte pour l'abonnement
     var card = document.createElement('div');
@@ -744,88 +1034,107 @@ abonnementsRef.get().then((querySnapshot) => {
     cardBody.className = 'card-body';
     var price = document.createElement('h1');
     price.className = 'card-title pricing-card-title';
-    price.textContent = abonnement.prix ? abonnement.prix + '€ / mois' : 'Non défini';
+    if (abonnement.prix) {
+      price.innerHTML = `<span class="petit-texte">${abonnement.prix}€ / mois</span>`;
+    } else {
+      price.textContent = 'Non défini';
+    }
     cardBody.appendChild(price);
 
     var descriptionList = document.createElement('ul');
-descriptionList.className = 'list-unstyled mt-3 mb-4';
-descriptionList.style.display = 'none'; // Cacher initialement la liste
+    descriptionList.className = 'list-unstyled mt-3 mb-4';
+    descriptionList.style.display = 'none'; // Cacher initialement la liste
 
-var descriptionItem = document.createElement('li');
-descriptionItem.className = 'description';
-descriptionItem.textContent = abonnement.description; // Utiliser la description de l'abonnement
-descriptionList.appendChild(descriptionItem);
+    var descriptionItem = document.createElement('li');
+    descriptionItem.className = 'description';
+    descriptionItem.textContent = abonnement.description; // Utiliser la description de l'abonnement
+    descriptionList.appendChild(descriptionItem);
 
-// Ajouter les avantages de l'abonnement à la carte
-var avantageItem = document.createElement('li');
-avantageItem.className = 'avantage';
-avantageItem.textContent = abonnement.avantage; // Utiliser les avantages de l'abonnement
-descriptionList.appendChild(avantageItem);
+    // Ajouter les avantages de l'abonnement à la carte
+    var avantageItem = document.createElement('li');
+    avantageItem.className = 'avantage';
+    avantageItem.textContent = abonnement.avantage; // Utiliser les avantages de l'abonnement
+    descriptionList.appendChild(avantageItem);
 
-cardBody.appendChild(descriptionList);
+    cardBody.appendChild(descriptionList);
 
-// Créer un nouveau bouton pour afficher les détails
-var detailButton = document.createElement('button');
-detailButton.type = 'button';
-detailButton.className = 'btn btn-info';
-detailButton.style.backgroundColor = '#10294B'; // Changer la couleur du bouton en rouge
-detailButton.style.color = 'white'; // Changer la couleur du texte en blanc
+    // Créer un nouveau bouton pour afficher les détails
+    var detailButton = document.createElement('button');
+    detailButton.type = 'button';
+    detailButton.className = 'btn btn-info';
+    detailButton.style.backgroundColor = '#10294B'; // Changer la couleur du bouton en rouge
+    detailButton.style.color = 'white'; // Changer la couleur du texte en blanc
 
-// Créer l'icône de flèche vers le bas
-var downArrowIcon = document.createElement('i');
-downArrowIcon.className = 'fas fa-arrow-down';
-downArrowIcon.style.color = 'white'; // Définir la couleur de l'icône en blanc
-// Ajouter l'icône au bouton
-detailButton.appendChild(downArrowIcon);
-detailButton.appendChild(document.createTextNode(' Détail'));
+    // Créer l'icône de flèche vers le bas
+    var downArrowIcon = document.createElement('i');
+    downArrowIcon.className = 'fas fa-arrow-down';
+    downArrowIcon.style.color = 'white'; // Définir la couleur de l'icône en blanc
+    // Ajouter l'icône au bouton
+    detailButton.appendChild(downArrowIcon);
+    detailButton.appendChild(document.createTextNode(' Détail'));
 
-// Ajouter un écouteur d'événements pour afficher les détails lorsque le bouton est cliqué
-detailButton.addEventListener('click', function() {
-    // Afficher ou cacher les détails de l'abonnement
-    if (descriptionList.style.display === 'none') {
-        descriptionList.style.display = 'block'; // Afficher la liste
-        descriptionList.style.opacity = '1'; // Faire apparaître la liste
-        downArrowIcon.style.transform = 'rotate(180deg)'; // Faire tourner l'icône
-    } else {
-        descriptionList.style.display = 'none'; // Cacher la liste
-        descriptionList.style.opacity = '0'; // Faire disparaître la liste
-        downArrowIcon.style.transform = 'rotate(0deg)'; // Remettre l'icône à sa position initiale
-    }
+    // Ajouter un écouteur d'événements pour afficher les détails lorsque le bouton est cliqué
+    detailButton.addEventListener('click', function() {
+        // Afficher ou cacher les détails de l'abonnement
+        if (descriptionList.style.display === 'none') {
+            descriptionList.style.display = 'block'; // Afficher la liste
+            descriptionList.style.opacity = '1'; // Faire apparaître la liste
+            downArrowIcon.style.transform = 'rotate(180deg)'; // Faire tourner l'icône
+        } else {
+            descriptionList.style.display = 'none'; // Cacher la liste
+            descriptionList.style.opacity = '0'; // Faire disparaître la liste
+            downArrowIcon.style.transform = 'rotate(0deg)'; // Remettre l'icône à sa position initiale
+        }
+    });
+    descriptionList.className = 'list-unstyled mt-3 mb-4 details-list'; // Ajout de la classe 'details-list'
+    downArrowIcon.className = 'fas fa-arrow-down arrow-icon'; // Ajout de la classe 'arrow-icon'
+
+    // Ajouter le bouton à la carte
+    cardBody.appendChild(detailButton);
+
+    var image = document.createElement('img');
+    image.src = abonnement.image; // Utiliser l'URL de l'image de l'abonnement
+    image.className = 'card-img-top'; // Ajouter une classe pour le style
+    card.appendChild(image);
+    card.appendChild(cardBody);
+
+    // Créer un nouveau bouton pour ouvrir la modal
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-primary btn-block'; // Ajouter la classe 'btn-block' pour faire occuper le bouton toute la largeur
+    button.textContent = 'Acheter';
+    button.style.backgroundColor = '#CE2029'; // Changer la couleur du bouton en rouge
+    button.style.color = 'white'; // Changer la couleur du texte en blanc
+
+    button.addEventListener('click', function() {
+      var id = abonnement.id;
+      var description = abonnement.description ? encodeURIComponent(abonnement.description) : '';
+      var advantage = abonnement.advantage ? encodeURIComponent(abonnement.advantage) : '';
+      var price = abonnement.prix ? encodeURIComponent(abonnement.prix) : '';
+      var kg = abonnement.kg ? encodeURIComponent(abonnement.kg) : '';
+      var collectes = abonnement.collectes ? encodeURIComponent(abonnement.collectes) : '';
+
+      window.location.href = '../recap.html?id=' + id + '&description=' + description + '&advantage=' + advantage + '&price=' + price + '&kg=' + kg + '&collectes=' + collectes;
+      console.log('Achat de l\'abonnement', {
+          id: id,
+          nom: nom,
+          description: description,
+          advantage: advantage,
+          price: price,
+          kg: kg,
+          collectes: collectes
+      });
 });
-descriptionList.className = 'list-unstyled mt-3 mb-4 details-list'; // Ajout de la classe 'details-list'
-downArrowIcon.className = 'fas fa-arrow-down arrow-icon'; // Ajout de la classe 'arrow-icon'
 
-// Ajouter le bouton à la carte
-cardBody.appendChild(detailButton);
-
-var image = document.createElement('img');
-image.src = abonnement.image; // Utiliser l'URL de l'image de l'abonnement
-image.className = 'card-img-top'; // Ajouter une classe pour le style
-card.appendChild(image);
-card.appendChild(cardBody);
-// Créer un nouveau bouton pour ouvrir la modal
-var button = document.createElement('button');
-button.type = 'button';
-button.className = 'btn btn-primary btn-block'; // Ajouter la classe 'btn-block' pour faire occuper le bouton toute la largeur
-button.textContent = 'Acheter';
-button.style.backgroundColor = '#CE2029'; // Changer la couleur du bouton en rouge
-button.style.color = 'white'; // Changer la couleur du texte en blanc
-
-button.addEventListener('click', function() {
-    // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
-    window.location.href = '../recap.html?id=' + doc.id;
-});
-    
-    
-     // Vérifier le rôle de l'utilisateur et changer le texte du bouton en conséquence
-     firebase.auth().onAuthStateChanged(function(user) {
+    // Vérifier le rôle de l'utilisateur et changer le texte du bouton en conséquence
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             var userId = user.uid; // Récupérer l'ID de l'utilisateur
             var docRef = firebase.firestore().collection('users').doc(userId);
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     var role = doc.data().role;
-                    if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Superhero') {
+                    if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Super Héros' || role == 'Partenaire') {
                         button.textContent = 'Changer abonnement';
                         // Afficher l'ID de l'utilisateur dans l'élément HTML
                         document.getElementById('user-id').textContent = userId;
@@ -845,10 +1154,7 @@ button.addEventListener('click', function() {
             button.textContent = 'S\'abonne';
         }
     });
-    button.addEventListener('click', function() {
-    // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
-    window.location.href = '../recap.html?id=' + doc.id;
-});
+
     // Ajouter le bouton à la carte
     cardBody.appendChild(button);
 
@@ -857,134 +1163,191 @@ button.addEventListener('click', function() {
 
     // Ajouter l'élément de la grille à la rangée
     row.appendChild(col);
-      });
+  });
 });
-var abonnementsRef = firebase.firestore().collection('produits');
+// Écouter l'événement de clic sur le bouton "Valider"
+document.getElementById('button-addon2').addEventListener('click', function() {
+  var codePromo = document.querySelector('.form-control').value.trim().toLowerCase();
 
-// Récupérer tous les documents de la collection 'abonnements'
-abonnementsRef.get().then((querySnapshot) => {
+  var promoRef = firebase.firestore().collection('Promo').doc('code');
+  promoRef.get().then(function(doc) {
+    if (doc.exists) {
+      let codeFound = false;
+      Object.keys(doc.data()).forEach(key => {
+        var value = doc.data()[key];
+        if (typeof value === 'string' && value.toLowerCase() === codePromo) {
+          codeFound = true;
+        }
+      });
+      var promoMessage = document.getElementById('promo-message');
+      if (codeFound) {
+        promoMessage.textContent = 'Code promo valide';
+        promoMessage.style.color = 'green';
+
+        // Obtenir l'ID de l'utilisateur connecté
+        var userId = firebase.auth().currentUser.uid;
+        // Accéder au document de l'utilisateur dans la collection 'users'
+        var userRef = firebase.firestore().collection('users').doc(userId);
+
+        // Mettre à jour le document de l'utilisateur
+        userRef.update({
+          role: 'Partenaire',
+          collectes: 45,
+          reservations: 20
+        }).then(() => {
+          console.log("Mise à jour du profil utilisateur réussie");
+        }).catch((error) => {
+          console.error("Erreur lors de la mise à jour du profil utilisateur:", error);
+        });
+
+      } else {
+        promoMessage.textContent = 'Code promo invalide';
+        promoMessage.style.color = 'red';
+      }
+    } else {
+      console.log("Le document n'existe pas");
+    }
+  }).catch(function(error) {
+    console.log("Erreur lors de la vérification du code promo:", error);
+  });
+});
+var produitsRef = firebase.firestore().collection('produits');
+
+// Récupérer tous les documents de la collection 'produits'
+produitsRef.get().then((querySnapshot) => {
   // Supprimer le contenu existant de la balise <main>
   var main = document.querySelector('main2');
   main.innerHTML = '';
   // Ajouter le texte "Bonjour, Comment allez-vous?" au début de main2
   
-  // Créer une nouvelle rangée pour les abonnements
+
+  // Créer une nouvelle rangée pour les produits
   var row = document.createElement('div');
-  row.className = 'row row-cols-1 row-cols-md-4 mb-3 text-center';
+  row.className = 'row row-cols-3 row-cols-md-5 mb-5 text-center';
   main.appendChild(row);
 
-  querySnapshot.forEach((doc) => {
-    // doc.data() contient les données de l'abonnement
-    var abonnement = doc.data();
+  var produits = [];
 
+  querySnapshot.forEach((doc) => {
+    var produit = doc.data();
+    produit.id = doc.id; // Ajouter l'ID du document aux données du produit
+    produits.push(produit);
+  });
+
+  // Trier les produits par prix
+  produits.sort((a, b) => (a.prix || 0) - (b.prix || 0));
+
+  produits.forEach((produit) => {
     var cardBlock = document.createElement('div'); // Créer un nouveau bloc de carte
     cardBlock.className = 'card-block';
-    // Créer un nouvel élément de la grille pour l'abonnement
+    // Créer un nouvel élément de la grille pour le produit
     var col = document.createElement('div');
-    col.className = 'col';
+    col.className = 'col-12 col-sm-6 col-md-4 col-lg-3'; // Ajusté pour la réactivité
     // Récupérer le champ texte
-    var texte = abonnement.texte; // Remplacez "texte" par le nom de votre champ texte
+    var texte = produit.texte; // Remplacez "texte" par le nom de votre champ texte
 
-    // Créer une nouvelle carte pour l'abonnement
+    // Créer une nouvelle carte pour le produit
     var card = document.createElement('div');
     card.className = 'card mb-4 rounded-3 shadow-sm';
     // Créer une nouvelle balise pour le texte
     var textElement = document.createElement('p'); // Remplacez 'p' par le type de balise que vous voulez utiliser
     textElement.textContent = texte;
-    // Ajouter le titre de l'abonnement à la carte
+    // Ajouter le titre du produit à la carte
     var cardHeader = document.createElement('div');
     cardHeader.className = 'card-header py-3';
     var title = document.createElement('h4');
     title.className = 'my-0 fw-normal custom-font'; // Ajouter la classe 'custom-font'
-    title.textContent = abonnement.nom; // Utiliser le titre de l'abonnement
+    title.textContent = produit.nom; // Utiliser le titre du produit
     cardHeader.appendChild(title);
     card.appendChild(cardHeader);
     // Ajouter la balise de texte à la carte
     card.appendChild(textElement);
 
-    // Ajouter le prix de l'abonnement à la carte
+    // Ajouter le prix du produit à la carte
     var cardBody = document.createElement('div');
     cardBody.className = 'card-body';
     var price = document.createElement('h1');
     price.className = 'card-title pricing-card-title';
-    price.textContent = abonnement.prix ? abonnement.prix + '€ / mois' : 'Non défini';
+    price.textContent = produit.prix ? produit.prix + '€' : 'Non défini';
     cardBody.appendChild(price);
 
-    // Ajouter la description de l'abonnement à la carte
-var descriptionList = document.createElement('ul');
-descriptionList.className = 'list-unstyled mt-3 mb-4';
-descriptionList.style.display = 'none'; // Cacher initialement la liste
+    // Ajouter la description du produit à la carte
+    var descriptionList = document.createElement('ul');
+    descriptionList.className = 'list-unstyled mt-3 mb-4';
+    descriptionList.style.display = 'none'; // Cacher initialement la liste
 
-var descriptionItem = document.createElement('li');
-descriptionItem.className = 'description';
-descriptionItem.textContent = abonnement.description; // Utiliser la description de l'abonnement
-descriptionList.appendChild(descriptionItem);
+    var descriptionItem = document.createElement('li');
+    descriptionItem.className = 'description';
+    descriptionItem.textContent = produit.description; // Utiliser la description du produit
+    descriptionList.appendChild(descriptionItem);
 
-// Ajouter les avantages de l'abonnement à la carte
-var avantageItem = document.createElement('li');
-avantageItem.className = 'avantage';
-avantageItem.textContent = abonnement.avantage; // Utiliser les avantages de l'abonnement
-descriptionList.appendChild(avantageItem);
+    // Ajouter les avantages du produit à la carte
+    var avantageItem = document.createElement('li');
+    avantageItem.className = 'avantage';
+    avantageItem.textContent = produit.avantage; // Utiliser les avantages du produit
+    descriptionList.appendChild(avantageItem);
 
-cardBody.appendChild(descriptionList);
+    cardBody.appendChild(descriptionList);
 
-// Créer un nouveau bouton pour afficher les détails
-var detailButton = document.createElement('button');
-detailButton.type = 'button';
-detailButton.className = 'btn btn-info';
-detailButton.style.backgroundColor = '#10294B'; // Changer la couleur du bouton en rouge
-detailButton.style.color = 'white'; // Changer la couleur du texte en blanc
+    // Créer un nouveau bouton pour afficher les détails
+    var detailButton = document.createElement('button');
+    detailButton.type = 'button';
+    detailButton.className = 'btn btn-info';
+    detailButton.style.backgroundColor = '#10294B'; // Changer la couleur du bouton en rouge
+    detailButton.style.color = 'white'; // Changer la couleur du texte en blanc
 
-// Créer l'icône de flèche vers le bas
-var downArrowIcon = document.createElement('i');
-downArrowIcon.className = 'fas fa-arrow-down';
-downArrowIcon.style.color = 'white'; // Définir la couleur de l'icône en blanc
-// Ajouter l'icône au bouton
-detailButton.appendChild(downArrowIcon);
-detailButton.appendChild(document.createTextNode(' Détail'));
+    // Créer l'icône de flèche vers le bas
+    var downArrowIcon = document.createElement('i');
+    downArrowIcon.className = 'fas fa-arrow-down';
+    downArrowIcon.style.color = 'white'; // Définir la couleur de l'icône en blanc
+    // Ajouter l'icône au bouton
+    detailButton.appendChild(downArrowIcon);
+    detailButton.appendChild(document.createTextNode(' Détail'));
 
-// Ajouter un écouteur d'événements pour afficher les détails lorsque le bouton est cliqué
-detailButton.addEventListener('click', function() {
-    // Afficher ou cacher les détails de l'abonnement
-    if (descriptionList.style.display === 'none') {
-        descriptionList.style.display = 'block'; // Afficher la liste
-        descriptionList.style.opacity = '1'; // Faire apparaître la liste
-        downArrowIcon.style.transform = 'rotate(180deg)'; // Faire tourner l'icône
-    } else {
-        descriptionList.style.display = 'none'; // Cacher la liste
-        descriptionList.style.opacity = '0'; // Faire disparaître la liste
-        downArrowIcon.style.transform = 'rotate(0deg)'; // Remettre l'icône à sa position initiale
-    }
-});
-descriptionList.className = 'list-unstyled mt-3 mb-4 details-list'; // Ajout de la classe 'details-list'
-downArrowIcon.className = 'fas fa-arrow-down arrow-icon'; // Ajout de la classe 'arrow-icon'
-// Ajouter le bouton à la carte
-cardBody.appendChild(detailButton);
+    // Ajouter un écouteur d'événements pour afficher les détails lorsque le bouton est cliqué
+    detailButton.addEventListener('click', function() {
+        // Afficher ou cacher les détails du produit
+        if (descriptionList.style.display === 'none') {
+            descriptionList.style.display = 'block'; // Afficher la liste
+            descriptionList.style.opacity = '1'; // Faire apparaître la liste
+            downArrowIcon.style.transform = 'rotate(180deg)'; // Faire tourner l'icône
+        } else {
+            descriptionList.style.display = 'none'; // Cacher la liste
+            descriptionList.style.opacity = '0'; // Faire disparaître la liste
+            downArrowIcon.style.transform = 'rotate(0deg)'; // Remettre l'icône à sa position initiale
+        }
+    });
+    descriptionList.className = 'list-unstyled mt-3 mb-4 details-list'; // Ajout de la classe 'details-list'
+    downArrowIcon.className = 'fas fa-arrow-down arrow-icon'; // Ajout de la classe 'arrow-icon'
+    // Ajouter le bouton à la carte
+    cardBody.appendChild(detailButton);
 
-var image = document.createElement('img');
-image.src = abonnement.image; // Utiliser l'URL de l'image de l'abonnement
-image.className = 'card-img-top'; // Ajouter une classe pour le style
-card.appendChild(image);
-card.appendChild(cardBody);
-// Créer un nouveau bouton pour ouvrir la modal
-var button = document.createElement('button');
-button.type = 'button';
-button.className = 'btn btn-primary btn-block'; // Ajouter la classe 'btn-block' pour faire occuper le bouton toute la largeur
-button.textContent = 'Acheter';
-button.style.backgroundColor = '#CE2029'; // Changer la couleur du bouton en rouge
-button.style.color = 'white'; // Changer la couleur du texte en blanc
+    var image = document.createElement('img');
+    image.src = produit.image; // Utiliser l'URL de l'image du produit
+    image.className = 'card-img-top'; // Ajouter une classe pour le style
+    card.appendChild(image);
+    card.appendChild(cardBody);
+    // Créer un nouveau bouton pour ouvrir la modal
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-primary btn-block'; // Ajouter la classe 'btn-block' pour faire occuper le bouton toute la largeur
+    button.textContent = 'Acheter';
+    button.style.backgroundColor = '#CE2029'; // Changer la couleur du bouton en rouge
+    button.style.color = 'white'; // Changer la couleur du texte en blanc
 
-button.addEventListener('click', function() {
-    // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
-    window.location.href = '../recap.html?id=' + doc.id;
-});
-// Créer un élément 'card-footer' pour positionner le bouton en bas de la carte
-var cardFooter = document.createElement('div');
-cardFooter.className = 'card-footer'; // Ajouter la classe 'card-footer'
-cardFooter.appendChild(button); // Ajouter le bouton au 'card-footer'
+    button.addEventListener('click', function() {
+        var id = produit.id;
+        var description = produit.description ? encodeURIComponent(produit.description) : '';
+        var avantage = produit.avantage ? encodeURIComponent(produit.avantage) : '';
+        var prix = produit.prix ? encodeURIComponent(produit.prix) : '';
 
-    
-    
+        window.location.href = '../recapProduits.html?id=' + id + '&description=' + description + '&avantage=' + avantage + '&prix=' + prix;
+    });
+    // Créer un élément 'card-footer' pour positionner le bouton en bas de la carte
+    var cardFooter = document.createElement('div');
+    cardFooter.className = 'card-footer'; // Ajouter la classe 'card-footer'
+    cardFooter.appendChild(button); // Ajouter le bouton au 'card-footer'
+
     // Ajouter le 'card-footer' à la carte
     card.appendChild(cardFooter);
     // Ajouter la carte à l'élément de la grille
@@ -992,7 +1355,7 @@ cardFooter.appendChild(button); // Ajouter le bouton au 'card-footer'
     cardBlock.appendChild(col); // Ajouter la colonne au bloc de carte
     // Ajouter l'élément de la grille à la rangée
     row.appendChild(col);
-      });
+  });
 });
 
 
@@ -1003,7 +1366,7 @@ cardFooter.appendChild(button); // Ajouter le bouton au 'card-footer'
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     var role = doc.data().role;
-                    if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Superhero') {
+                    if (role === 'Mino' || role === 'Duo' || role === 'Solo' || role === 'Super Héros' || role == 'Partenaire') {
                         button.textContent = 'Upgrade';
                     } else {
                         button.textContent = 'S\'abonne';
@@ -1080,8 +1443,9 @@ var db = firebase.firestore();
                     document.getElementById('user-surname').textContent = doc.data().nom;
                     document.getElementById('current-subscription').textContent = doc.data().role;
                     document.getElementById('user-id').textContent = doc.data().id;
+                    document.getElementById('client-id').textContent = doc.data().numeroClient;
                     document.getElementById('new-collect-count').textContent = doc.data().collectes;
-                    document.getElementById('repassage-count').textContent = doc.data().repassage;
+                    document.getElementById('repassage-count').textContent = doc.data().reservations;
                     
                 } else {
                     // Le document n'existe pas

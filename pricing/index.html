@@ -182,8 +182,167 @@
       <p class="fs-5 text-body-secondary">Modifier, creer, supprimer un abonnement</p>
     </div>
   </header>
+  <div class="dropdown">
+    <!-- Bouton pour déclencher le dropdown -->
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      Afficher les abonnements
+    </button>
+  
+    <!-- Contenu du dropdown -->
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <!-- Le contenu de <main> est placé ici -->
+      <div class="p-4" style="min-width: 800px;"> <!-- Assurez-vous que le dropdown est assez large pour votre contenu -->
+        <main>
+          <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+              <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal"></h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <button type="button" class="w-100 btn btn-lg btn-outline-primary"></button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                  <h4 class="my-0 fw-normal"></h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <button type="button" class="w-100 btn btn-lg btn-primary"></button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card mb-5 rounded-3 shadow-sm border-primary">
+                <div class="card-header py-3 text-bg-primary border-primary">
+                  <h4 class="my-0 fw-normal"></h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title"><small class="text-body-secondary fw-light"></small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li class="description"></li>
+                    <li class="avantage"></li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <button type="button" class="w-100 btn btn-lg btn-primary"></button>
+                </div>
+              </div>
+            </div>
+          </div>
 
-  <main>
+          
+        </main>
+      </div>
+    </div>
+  </div>
+  <br>
+  
+  <!-- Bouton pour afficher le formulaire d'ajout -->
+  <button id="showAddForm" class="btn btn-primary">Ajouter un abonnement</button>
+  <button onclick="window.location.href='/dispo.html';" class="btn btn-primary">Définir les disponibilités</button>
+  <button id="showAddForm2" class="btn btn-primary">Ajouter un produit</button>
+
+  <!-- Formulaire d'ajout d'abonnement (initialement caché) -->
+  <div id="addForm" class="container" style="display:none; margin-top: 20px;">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Ajouter un abonnement</h5>
+            <form>
+              <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" placeholder="Nom">
+              </div>
+              <div class="mb-3">
+                <label for="prix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="prix" placeholder="Prix">
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" placeholder="Description" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="avantage" class="form-label">Avantage</label>
+                <input type="text" class="form-control" id="avantage" placeholder="Avantage">
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">URL de l'image</label>
+                <input type="text" class="form-control" id="image" placeholder="URL de l'image">
+              </div>
+              <button type="button" onclick="ajouterAbonnement()" class="btn btn-success">Ajouter</button>
+              <button type="button" onclick="document.getElementById('addForm').style.display='none'" class="btn btn-secondary">Annuler</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="addForm2" class="container" style="display:none; margin-top: 20px;">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Ajouter un produit</h5>
+            <form>
+              <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" placeholder="Nom">
+              </div>
+              <div class="mb-3">
+                <label for="prix" class="form-label">Prix</label>
+                <input type="number" class="form-control" id="prix" placeholder="Prix">
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" placeholder="Description" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="avantage" class="form-label">Avantage</label>
+                <input type="text" class="form-control" id="avantage" placeholder="Avantage">
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">URL de l'image</label>
+                <input type="text" class="form-control" id="image" placeholder="URL de l'image">
+              </div>
+              <button type="button" onclick="ajouterproduit()" class="btn btn-success">Ajouter</button>
+              <button type="button" onclick="document.getElementById('addForm2').style.display='none'" class="btn btn-secondary">Annuler</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="dropdown">
+    <!-- Bouton pour déclencher le dropdown -->
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      Afficher les produits
+    </button>
+  
+    <!-- Contenu du dropdown -->
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <!-- Le contenu de <main> est placé ici -->
+      <div class="p-4" style="min-width: 800px;"> <!-- Assurez-vous que le dropdown est assez large pour votre contenu -->
+  <main2>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
@@ -239,8 +398,11 @@
     </div>
 
     
-  </main>
- 
+  </main2>
+</div>
+</div>
+</div>
+  
   <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
     <h1 class="display-4 fw-normal text-body-emphasis">Liste d'utilisateur</h1>
     <p class="fs-5 text-body-secondary">Modifier, creer, supprimer un utilisateur</p>
@@ -250,11 +412,14 @@
         <thead>
           <tr>
             <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
             <th scope="col">Email</th>
             <th scope="col">Adresse</th>
             <th scope="col">Téléphone</th>
             <th scope="col">Role</th>
-            <th scope="col">Jetons</th>
+            <th scope="col">Poids</th> <!-- Nouvelle colonne -->
+            <th scope="col">Collectes</th>
+            
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -263,43 +428,102 @@
         </tbody>
     </table>
   </div>
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-        <img class="mb-2" src="../assets/brand/bootstrap-logo.svg" alt="" width="24" height="19">
-        <small class="d-block mb-3 text-body-secondary">&copy; 2017–2024</small>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Features</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>About</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
-        </ul>
-      </div>
+  <div class="reservation-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Gestion de code promo</h1>
+    <p class="fs-5 text-body-secondary">Voir, confirmer, ou annuler les demandes</p>
+</div>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Poids</th>
+            <th scope="col">Code</th>
+            
+            
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="promoTable">
+          <!-- Les lignes de la table seront ajoutées ici par le script JavaScript -->
+        </tbody>
+    </table>
+  </div>
+
+  <div class="reservation-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal text-body-emphasis">Demandes de réservation</h1>
+        <p class="fs-5 text-body-secondary">Voir, confirmer, ou annuler les demandes</p>
     </div>
-  </footer>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">N commande</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Role</th>
+                <th scope="col">Date de Réservation</th>
+                <th scope="col">Date de retour</th>
+                <th scope="col">kg</th>
+                <th scope="col">état</th>
+                <th scope="col">Téléphone</th>
+                <th scope="col">Traitement Selectionné</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reservationsTable">
+              <!-- Les lignes de la table seront ajoutées ici par le script JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+  <style>
+    .table-responsive::-webkit-scrollbar {
+  height: 8px; /* Hauteur de la barre de défilement */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #007bff; /* Couleur de la barre de défilement */
+  border-radius: 4px; /* Arrondir les angles de la barre de défilement */
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f8f9fa; /* Couleur de fond de la piste de défilement */
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    border: 1px solid #dee2e6; /* Ajoute une bordure pour indiquer que le tableau est scrollable */
+    box-shadow: 0 0 5px rgba(0,0,0,0.15); /* Ajoute une ombre pour améliorer la visibilité */
+  }
+  .table th, .table td {
+    padding: 0.5rem; /* Réduit le padding dans les cellules pour économiser de l'espace */
+  }
+}
+  </style>
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 le repasseur.fr</p>
+  
+      <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img class="bi me-2" src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" width="100" height="120" alt="Description de l'image">
+      </a>
+  
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="#marche" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Comment ça marche</a></li>
+        <li class="nav-item"><a href="#abonnements" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Abonnements</a></li>
+        <li class="nav-item"><a href="/faq.html" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">FAQ</a></li>
+        <li class="nav-item"><a href="/contact.html" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Contact</a></li>
+        <li class="nav-item"><a href="/CGV.html" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Mentions légales</a></li>
+        <li class="nav-item"><a href="#kit" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Kit du repasseur</a></li>
+        <li class="nav-item"><a href="/CGV.html" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Conditions générales de vente</a></li>
+        <li class="nav-item"><a href="/preparation.html" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Bien préparer sa collecte</a></li>
+        <li class="nav-item"><a href="#collecte" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Collecte sans abonnement</a></li>
+        <li class="nav-item"><a href="#choisir" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Pourquoi le repasseur</a></li>
+        <li class="nav-item"><a href="#offres" class="nav-link px-2 text-body-secondary" style="font-size: 0.8em;">Les tarifs</a></li>
+      </ul>
+    </footer>
+  </div>
 </div>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -335,9 +559,12 @@ abonnementsRef.get().then((querySnapshot) => {
   main.appendChild(row);
 
   querySnapshot.forEach((doc) => {
-    // doc.data() contient les données de l'abonnement
     var abonnement = doc.data();
 
+    // Si le nom de l'abonnement est "Partenaire", passer à l'itération suivante
+    if (abonnement.nom === "Partenaire" || abonnement.nom === "aucun") {
+      return;
+    }
     // Créer un nouvel élément de la grille pour l'abonnement
     var col = document.createElement('div');
     col.className = 'col';
@@ -384,16 +611,130 @@ abonnementsRef.get().then((querySnapshot) => {
     image.className = 'card-img-top'; // Ajouter une classe pour le style
     card.appendChild(image);
     card.appendChild(cardBody);
+    // Créer un nouveau bouton pour ouvrir la modal
+        // Création du bouton Modifier
+    var buttonModifier = document.createElement('button');
+    buttonModifier.type = 'button';
+    buttonModifier.className = 'btn btn-primary';
+    buttonModifier.textContent = 'Modifier abonnement';
+
+    buttonModifier.addEventListener('click', function() {
+        // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
+        window.location.href = '/modifier.html?id=' + doc.id;
+    });
+
+    // Ajouter le bouton Modifier à la carte
+    cardBody.appendChild(buttonModifier);
+
+    // Création du bouton Supprimer
+    var buttonSupprimer = document.createElement('button');
+    buttonSupprimer.type = 'button';
+    buttonSupprimer.className = 'btn btn-danger';
+    buttonSupprimer.textContent = 'Supprimer abonnement';
+
+    buttonSupprimer.addEventListener('click', function() {
+        var confirmation = confirm('Êtes-vous sûr de supprimer votre abonnement ?');
+        if (confirmation) {
+            // Supposer que firebase et firestore sont déjà initialisés
+            var db = firebase.firestore();
+
+            // Supprimer le document de la collection 'abonnements'
+            db.collection("abonnements").doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+                row.removeChild(col); // Supprime la carte de l'abonnement de l'affichage
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        }
+    });
+
+    // Ajouter le bouton Supprimer à la carte
+    cardBody.appendChild(buttonSupprimer);
+
+    // Ajouter la carte à l'élément de la grille
+    col.appendChild(card);
+
+    // Ajouter l'élément de la grille à la rangée
+    row.appendChild(col);
+  });
+    });
+    // Récupérer la référence de la collection 'abonnements'
+    var produitsRef = firebase.firestore().collection('produits');
+
+    // Récupérer tous les documents de la collection 'abonnements'
+    produitsRef.get().then((querySnapshot) => {
+      // Supprimer le contenu existant de la balise <main>
+      var main = document.querySelector('main2');
+      main.innerHTML = '';
+
+      // Créer une nouvelle rangée pour les abonnements
+      var row = document.createElement('div');
+      row.className = 'row row-cols-1 row-cols-md-3 mb-3 text-center';
+      main.appendChild(row);
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() contient les données de l'abonnement
+    var produits = doc.data();
+
+    // Créer un nouvel élément de la grille pour l'abonnement
+    var col = document.createElement('div');
+    col.className = 'col';
+
+    // Créer une nouvelle carte pour l'abonnement
+    var card = document.createElement('div');
+    card.className = 'card mb-4 rounded-3 shadow-sm';
+
+    // Ajouter le titre de l'abonnement à la carte
+    var cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header py-3';
+    var title = document.createElement('h4');
+    title.className = 'my-0 fw-normal';
+    title.textContent = produits.nom; // Utiliser le titre de l'abonnement
+    cardHeader.appendChild(title);
+    card.appendChild(cardHeader);
+
+    // Ajouter le prix de l'abonnement à la carte
+    var cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+    var price = document.createElement('h1');
+    price.className = 'card-title pricing-card-title';
+    price.textContent = produits.prix ? produits.prix + '€ / mois' : 'Non défini';
+    cardBody.appendChild(price);
+
+    // Ajouter la description de l'abonnement à la carte
+    var descriptionList = document.createElement('ul');
+    descriptionList.className = 'list-unstyled mt-3 mb-4';
+
+    var descriptionItem = document.createElement('li');
+    descriptionItem.className = 'description';
+    descriptionItem.textContent = produits.description; // Utiliser la description de l'abonnement
+    descriptionList.appendChild(descriptionItem);
+
+    // Ajouter les avantages de l'abonnement à la carte
+    var avantageItem = document.createElement('li');
+    avantageItem.className = 'avantage';
+    avantageItem.textContent = produits.avantage; // Utiliser les avantages de l'abonnement
+    descriptionList.appendChild(avantageItem);
+
+    cardBody.appendChild(descriptionList);
+    var image = document.createElement('img');
+    image.src = produits.image; // Utiliser l'URL de l'image de l'abonnement
+    image.className = 'card-img-top'; // Ajouter une classe pour le style
+    card.appendChild(image);
+    card.appendChild(cardBody);
 // Créer un nouveau bouton pour ouvrir la modal
     var button = document.createElement('button');
     button.type = 'button';
     button.className = 'btn btn-primary';
     button.textContent = 'Modifier abonnement';
     
+    
     button.addEventListener('click', function() {
     // Rediriger vers la page de modification avec l'ID de l'abonnement dans l'URL
-    window.location.href = '/modifier.html?id=' + doc.id;
+    window.location.href = '/modifierProduit.html?id=' + doc.id;
+    
 });
+  
     // Ajouter le bouton à la carte
     cardBody.appendChild(button);
 
@@ -404,175 +745,271 @@ abonnementsRef.get().then((querySnapshot) => {
     row.appendChild(col);
       });
 });
-
-var produitsRef = db.collection("produits"); // Remplacez "db" par votre instance de Firestore
-
-produitsRef.get().then((querySnapshot) => {
-  // Supprimer le contenu existant de la balise <main>
-  var main = document.querySelector('main2');
-  main.innerHTML = '';
-
-  // Créer une nouvelle rangée pour les produits
-  var row = document.createElement('div');
-  row.className = 'row row-cols-1 row-cols-md-3 mb-3 text-center';
-  main.appendChild(row);
-
-  querySnapshot.forEach((doc) => {
-    // doc.data() contient les données du produit
-    var produit = doc.data();
-
-    // Créer un nouvel élément de la grille pour le produit
-    var col = document.createElement('div');
-    col.className = 'col';
-
-    // Créer une nouvelle carte pour le produit
-    var card = document.createElement('div');
-    card.className = 'card mb-4 rounded-3 shadow-sm';
-
-    // Ajouter le titre du produit à la carte
-    var cardHeader = document.createElement('div');
-    cardHeader.className = 'card-header py-3';
-    var title = document.createElement('h4');
-    title.className = 'my-0 fw-normal';
-    title.textContent = produit.nom; // Utiliser le titre du produit
-    cardHeader.appendChild(title);
-    card.appendChild(cardHeader);
-
-    // Ajouter le prix du produit à la carte
-    var cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
-    var price = document.createElement('h1');
-    price.className = 'card-title pricing-card-title';
-    price.textContent = produit.prix ? produit.prix + '€ / mois' : 'Non défini';
-    cardBody.appendChild(price);
-
-    // Ajouter la description du produit à la carte
-    var descriptionList = document.createElement('ul');
-    descriptionList.className = 'list-unstyled mt-3 mb-4';
-
-    var descriptionItem = document.createElement('li');
-    descriptionItem.className = 'description';
-    descriptionItem.textContent = produit.description; // Utiliser la description du produit
-    descriptionList.appendChild(descriptionItem);
-
-    // Ajouter les avantages du produit à la carte
-    var avantageItem = document.createElement('li');
-    avantageItem.className = 'avantage';
-    avantageItem.textContent = produit.avantage; // Utiliser les avantages du produit
-    descriptionList.appendChild(avantageItem);
-
-    cardBody.appendChild(descriptionList);
-    var image = document.createElement('img');
-    image.src = produit.image; // Utiliser l'URL de l'image du produit
-    image.className = 'card-img-top'; // Ajouter une classe pour le style
-    card.appendChild(image);
-    card.appendChild(cardBody);
-
-    // Créer un nouveau bouton pour ouvrir la modal
-    var button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'btn btn-primary';
-    button.textContent = 'Modifier produit';
-    
-    button.addEventListener('click', function() {
-    // Rediriger vers la page de modification avec l'ID du produit dans l'URL
-    window.location.href = '/modifier.html?id=' + doc.id;
-    });
-
-    // Ajouter le bouton à la carte
-    cardBody.appendChild(button);
-
-    // Ajouter la carte à l'élément de la grille
-    col.appendChild(card);
-
-    // Ajouter l'élément de la grille à la rangée
-    row.appendChild(col);
-  });
-});
-
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // L'utilisateur est connecté
-      firebase.firestore().collection('users').doc(user.uid).get()
-        .then((doc) => {
-          if (doc.exists) {
-            // Vérifiez le rôle de l'utilisateur
-            if (doc.data().role !== 'admin') {
-              // L'utilisateur n'est pas un administrateur
-              window.location.href = '/sign-in/index.html'; // Redirige vers la page de connexion
-            }
-          } else {
-            console.log('Aucun document correspondant !');
-          }
-        })
-        .catch((error) => {
-          console.log('Erreur lors de la récupération du document:', error);
-        });
-    } else {
-      // L'utilisateur n'est pas connecté
-      window.location.href = '/sign-in/index.html'; // Redirige vers la page de connexion
-    }
-  });
   // Récupérer une référence à la base de données Firestore
 var db = firebase.firestore();
 
 // Récupérer tous les documents de la collection 'users'
 db.collection("users").get().then((querySnapshot) => {
-    // Parcourir chaque document
-    querySnapshot.forEach((doc, index) => {
-        // doc.data() est l'objet qui contient les données du document
-        var userData = doc.data();
+    console.log("Documents récupérés:", querySnapshot.size);
+    if (querySnapshot.empty) {
+        console.log("Aucun document trouvé");
+    }
+    querySnapshot.forEach((doc) => {
+    var userData = doc.data();
+    console.log("Données utilisateur:", userData);
 
-        // Créer une nouvelle ligne pour chaque utilisateur
-        var userRow = document.createElement('tr');
+    var userRow = document.createElement('tr');
 
-        // Ajouter des cellules à la ligne
-       
+    // Nom
+    var nameCell = document.createElement('td');
+    nameCell.textContent = userData.nom;
+    userRow.appendChild(nameCell);
 
-        var nameCell = document.createElement('td');
-        nameCell.textContent = userData.nom;
-        userRow.appendChild(nameCell);
+    // Prénom
+    var firstNameCell = document.createElement('td');
+    firstNameCell.textContent = userData.prenom;
+    userRow.appendChild(firstNameCell);
 
-        var emailCell = document.createElement('td');
-        emailCell.textContent = userData.email;
-        userRow.appendChild(emailCell);
+    // Email
+    var emailCell = document.createElement('td');
+    emailCell.textContent = userData.email;
+    userRow.appendChild(emailCell);
 
-        var addressCell = document.createElement('td');
-        addressCell.textContent = userData.adresse;
-        userRow.appendChild(addressCell);
+    // Adresse
+    var addressCell = document.createElement('td');
+    addressCell.textContent = userData.adresse;
+    userRow.appendChild(addressCell);
 
-        var phoneCell = document.createElement('td');
-        phoneCell.textContent = userData.telephone;
-        userRow.appendChild(phoneCell);
+    // Téléphone
+    var phoneCell = document.createElement('td');
+    phoneCell.textContent = userData.telephone;
+    userRow.appendChild(phoneCell);
 
-        var roleCell = document.createElement('td');
-        roleCell.textContent = userData.role;
-        userRow.appendChild(roleCell);
+    // Role
+    var roleCell = document.createElement('td');
+    roleCell.textContent = userData.role;
+    userRow.appendChild(roleCell);
 
-        var tokensCell = document.createElement('td');
-        tokensCell.textContent = userData.tokens;
-        userRow.appendChild(tokensCell);
-        var roleCell = document.createElement('td');
-        roleCell.textContent = userData.role;
-        userRow.appendChild(roleCell);
+    // Collectes
+    var collectesCell = document.createElement('td');
+    collectesCell.textContent = userData.collectes || '0'; // Utilisez 'N/A' si userData.collectes est undefined ou vide
+    userRow.appendChild(collectesCell);
 
-        // Ajouter une cellule pour les actions
-        var actionsCell = document.createElement('td');
-        var editButton = document.createElement('a'); // Utilisez une balise 'a' pour le lien
-        editButton.textContent = 'Modifier';
-        editButton.className = 'btn btn-primary';
-        editButton.href = '/edit-user.html?id=' + doc.id; // Ajoutez l'ID de l'utilisateur à l'URL
-        actionsCell.appendChild(editButton);
-        userRow.appendChild(actionsCell);
+    //Reservations
+    var reservationsCell = document.createElement('td');
+    reservationsCell.textContent = userData.reservations || '0'; // Utilisez 'N/A' si userData.reservations est undefined ou vide
+    userRow.appendChild(reservationsCell);
 
-        // Ajouter la ligne à la table
-        document.getElementById('usersTable').appendChild(userRow);
+ 
+
+   // Actions
+    var actionsCell = document.createElement('td');
+
+    // Bouton Modifier
+    var editButton = document.createElement('a');
+    editButton.textContent = 'Modifier';
+    editButton.className = 'btn btn-primary';
+    editButton.href = '/edit-user.html?id=' + doc.id;
+    actionsCell.appendChild(editButton);
+
+    // Bouton Supprimer
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Supprimer';
+    deleteButton.className = 'btn btn-danger';
+    deleteButton.onclick = function() {
+        // Optionnel : Confirmer la suppression
+        var confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
+        if (confirmDelete) {
+            // Supprime le document
+            firebase.firestore().collection('users').doc(doc.id).delete()
+                .then(() => {
+                    console.log("Document utilisateur supprimé avec succès");
+                    // Optionnel : Supprimer la ligne du tableau ou rafraîchir la page
+                    userRow.remove(); // Supprime la ligne du tableau
+                })
+                .catch((error) => {
+                    console.error("Erreur lors de la suppression du document utilisateur:", error);
+                });
+        }
+    };
+    actionsCell.appendChild(deleteButton);
+
+    userRow.appendChild(actionsCell);
+
+    document.getElementById('usersTable').appendChild(userRow);
+});
+}).catch(error => {
+    console.error("Erreur lors de la récupération des documents:", error);
+});
+db.collection("demande de reservation").get().then((querySnapshot) => {
+    console.log("Documents récupérés:", querySnapshot.size);
+    if (querySnapshot.empty) {
+        console.log("Aucun document trouvé");
+    }
+    querySnapshot.forEach((doc) => {
+    var userData = doc.data();
+    console.log("Données utilisateur:", userData);
+
+    var userRow = document.createElement('tr');
+
+    // Nom
+    var nameCell = document.createElement('td');
+    nameCell.textContent = userData.numeroCommande;
+    userRow.appendChild(nameCell);
+
+    // Prénom
+    var firstNameCell = document.createElement('td');
+    firstNameCell.textContent = userData.nom;
+    userRow.appendChild(firstNameCell);
+
+    // Email
+    var emailCell = document.createElement('td');
+    emailCell.textContent = userData.prenom;
+    userRow.appendChild(emailCell);
+
+    // Adresse
+    var addressCell = document.createElement('td');
+    addressCell.textContent = userData.adresse;
+    userRow.appendChild(addressCell);
+
+    var addressCell = document.createElement('td');
+    addressCell.textContent = userData.role;
+    userRow.appendChild(addressCell);
 
 
-        // Ajouter la ligne à la table
-        document.getElementById('usersTable').appendChild(userRow);
-        
-    });
+    // Téléphone
+    var phoneCell = document.createElement('td');
+    phoneCell.textContent = userData.dateHeureReservation;
+    userRow.appendChild(phoneCell);
+
+    // Role
+    var roleCell = document.createElement('td');
+    roleCell.textContent = userData.dateHeureRetour;
+    userRow.appendChild(roleCell);
+
+    // Collectes
+    var collectesCell = document.createElement('td');
+    collectesCell.textContent = userData.kg || '0'; // Utilisez 'N/A' si userData.collectes est undefined ou vide
+    userRow.appendChild(collectesCell);
+
+    //Reservations
+    var reservationsCell = document.createElement('td');
+    reservationsCell.textContent = userData.etat || '0'; // Utilisez 'N/A' si userData.reservations est undefined ou vide
+    userRow.appendChild(reservationsCell);
+
+    var reservationsCell = document.createElement('td');
+    reservationsCell.textContent = userData.telephone || '0'; // Utilisez 'N/A' si userData.reservations est undefined ou vide
+    userRow.appendChild(reservationsCell);
+
+    var reservationsCell = document.createElement('td');
+    reservationsCell.textContent = userData.traitementSelectionne || '0'; // Utilisez 'N/A' si userData.reservations est undefined ou vide
+    userRow.appendChild(reservationsCell);
+
+
+ 
+
+   // Actions
+    var actionsCell = document.createElement('td');
+
+    // Bouton Modifier
+    var editButton = document.createElement('a');
+    editButton.textContent = 'Prendre en charge';
+    editButton.className = 'btn btn-primary';
+    editButton.href = '/acceptation.html?id=' + doc.id;
+    actionsCell.appendChild(editButton);
+
+    // Bouton Supprimer
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Supprimer';
+    deleteButton.className = 'btn btn-danger';
+    deleteButton.onclick = function() {
+        // Optionnel : Confirmer la suppression
+        var confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
+        if (confirmDelete) {
+            // Supprime le document
+            firebase.firestore().collection('users').doc(doc.id).delete()
+                .then(() => {
+                    console.log("Document utilisateur supprimé avec succès");
+                    // Optionnel : Supprimer la ligne du tableau ou rafraîchir la page
+                    userRow.remove(); // Supprime la ligne du tableau
+                })
+                .catch((error) => {
+                    console.error("Erreur lors de la suppression du document utilisateur:", error);
+                });
+        }
+    };
+    actionsCell.appendChild(deleteButton);
+
+    userRow.appendChild(actionsCell);
+
+    document.getElementById('reservationsTable').appendChild(userRow);
+});
+}).catch(error => {
+    console.error("Erreur lors de la récupération des documents:", error);
+});
+db.collection("Promo").get().then((querySnapshot) => {
+    console.log("Documents récupérés:", querySnapshot.size);
+    if (querySnapshot.empty) {
+        console.log("Aucun document trouvé");
+    }
+    querySnapshot.forEach((doc) => {
+    var userData = doc.data();
+    console.log("Données utilisateur:", userData);
+
+    var userRow = document.createElement('tr');
+
+    // Nom
+    var nameCell = document.createElement('td');
+    nameCell.textContent = userData.poids;
+    userRow.appendChild(nameCell);
+
+    // Prénom
+    var firstNameCell = document.createElement('td');
+    firstNameCell.textContent = userData.code;
+    userRow.appendChild(firstNameCell);
+   // Actions
+    var actionsCell = document.createElement('td');
+
+    // Bouton Modifier
+    var editButton = document.createElement('a');
+    editButton.textContent = 'Modifier';
+    editButton.className = 'btn btn-primary';
+    editButton.href = '/codepromo.html?id=' + doc.id;
+    actionsCell.appendChild(editButton);
+    
+    var createButton = document.createElement('a');
+    createButton.textContent = 'Créer';
+    createButton.className = 'btn btn-success';
+    createButton.href = '/creationCodePromo.html';
+    actionsCell.appendChild(createButton);
+    // Bouton Supprimer
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Supprimer';
+    deleteButton.className = 'btn btn-danger';
+    deleteButton.onclick = function() {
+        // Optionnel : Confirmer la suppression
+        var confirmDelete = confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
+        if (confirmDelete) {
+            // Supprime le document
+            firebase.firestore().collection('users').doc(doc.id).delete()
+                .then(() => {
+                    console.log("Document utilisateur supprimé avec succès");
+                    // Optionnel : Supprimer la ligne du tableau ou rafraîchir la page
+                    userRow.remove(); // Supprime la ligne du tableau
+                })
+                .catch((error) => {
+                    console.error("Erreur lors de la suppression du document utilisateur:", error);
+                });
+        }
+    };
+    actionsCell.appendChild(deleteButton);
+
+    userRow.appendChild(actionsCell);
+
+    document.getElementById('promoTable').appendChild(userRow);
+});
+}).catch(error => {
+    console.error("Erreur lors de la récupération des documents:", error);
 });
   function logout() {
     firebase.auth().signOut().then(() => {
@@ -585,5 +1022,73 @@ db.collection("users").get().then((querySnapshot) => {
     });
   }
 </script>
+<script>
+  // Afficher le formulaire d'ajout
+  document.getElementById('showAddForm').addEventListener('click', function() {
+    document.getElementById('addForm').style.display = 'block';
+  });
+  document.getElementById('showAddForm2').addEventListener('click', function() {
+    document.getElementById('addForm2').style.display = 'block';
+  });
+  
+  // Fonction pour ajouter un abonnement
+  function ajouterAbonnement() {
+    var nom = document.getElementById('nom').value;
+    var prix = document.getElementById('prix').value;
+    var description = document.getElementById('description').value;
+    var avantage = document.getElementById('avantage').value;
+    var image = document.getElementById('image').value;
+  
+    // Ajouter l'abonnement à Firestore
+    var abonnementsRef = firebase.firestore().collection('abonnements');
+    abonnementsRef.add({
+      nom: nom,
+      prix: prix,
+      description: description,
+      avantage: avantage,
+      image: image
+    }).then(() => {
+      console.log('Abonnement ajouté avec succès');
+      // Masquer le formulaire et réinitialiser les champs
+      document.getElementById('addForm').style.display = 'none';
+      document.getElementById('nom').value = '';
+      document.getElementById('prix').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('avantage').value = '';
+      document.getElementById('image').value = '';
+    }).catch((error) => {
+      console.error('Erreur lors de l\'ajout de l\'abonnement : ', error);
+    });
+  }
+  function ajouterproduit() {
+    var nom = document.getElementById('nom').value;
+    var prix = document.getElementById('prix').value;
+    var description = document.getElementById('description').value;
+    var avantage = document.getElementById('avantage').value;
+    var image = document.getElementById('image').value;
+  
+    // Ajouter l'abonnement à Firestore
+    var produitsRef = firebase.firestore().collection('produits');
+    produitsRef.add({
+      nom: nom,
+      prix: prix,
+      description: description,
+      avantage: avantage,
+      image: image
+    }).then(() => {
+      console.log('Produit ajouté avec succès');
+      // Masquer le formulaire et réinitialiser les champs
+      document.getElementById('addForm').style.display = 'none';
+      document.getElementById('nom').value = '';
+      document.getElementById('prix').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('avantage').value = '';
+      document.getElementById('image').value = '';
+    }).catch((error) => {
+      console.error('Erreur lors de l\'ajout du produit : ', error);
+    });
+  }
+  </script>
+  
     </body>
 </html>

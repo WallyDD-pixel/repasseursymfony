@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Paiement</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa;
+    }
+    #loading {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    #loading img {
+      width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+      height: auto;
+      margin-bottom: 20px; /* Espace entre l'image et le spinner */
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <img src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" alt="Chargement...">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Chargement...</span>
+    </div>
+  </div>
+  <button id="checkout-button" class="btn btn-primary" style="display: none;">Acheter pour <span id="product-price"></span>€</button>
+
+  <script>
+    var stripe = Stripe('pk_test_51Piw2CBCi4CMCVLuUA3VflYRMod0uTZ62drwb2hU6yOxuJyxhVzOz2d2x10Gj4ycVUCQ4KUjwiAXGa8qhh0ddEO8005ozYYXrd'); // Remplacez par votre clé publique Stripe
+
+    // Afficher l'élément de chargement
+    document.getElementById('loading').style.display = 'block';
+
+    // Extraire les paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = urlParams.get('amount');
+    const description = urlParams.get('description');
+    const email = urlParams.get('email');
+    const title = urlParams.get('title');
+
+    // Mettre à jour le texte du bouton avec le prix du produit
+    document.getElementById('product-price').textContent = amount;
+
+    // Attendre 3 secondes avant d'actionner le paiement
+    setTimeout(function() {
+      // Masquer l'élément de chargement
+      document.getElementById('loading').style.display = 'none';
+
+      // Simuler un clic sur le bouton de paiement
+      document.getElementById('checkout-button').click();
+    }, 3000);
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+      fetch('http://le-repasseur.fr:3000/create-checkout-session-produits', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: amount,
+          description: description,
+          email: email,
+          title: title
+        })
+      })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (sessionId) {
+        return stripe.redirectToCheckout({ sessionId: sessionId.id });
+      })
+      .then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>

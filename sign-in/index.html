@@ -3,11 +3,13 @@
   <head><script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
+    <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Signin Template · Bootstrap v5.3</title>
+    <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
+    <title>Connexion</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
 
@@ -155,7 +157,7 @@
     
 <main class="form-signin w-100 m-auto">
   <form id="login-form">
-    <img class="mb-4" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="" width="200" height="200">
+    <img class="mb-4" src="/assets/imgg/LOGO-LeRepasseur-Fond-Fonce.png" alt="" style="width: 200px; height: auto;">
     <h1 class="h3 mb-3 fw-normal">Se connecter</h1>
 
     <div class="form-floating">
@@ -219,7 +221,7 @@
                 // L'utilisateur est un administrateur
                 console.log('L\'utilisateur est un administrateur');
                 window.location.href = '/pricing/index.html'; // Redirige vers la page d'administration
-              } else if (role === 'Mino' || role === 'Solo' || role === 'Duo' || role === 'Superhero') {
+              } else if (role === 'Mino' || role === 'Solo' || role === 'Duo' || role === 'Super Héros' || role === 'Partenaire') {
                 // L'utilisateur a un rôle spécifique
                 console.log('L\'utilisateur a le rôle :', role);
                 window.location.href = 'user.html'; // Redirige vers la page utilisateur
@@ -233,7 +235,7 @@
                   document.getElementById('message').textContent = 'Rôle inconnu : ' + role;
               }
             } else {
-              console.log('Aucun document correspondant !');
+              document.getElementById("message").textContent = "Aucun compte avec cet email n'existe.";
             }
           })
           .catch((error) => {
@@ -253,7 +255,7 @@
                 errorMessage = 'Le mot de passe est incorrect.';
                 break;
               default:
-                errorMessage = 'Mot de passe incorrect / compte supprimé. Veuillez réessayer.';
+                errorMessage = 'Mot de passe incorrect / Nom d\'utilisateur. Veuillez réessayer.';
             }
 
             // Afficher l'erreur sur la page

@@ -1,50 +1,88 @@
 const express = require('express');
-const cors = require('cors');
-const { Client, Environment } = require('square');
+const stripe = require('stripe')('sk_test_51Piw2CBCi4CMCVLuZjHCGLJOAJafVmEtoRasslmvUP3IGNxvxN8EONG6rGtwXDzd2WVxpNVNUyQvUJzZYLW0XNro001JknRoGK'); // Remplacez par votre clé secrète Stripe
+const cors = require('cors'); // Importer le middleware CORS
 const app = express();
+const PORT = 3000;
 
-// Utilisez le middleware cors
+// Utiliser le middleware CORS
 app.use(cors());
 
-// Créez une nouvelle instance de client
-const client = new Client({
-  environment: Environment.Sandbox, // ou Environment.Production production
-  accessToken: 'EAAAl7tcgKqwP3lUH0hCg1c0utawSbUsRQnE2JBVamyxb8MWWfqqQ9nBwy7V9wpZ', // remplacez par votre jeton d'accès
-});
+app.use(express.static('public'));
+app.use(express.json());
 
-app.get('/create-payment-link', async (req, res) => {
-  try {
-    // Récupérer l'id de l'abonnement à partir des paramètres de requête
-    const amount = req.query.amount;
-    const title = req.query.title;
-
-    // Vérifier si l'id de l'abonnement est présent
-    if (!amount || !title) {
-      res.status(400).send('Montant ou titre manquant');
-      return;
-    }
-    
-    const response = await client.checkoutApi.createPaymentLink({
-      quickPay: {
-        name: title,
-        priceMoney: {
-          amount: parseInt(amount * 100),
-          currency: 'EUR',
-          
+app.post('/create-checkout-session', async (req, res) => {
+  const { amount, description, email, title } = req.body;
+  const successUrl = new URL('http://le-repasseur.fr:3000/success.html');
+  successUrl.searchParams.append('amount', amount);
+  successUrl.searchParams.append('description', description);
+  successUrl.searchParams.append('email', email);
+  successUrl.searchParams.append('title', title);
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: title,
+            description: description,
+          },
+          recurring: {
+            interval: 'month', // Intervalle de récurrence (mois)
+          },
+          unit_amount: parseInt(amount) * 100, // Montant en centimes
         },
-        locationId: 'LWZ1NPVNSDA2M'
+        quantity: 1,
       },
-      checkoutOptions: {
-        subscriptionPlanId: ''
-      }
-    });
+    ],
+    mode: 'subscription', // Mode d'abonnement
+    customer_email: email,
+    success_url: successUrl.toString(), // Utiliser l'URL de redirection avec les paramètres
+    cancel_url: 'http://le-repasseur.fr:3000/cancel.html',
+  });
 
-    // Renvoie l'URL du lien de paiement
-    res.send(response.result.paymentLink.url);
-  } catch(error) {
-    console.log(error);
-    res.status(500).send('Erreur lors de la création du lien de paiement');
+  res.json({ id: session.id });
+});
+app.post('/create-checkout-session-produits', async (req, res) => {
+  const { amount, description, email, title, type } = req.body;
+  const successUrl = new URL('http://le-repasseur.fr:3000/success.html');
+  successUrl.searchParams.append('amount', amount);
+  successUrl.searchParams.append('description', description);
+  successUrl.searchParams.append('email', email);
+  successUrl.searchParams.append('title', title);
+
+  let sessionConfig = {
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: title,
+            description: description,
+          },
+          unit_amount: parseInt(amount) * 100, // Montant en centimes
+        },
+        quantity: 1,
+      },
+    ],
+    customer_email: email,
+    success_url: successUrl.toString(), // Utiliser l'URL de redirection avec les paramètres
+    cancel_url: 'http://le-repasseur.fr:3000/cancel.html',
+  };
+
+  if (type === 'subscription') {
+    sessionConfig.mode = 'subscription';
+    sessionConfig.line_items[0].price_data.recurring = {
+      interval: 'month', // Intervalle de récurrence (mois)
+    };
+  } else {
+    sessionConfig.mode = 'payment'; // Mode de paiement unique
   }
+
+  const session = await stripe.checkout.sessions.create(sessionConfig);
+
+  res.json({ id: session.id });
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

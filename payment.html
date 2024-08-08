@@ -1,129 +1,109 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Page de paiement</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="text-center my-2">Paiement</h1>
-        <button type="submit" id="payButton" class="btn btn-primary">Payer</button>
-      </form>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Paiement</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa;
+    }
+    #loading {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      padding: 20px;
+      
+      border-radius: 10px;
+    }
+    #loading img {
+      width: 100px; /* Ajustez la taille de l'image selon vos besoins */
+      height: auto;
+      margin-bottom: 20px; /* Espace entre l'image et le spinner */
+    }
+    .spinner-border {
+      width: 3rem;
+      height: 3rem;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <img src="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png" alt="Chargement...">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Chargement...</span>
     </div>
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script>
-      var firebaseConfig = {
-          apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
-          authDomain: "repasseurflutter-7fc37.firebaseapp.com",
-          projectId: "repasseurflutter-7fc37",
-          storageBucket: "repasseurflutter-7fc37.appspot.com",
-          messagingSenderId: "348979158571",
-          appId: "1:348979158571:web:8c8214ab09b160b10c546e",
-          measurementId: "G-CWPDXBH4LT"
-      };
-      firebase.initializeApp(firebaseConfig);
-  
-      firebase.auth().onAuthStateChanged(function(user) {
-          if (user) {
-              document.getElementById("confirm").addEventListener("click", function() {
-                  // Récupérer les informations de la commande à partir des paramètres d'URL
-                  var urlParams = new URLSearchParams(window.location.search);
-                  var amount = urlParams.get('amount');
-                  var description = urlParams.get('description');
-                  var title = urlParams.get('title');
-  
-                  // Récupérer les informations de la carte de crédit
-                  var cardNumber = document.getElementById("cardNumber").value;
-                  var cardExpiry = document.getElementById("cardExpiry").value;
-                  var cardCVV = document.getElementById("cardCVV").value;
-                  var cardHolder = document.getElementById("cardHolder").value;
-  
-                  // Accéder à la collection 'users' dans Firestore
-                  var usersRef = firebase.firestore().collection('users');
-  
-                  // Mettre à jour le rôle de l'utilisateur
-                  usersRef.doc(user.uid).update({
-                      role: title
-                  }).then(function() {
-                      // Créer le paiement
-                      fetch('http://localhost:3000/api/createPayment', {
-                          method: 'POST',
-                          headers: {
-                              'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify({
-                              currency: 'EUR',
-                              amount: amount,
-                              description: description,
-                              abonnement: title,
-                              cardNumber: cardNumber,
-                              cardExpiry: cardExpiry,
-                              cardCVV: cardCVV,
-                              cardHolder: cardHolder,
-                              subscription: {
-                                  frequency: 'monthly',
-                                  duration: 3
-                              }
-                          }),
-                      })
-                      .then(response => response.json())
-                      .then(data => {
-                          console.log(data);
-                          // Rediriger vers la page de confirmation de paiement
-                          window.location.href = "confirmation.html";
-                      })
-                      .catch((error) => {
-                          console.error('Error:', error);
-                      });
-                  }).catch(function(error) {
-                      console.error("Erreur lors de la mise à jour du rôle de l'utilisateur :", error);
-                  });
-              });
-          } else {
-              console.log("Aucun utilisateur n'est connecté");
-          }
+  </div>
+  <button id="checkout-button" class="btn btn-primary" style="display: none;">S'abonner pour 10€/mois</button>
+
+  <script>
+    var stripe = Stripe('pk_test_51Piw2CBCi4CMCVLuUA3VflYRMod0uTZ62drwb2hU6yOxuJyxhVzOz2d2x10Gj4ycVUCQ4KUjwiAXGa8qhh0ddEO8005ozYYXrd'); // Remplacez par votre clé publique Stripe
+
+    // Afficher l'élément de chargement
+    document.getElementById('loading').style.display = 'block';
+
+    // Extraire les paramètres de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const amount = urlParams.get('amount');
+    const description = urlParams.get('description');
+    const email = urlParams.get('email');
+    const title = urlParams.get('title');
+    
+
+    // Attendre 3 secondes avant d'actionner le paiement
+    setTimeout(function() {
+      // Masquer l'élément de chargement
+      document.getElementById('loading').style.display = 'none';
+
+      // Simuler un clic sur le bouton de paiement
+      document.getElementById('checkout-button').click();
+    }, 3000);
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+      fetch('http://le-repasseur.fr:3000/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: amount,
+          description: description,
+          email: email,
+          title: title
+        })
+      })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (sessionId) {
+        return stripe.redirectToCheckout({ sessionId: sessionId.id });
+      })
+      .then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
       });
+    });
   </script>
-      <script>
-        document.getElementById('payButton').addEventListener('click', async () => {
-          try {
-            // Récupérer l'id de l'abonnement à partir des paramètres de l'URL
-            // Récupérer les paramètres de l'URL
-            var urlParams = new URLSearchParams(window.location.search);
-
-            // Récupérer 'amount' et 'title' à partir des paramètres de l'URL
-            var amount = urlParams.get('amount');
-            var title = urlParams.get('title');
-
-            console.log(amount); // Affiche la valeur de 'amount'
-            console.log(title); // Affiche la valeur de 'title'
-
-            // Vérifier si 'amount' et 'title' sont présents
-            if (!amount || !title) {
-              console.log('Montant ou titre manquant dans l\'URL');
-              return;
-            }
-
-            // Créer l'URL pour la requête fetch
-            const serverUrl = 'http://localhost:3000/create-payment-link';
-            const params = new URLSearchParams({
-              amount: amount,
-              title: title,
-              // Ajoutez ici d'autres informations d'abonnement si nécessaire
-            });
-
-            const response = await fetch(`${serverUrl}?${params}`);
-            const paymentLinkUrl = await response.text();
-
-            // Redirige l'utilisateur vers le lien de paiement
-            window.location.href = paymentLinkUrl;
-          } catch(error) {
-            console.log(error);
-          }
-        });
-      </script>
-  </body>
+</body>
 </html>

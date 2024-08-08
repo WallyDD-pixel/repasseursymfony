@@ -213,9 +213,14 @@
             <input type="text" class="form-control" id="role" name="role">
         </div>
         <div class="form-group">
-            <label for="tokens">Jetons:</label>
-            <input type="text" class="form-control" id="tokens" name="tokens">
+            <label for="tokens">Collectes:</label>
+            <input type="text" class="form-control" id="collectes" name="tokens">
         </div>
+        <div class="form-group">
+          <label for="tokens">reservations:</label>
+          <input type="text" class="form-control" id="reservations" name="tokens">
+      </div>
+
         <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
   </main>
@@ -301,7 +306,8 @@
                 document.getElementById('address').value = userData.adresse;
                 document.getElementById('phone').value = userData.telephone;
                 document.getElementById('role').value = userData.role;
-                document.getElementById('tokens').value = userData.tokens;
+                document.getElementById('collectes').value = userData.collectes;
+                document.getElementById('reservations').value = userData.reservations;
             } else {
                 console.log("No such document!");
             }

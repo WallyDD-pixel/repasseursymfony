@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+  <!-- Ajout de Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <link rel="icon" href="/assets/imgg/LOGO-LeRepasseur-FondBlanc.png">
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Définir date de retour</h1>
+    <div id="reservation" class="card">
+      <div class="card-body">
+        <!-- Les données de réservation seront insérées ici -->
+      </div>
+    </div>
+    <button id="valideButton">Valide</button>
+  </div>
+<style>
+    .selectable-time {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.selectable-time.selected {
+  background-color: #000;
+  color: #fff;
+}
+</style>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+  <script>
+    // Configuration de Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyDS86aEvc071-c0HTS8sJi_xQ01boa1q60",
+        authDomain: "repasseurflutter-7fc37.firebaseapp.com",
+        projectId: "repasseurflutter-7fc37",
+        storageBucket: "repasseurflutter-7fc37.appspot.com",
+        messagingSenderId: "348979158571",
+        appId: "1:348979158571:web:8c8214ab09b160b10c546e",
+        measurementId: "G-CWPDXBH4LT"
+    };
+
+    // Initialisation de Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Récupération de la collection "reservation"
+    var db = firebase.firestore();
+    var reservationRef = db.collection("reservation");
+    var daysInEnglish = {
+    "Lundi": "Monday",
+    "Mardi": "Tuesday",
+    "Mercredi": "Wednesday",
+    "Jeudi": "Thursday",
+    "Vendredi": "Friday",
+    "Samedi": "Saturday",
+    "Dimanche": "Sunday"
+  };
+  var daysOrder = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+  reservationRef.doc("availability").get().then((doc) => {
+  if (doc.exists) {
+    var data = doc.data().availability;
+    var reservationDiv = document.getElementById("reservation");
+    reservationDiv.innerHTML = ''; // Nettoyage du div de réservation
+
+    var sortedDays = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    var reservationButton = document.createElement('button');
+    
+
+    // Création d'un paragraphe pour afficher le nombre de kilos autorisés
+    var kiloInfo = document.createElement('p');
+    kiloInfo.className = 'mt-3';
+    reservationDiv.appendChild(kiloInfo);
+
+    // Obtention de l'utilisateur connecté
+    var user = firebase.auth().currentUser;
+    
+    if (user) {
+    var userRef = firebase.firestore().collection('users').doc(user.uid);
+
+    userRef.get().then((doc) => {
+        if (doc.exists) {
+        var kg = doc.data().kg;
+            
+        } else {
+        console.log('No such user!');
+        }
+    }).catch((error) => {
+        console.log('Error getting user:', error);
+    });
+    } else {
+    console.log('No user is signed in.');
+    }
+    // Mise à jour du texte du paragraphe lorsque l'entrée 
+    sortedDays.forEach(function(day) {
+      var dayData = data[day]; // Obtention des données pour ce jour
+
+      if (dayData) {
+        var dayDiv = document.createElement('div');
+        dayDiv.className = 'my-2 border p-3';
+
+        var dayTitle = document.createElement('h5');
+
+        // Obtention de la date du jour de la semaine actuel
+        var today = moment();
+        var todayDayOfWeek = today.day();
+        var targetDayOfWeek = daysOrder.indexOf(day);
+        var difference = targetDayOfWeek - todayDayOfWeek;
+
+        // Si le jour cible est avant aujourd'hui, ajoutez 7 pour obtenir le jour de la semaine suivante
+        if (difference < 0) {
+          difference += 7;
+        }
+        
+        var dateOfWeek = today.add(difference, 'days').format('DD-MM-YYYY');
+
+        dayTitle.textContent = day + ' ' + dateOfWeek; // Affichage du jour de la semaine et de la date
+        dayDiv.appendChild(dayTitle);
+
+        var timeList = document.createElement('ul');
+        dayData.forEach(function(time) {
+          var timeItem = document.createElement('li');
+          timeItem.textContent = time;
+          timeItem.className = 'selectable-time';
+          timeItem.addEventListener('click', function() {
+        // Supprime la classe 'selected' de tous les éléments de temps
+        var timeItems = document.getElementsByClassName('selectable-time');
+        for (var i = 0; i < timeItems.length; i++) {
+            timeItems[i].classList.remove('selected');
+        }
+
+        // Ajoute la classe 'selected' à l'élément de temps cliqué
+        this.classList.add('selected');
+
+        // Concatène l'heure, le jour et la date en une seule chaîne
+        var selectedDateTime = this.textContent + ' ' + day + ' ' + dateOfWeek;
+
+        // Stocke la chaîne dans localStorage
+        localStorage.setItem('selectedDateTime', selectedDateTime);
+
+        // Log la chaîne pour vérifier qu'elle a été correctement stockée
+        console.log(localStorage.getItem('selectedDateTime'));
+        // Récupère les paramètres de l'URL
+        var urlParams = new URLSearchParams(window.location.search);
+
+        // Stocke les paramètres de l'URL dans localStorage
+        for (var param of urlParams) {
+            localStorage.setItem(param[0], param[1]);
+        }
+
+        // Log les paramètres de l'URL pour vérifier qu'ils ont été correctement stockés
+        for (var param of urlParams) {
+            console.log(localStorage.getItem(param[0]));
+        }
+
+        var selectedInfo = document.createElement('p');
+        // Crée la chaîne sans le texte supplémentaire
+        var selectedDateTime = day + ' ' + dateOfWeek + ' ' + time;
+        selectedInfo.textContent = 'Jour sélectionné : ' + day + ', Date : ' + dateOfWeek + ', Heure sélectionnée : ' + time;
+        reservationButton.style.display = 'block';
+        reservationDiv.appendChild(selectedInfo);
+
+        // Enregistre le contenu de selectedDateTime dans localStorage
+        localStorage.setItem('selectedDateTime', selectedDateTime);
+
+        });
+          timeList.appendChild(timeItem);
+        });
+        
+        dayDiv.appendChild(timeList);
+
+        reservationDiv.appendChild(dayDiv);
+      }
+      
+    });
+    // Récupère le bouton 'valide'
+var valideButton = document.getElementById('valideButton');
+
+// Ajoute un événement 'click' au bouton 'valide'
+valideButton.addEventListener('click', function() {
+    // Récupère les informations de localStorage
+    var selectedTime = localStorage.getItem('selectedTime');
+    var selectedDate = localStorage.getItem('selectedDate');
+    var selectedDay = localStorage.getItem('selectedDay');
+    var selectedDateTime = localStorage.getItem('selectedDateTime');
+    var adresse = localStorage.getItem('adresse');
+    var codePostal = localStorage.getItem('codePostal');
+    var nom = localStorage.getItem('nom');
+    var prenom = localStorage.getItem('prenom');
+    var email = localStorage.getItem('email');
+
+    // Récupère 'userId', 'kg' et 'today' à partir de l'URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get('userId');
+    var kg = urlParams.get('kilos');
+    var today = urlParams.get('today');
+
+    // Combine les trois derniers éléments en un seul
+    var dateEtHeureDeReservation = selectedDay + ' ' + selectedDate + ' ' + selectedTime;
+    var dateEtHeureDeRetour = selectedDateTime ;
+
+    // Ajoute les informations à la collection 'demande de reservation' de Firebase
+    firebase.firestore().collection('demande de reservation').add({
+        'date et heure de retour': dateEtHeureDeRetour,
+        'id': id,
+        'kg utiliser': kg,
+        'jour de reservation': today,
+        'adresse': adresse,
+        'codePostal': codePostal,
+        'nom': nom,
+        'prenom': prenom,
+        'email': email,
+        'date et heure de reservation': dateEtHeureDeReservation
+    })
+    .then(function(docRef) {
+        console.log('Document written with ID: ', docRef.id);
+    })
+    .catch(function(error) {
+        console.error('Error adding document: ', error);
+    });
+});
+    
+  }
+  
+});
+
+  </script>
+</body>
+</html>
